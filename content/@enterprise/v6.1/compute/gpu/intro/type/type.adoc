@@ -1,0 +1,164 @@
+---
+title: "其他类型"
+weight: 30
+draft: true
+---
+
+== GPU 加速型 g3na100 
+
+GPU 加速型 g3na100 类型的云服务器采用 Intel Ice Lake 处理器，同时搭载 Nvidia Ampere 架构的 NVIDIA A100 GPU 卡，可针对 AI、数据分析和 高性能计算 HPC 应用场景，在不同规模下实现出色的加速，有效助力更高性能的弹性数据中心。用户可以根据需要自由选择不同卡数以及 CPU 资源的规格，进而灵活适应不同的 AI、数据分析和 HPC 场景下的业务需求。
+
+g3na100 的特点：
+
+* 计算： 
+** 采用 NVIDIA A100 GPU 卡，具备创新的 Nvidia Ampere 架构。
+** 处理器采用 2.6 GHz 主频的 Intel Xeon 可扩展处理器（Ice Lake），全核睿频 3.4 GHz
+** 内存支持 60 G ~ 460 G。
+** 支持选配 1 个，2 个，4 个 或 8 个 GPU 显卡数。 
+
+* 存储：支持使用通用型 SSD 云盘和容量型云盘，详细内容可参考link:../../../../storage/disk/intro/introduction/#_硬盘类型[硬盘介绍]相关内容。
+
+* 网络：内网带宽支持 4 Gbps ~ 50 Gbps，各实例的网络性能与实际规格对应，规格越高网络性能越好。
+
+* 适用场景：配备高性能的 CPU、内存、GPU，可应用于 AI、深度学习训练、、深度学习推理、数据分析以及高性能计算 HPC 等业务场景。
+
+GPU 加速型 g3na100 类型云服务器实例规格列表如下：
+
+[options="header",cols="3,2,2,3,2,3"]
+|===
+|实例规格 |vCPUs|内存|GPU|内网带宽|CPU
+|g3na100.2xlarge.g1
+|8 核
+|60G
+|1 * NVIDIA A100 
+|4 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz
+
+|g3na100.4xlarge.g2
+|16 核
+|120G
+|2 * NVIDIA A100 
+|8 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz
+
+|g3na100.8xlarge.g4
+|32 核
+|240G
+|4 * NVIDIA A100 
+|16 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz
+
+|g3na100.16xlarge.g8
+|62 核
+|460G
+|8 * NVIDIA A100 
+|50 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz
+|===
+
+
+== GPU 加速型 g2ntp100
+
+
+
+
+== 实例规格列表
+
+目前 GPU 云服务器仅支持在``上海 1 区``和``济南 1 区``进行创建，不同区域内的实例规格如下：
+
+*济南 1 区* 
+[options="header",cols="3,3,2,2,3,2,3"]
+|===
+|实例规格 |类型|vCPUs|内存|GPU|内网带宽|CPU
+|g3na100.2xlarge.g1
+|GPU 加速型 g3na100
+|8 核
+|60G
+|1 * NVIDIA A100 
+|4 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz
+
+|g3na100.4xlarge.g2
+|GPU 加速型 g3na100
+|16 核
+|120G
+|2 * NVIDIA A100 
+|8 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz
+
+|g3na100.8xlarge.g4
+|GPU 加速型 g3na100
+|32 核
+|240G
+|4 * NVIDIA A100 
+|16 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz
+
+|g3na100.16xlarge.g8
+|GPU 加速型 g3na100
+|62 核
+|460G
+|8 * NVIDIA A100 
+|50 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz
+|===
+
+*上海 1 区-A*
+
+[options="header",cols="3,3,2,2,3,2,3"]
+|===
+|实例规格 |类型|vCPUs|内存|GPU|内网带宽|CPU
+|g2ntp100.4xlarge.r4
+|GPU 加速型 g2ntp100
+|16核 
+|64G
+|1 * NVIDIA TESLA P100
+|6 Gbps
+|Intel Xeon(Cascade Lake) Gold 6240 etc.	
+
+|g2ntp100.8xlarge.r4
+|GPU 加速型 g2ntp100
+|32 核 
+|128G
+|2 * NVIDIA TESLA P100
+|12 Gbps
+|Intel Xeon(Cascade Lake) Gold 6240 etc.
+
+|g2n2080ti.4xlarge.r4
+|GPU 加速型 g2n2080ti
+|16 核 
+|64G
+|1 * GEFORCE RTX 2080 TI
+|6 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 2.6GHz\|3.4GHz		
+
+|g2n2080ti.8xlarge.r4
+|GPU 加速型 g2n2080ti
+|32 核 
+|128G
+|2 * GEFORCE RTX 2080 TI
+|12 Gbps
+|Intel Xeon(Ice Lake) Platinum 8358 2.6GHz\|3.4GHz
+|===
+
+*上海 1 区-B*
+
+[options="header",cols="3,3,2,2,3,2,3"]
+|===
+|实例规格 |类型|vCPUs|内存|GPU|内网带宽|CPU
+|g2n2080ti.4xlarge.r4
+|GPU加速型 g2n2080ti
+|16 核 
+|64G
+|1 * GEFORCE RTX 2080 TI
+|6 Gbps
+|Intel Xeon(Cascade Lake) Gold 6240 etc.	
+
+|g2n2080ti.8xlarge.r4
+|GPU加速型 g2n2080ti
+|32 核 
+|128G
+|2 * GEFORCE RTX 2080 TI
+|12 Gbps
+|Intel Xeon(Cascade Lake) Gold 6240 etc.
+|===

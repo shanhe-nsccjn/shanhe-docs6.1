@@ -1,0 +1,53 @@
+---
+title: "GPU 加速型 g2as7150"
+weight: 16
+draft: false
+---
+
+GPU 加速型 g2as7150 类型的云服务器采用 Intel Xeon Gold 5218 处理器，同时搭载 AMD FirePro S7150 GPU 卡，是首款支持完全硬件虚拟化的显卡产品，主要面向远程工作站、云游戏、云计算、VDI(虚拟桌面)等虚拟化领域。
+
+include::../../../../../../_components/note.adoc[]
+该类型 GPU 云服务器仅支持在济南 1 区进行创建。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+GPU 加速型 g2as7150 云服务器特点：
+
+* 计算： 
+** 采用 AMD FirePro S7150 GPU 卡，其运用 Graphics Core Next（GCN） 架构。
+** 配有全新的 Intel Advanced Vector Extension (AVX-512) 指令集，在深度学习的多种场景性能提升 4 倍。
+** 处理器采用 2.3 GHz 主频的 Intel Xeon Gold 5218 处理器，全核睿频 3.9 GHz。
+** CPU 核数：支持选择 16、32、64 核。
+** 内存：随 CPU 核数的不同，支持 48 G ~ 192 G。
+** 支持选配 1 个、2个或 4 个 GPU 显卡数。 
+
+* 存储：支持使用通用型 SSD 云盘和容量型云盘，详细内容可参考link:../../../../../storage/disk/intro/introduction/#_硬盘类型[硬盘介绍]相关内容。
+* 网络：内网带宽支持 12.5 Gbps ~ 50 Gbps，各实例的网络性能与实际规格对应，规格越高网络性能越好。
+* 适用场景：配备高性能的 CPU、内存、GPU，可适用于人工智能深度学习、高性能计算、图形图像处理等领域。
+
+GPU 加速型 g2as7150 类型云服务器实例规格列表如下：
+
+[options="hader",cols="3,2,2,3,2,3"]
+|===
+|实例规格 |vCPUs|内存|CPU|内网带宽|GPU
+| g2as7150.4large.g1
+| 16 核
+| 48G
+| Intel Xeon Gold 5218 主频 2.3GHz\|睿频 3.9GHz
+| 12.5 Gbps
+| 1 * AMD FirePro S7150
+
+| g2as7150.8large.g2
+| 32 核
+| 96G
+| Intel Xeon Gold 5218 主频 2.3GHz\|睿频 3.9GHz
+| 25 Gbps
+| 2 * AMD FirePro S7150
+
+| g2as7150.16large.g4
+| 64 核
+| 192G
+| Intel Xeon Gold 5218 主频 2.3GHz\|睿频 3.9GHz
+| 50 Gbps
+| 2 * AMD FirePro S7150
+|===

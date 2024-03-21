@@ -1,0 +1,205 @@
+---
+title: "API 概览"
+description: 本小节主要介绍 IAM 账户所提供的 API。 
+keywords: IAM,API 概览
+draft: false
+weight: 10
+---
+
+IAM 服务提供以下 API 接口供您使用。
+
+== 身份管理
+
+|===
+| API | 说明
+
+| link:../iam_role/create_iam_role/[CreateIAMRole]
+| 创建身份。
+
+| link:../iam_role/associate_role_with_resource/[AssociateIAMRoleWithResource]
+| 关联身份和资源。
+
+| link:../iam_role/dissociate_role_from_resource/[DissociateIAMRoleFromResource]
+| 解绑身份和资源。
+
+| link:../iam_role/replace_resource_role/[ReplaceIAMRoleOfResource]
+| 更新资源绑定的身份。
+
+| link:../iam_role/get_account_role_profile/[GetAccountRoleProfile]
+| 查询账户类身份可见功能模块。
+
+| link:../iam_role/save_account_role_profile/[SaveAccountRoleProfile]
+| 保存账户类身份可见功能模块。
+
+| link:../iam_role/describ_role_associated_resource/[DescribeIAMRoleAssociatedResources]
+| 查询身份关联的资源。
+
+| link:../iam_role/describ_role_associa_resour_count/[DescribeIAMRoleAssociatedResourceCount]
+| 查询身份关联的资源个数。
+
+| link:../iam_role/describ_roles/[DescribeIAMRoles]
+| 查询身份信息。
+
+| link:../iam_role/describ_switchable_roles/[DescribeSwitchableRoles]
+| 查询可带入的身份。
+
+| link:../iam_role/describ_role_with_resource/[DescribeIAMRoleWithResource]
+| 查询资源关联的身份。
+
+| link:../iam_role/delete_roles/[DeleteIAMRoles]
+| 删除身份。
+
+| link:../iam_role/mdfy_role_attributes/[ModifyIAMRoleAttributes]
+| 修改身份属性。
+
+| link:../iam_role/mdfy_role_associa_attributes/[ModifyIAMRoleAssociationAttributes]
+| 修改身份关联属性。
+
+| link:../iam_role/switch_role/[SwitchIAMRole]
+| 切换身份。
+
+| link:../iam_role/get_app_role_token_via_sso/[GetTokenForApplicationRoleViaSSO]
+| 通过 SSO 登录获得 App 身份的 token。
+
+|===
+
+
+== 策略管理
+
+|===
+| API | 说明
+
+| link:../role_policy/create_policy/[CreateIAMPolicy]
+| 创建策略。
+
+| link:../role_policy/attach_policy/[AttachIAMPolicy]
+| 绑定策略到身份。
+
+| link:../role_policy/detach_policy/[DetachIAMPolicy]
+| 解绑策略。
+
+| link:../role_policy/duplicate_policy/[DuplicateIAMPolicy]
+| 复制策略。
+
+| link:../role_policy/describ_polices/[DescribeIAMPolices]
+| 查询策略信息。
+
+| link:../role_policy/describ_policy_versions/[DescribeIAMPolicyVersions]
+| 查询策略版本及策略详细信息。
+
+| link:../role_policy/describ_attached_polices/[DescribeAttachedIAMPolices]
+| 查询资源绑定的相关策略信息。
+
+| link:../role_policy/mdy_policy_attributes/[ModifyIAMPolicyAttributes]
+| 修改策略属性。
+
+| link:../role_policy/delete_policies/[DeleteIAMPolicies]
+| 删除策略。
+
+| link:../role_policy/delete_policy_versions/[DeleteIAMPolicyVersions]
+| 删除策略版本。
+
+| link:../role_policy/smulation_policy/[SimulationIAMPolicy]
+| 模拟策略评估。
+
+| link:../role_policy/set_default_policy_version/[SetDefaultIAMPolicyVersion]
+| 设定策略默认版本。
+
+|===
+
+== 用户管理
+
+|===
+| API | 说明
+
+| link:../iam_user/create_iam_usr/[CreateIAMUser]
+| 创建 IAM 用户。
+
+| link:../iam_user/describ_users/[DescribeIAMUsers]
+| 查询 IAM 用户信息。
+
+| link:../iam_user/mdfy_usr_attributes/[ModifyIAMUserAttributes]
+| 修改 IAM 用户信息。
+
+| link:../iam_user/delete_iam_usr/[DeleteIAMUser]
+| 删除 IAM 用户。
+
+
+// | link:../iam_user/create_user_resource/[CreateIAMUserResource]
+// | 创建 IAM 用户和资源绑定关系。
+
+// | link:../iam_user/describ_user_resource/[DescribeIAMUserResource]
+// | 查询 IAM 用户和资源的绑定关系。
+
+// | link:../iam_user/delete_user_resource/[DeleteIAMUserResource]
+// |删除 IAM 用户和资源的绑定关系。
+
+
+|===
+
+== 服务与 API
+
+|===
+| API | 说明
+
+| link:../service_api/add_api_action/[AddIAMApiAction]
+| 添加 IAM API 纳管。
+
+| link:../service_api/add_api_service/[AddIAMApiService]
+| 添加 IAM 服务纳管。
+
+| link:../service_api/add_action_tag/[AddIAMApiActionTag]
+| 单个添加 API 指令标签。
+
+| link:../service_api/add_action_tag_list/[AddIAMApiActionTagList]
+| 批量添加 API 指令标签。
+
+| link:../service_api/add_service_resource/[AddIAMApiServiceResource]
+| 添加 IAM 服务资源。
+
+| link:../service_api/delete_api_action/[DeleteIAMApiAction]
+| 删除 API 指令。
+
+| link:../service_api/delete_action_tag/[DeleteIAMApiActionTag]
+| 单个删除 API 指令标签。
+
+| link:../service_api/delete_action_tag_list/[DeleteIAMApiActionTagList]
+| 批量删除 API 指令标签。
+
+| link:../service_api/delete_api_service/[DeleteIAMApiService]
+| 删除 IAM 服务。
+
+| link:../service_api/delete_service_resource/[DeleteIAMApiServiceResource]
+| 删除 IAM 服务资源。
+
+| link:../service_api/describ_api_actions/[DescribeIAMApiActions]
+| 查询 API 指令详情。
+
+| link:../service_api/describ_action_tags/[DescribeIAMApiActionTags]
+| 查询 API 指令标签。
+
+| link:../service_api/describ_actions_bytag/[DescribeIAMApiActionsByTag]
+| 按标签查询已纳管的 API。
+
+| link:../service_api/describ_api_services/[DescribeIAMApiServices]
+| 返回 IAM 服务信息。
+
+| link:../service_api/describ_service_resources/[DescribeIAMApiServiceResources]
+| 返回 IAM 服务资源信息。
+
+| link:../service_api/modify_action_attributes/[ModifyIAMApiActionAttributes]
+| 修改 API 属性。
+
+| link:../service_api/modify_service_attributes/[ModifyIAMApiServiceAttributes]
+| 修改 IAM 服务属性。
+
+| link:../service_api/modify_resource_attributes/[ModifyIAMApiServiceResourceAttributes]
+| 修改 IAM 服务资源属性。
+
+| link:../service_api/publish_service/[PublishIAMApiService]
+| 发布 IAM 服务。
+
+| link:../service_api/describ_operation_log/[DescribeIAMApiOperationalLog]
+| 查看 IAM 服务操作日志。
+
+|===

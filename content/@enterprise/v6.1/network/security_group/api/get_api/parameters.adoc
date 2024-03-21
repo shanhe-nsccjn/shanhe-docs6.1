@@ -1,0 +1,11 @@
+---
+title: "公共参数"
+description: Test description
+draft: false
+weight: 10
+collapsible: false
+keywords: 公共参数, API
+---
+:pub:
+
+include::../../../../../../_cloud_service/api_common/parameters.adoc[]

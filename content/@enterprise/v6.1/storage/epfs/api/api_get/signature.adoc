@@ -1,0 +1,190 @@
+---
+title: "签名认证"
+draft: false
+weight: 1
+---
+
+本小节主要介绍 API 请求中签名 ( signature ) 的生成方法。
+
+== 步骤 1：获取 API 密钥签名
+
+您需要先在控制台创建 API 密钥，获取 accesss_key_id 和 secret_access_key。
+
+假设 access_key_id 和 secret_access_key 如下所示。
+
+----
+access_key_id = 'QYACCESSKEYIDEXAMPLE'
+secret_access_key = 'SECRETACCESSKEY'
+----
+
+请求参数如下:
+
+[,test]
+----
+param = {
+'access_key_id': 'QYACCESSKEYIDEXAMPLE',
+"zone":"jinan1a",
+"signature_method": "HmacSHA256",
+"signature_version": "1",
+"version":"1",
+"timestamp": '2021-08-19T16:44:40Z',
+}
+----
+
+include::../../../../../../_components/note.adoc[]
+使用上述的 AccessKey 和 Request 调试您的代码， 当得到跟后面一致的签名结果后(即表示你的代码是正确的)， 可再换为您自己的 AccessKey 和其他 API 请求。 +
+
+这里以请求集群列表为例，若最后计算的结果和示例中一样，只需要换成自己的 access_key_id 和 secret_access_key 以及请求的 path 即可。
+include::../../../../../../_components/table_footer.adoc[]
+
+
+== 步骤 2：构造被签名串
+
+被签名串的构造规则如下:
+
+[,url]
+----
+string_to_sign = Verb + "\n"
+              + Content-MD5 + "\n"
+              + Content-Type + "\n"
+              + Date + "\n"
+              + URL
+----
+
+**参数说明**
+
+* ``Verb`` 是 HTTP Method，包括 HEAD, GET, PUT, DELETE, OPTIONS。
+* ``Content-MD5`` 表示请求内容数据的 MD5 值，和请求头里的字段值保持一致，如果请求头没有这个参数，保留空白行。
+* ``Content-Type`` 表示请求内容的类型，和请求头里的字段值保持一致，如果请求头没有这个参数，保留空白行。
+* ``Date`` 表示此次请求的时间，需要符合 HTTP 规定的 GMT 格式。
+
+**示例**
+
+若以获取 filesystem 列表为例，则 string_to_sign 串如下所示。
+
+* filesystem 列表
++
+[,url]
+----
+methed : GET
+url : /file-systems
+Content-MD5 ： 空串
+Content-Type ： application/json
+Date ： Thu, 30 Dec 2021 14:12:03 GMT
+URL : /file-systems
+----
+
+* filesystem 列表所对应的 string_to_sign 串
++
+[,url]
+----
+GET\n\napplication/json\nThu, 30 Dec 2021 14:12:03 GMT\n/file-systems
+----
+
+== 步骤 3:计算签名
+
+计算被签名串的签名 signature。
+
+* 将 API 密钥的私钥 ( secret_access_key ) 作为 key，生成被签名串的 HMAC-SHA256 或者 HMAC-SHA1 签名，更多信息可参见 http://www.ietf.org/rfc/rfc2104.txt[RFC2104]。
+
+* 将签名进行 Base64 编码。
+
+使用 Python 3 生成签名代码示例：
+
+[,python]
+----
+import hmac
+from hashlib import sha256
+import base64
+
+string_to_sign=GET\n\napplication/json\nThu, 30 Dec 2021 14:12:03 GMT\n/file-systems #前文生成的被签名串
+h = hmac.new(sk.encode(encoding="utf-8"), digestmod=sha256)
+h.update(string_to_sign.encode(encoding="utf-8"))
+sign = base64.b64encode(h.digest()).strip()
+signature = sign.decode()
+----
+
+生成的签名 signature：
+
+[,url]
+----
+IrokBOGuQvxFHZpmnExIjsZOY+PrfiVU6S6461KnzE0=
+----
+
+== 步骤 4：添加签名 Authorization
+
+添加 HTTP 请求头.
+[,url]
+----
+Authorization: QS <access_key_id>:<signature>
+----
+
+请求头示例。
+
+[,url]
+----
+Authorization: QS QYACCESSKEYIDEXAMPLE:IrokBOGuQvxFHZpmnExIjsZOY+PrfiVU6S6461KnzE0=
+----
+
+== 测试代码
+
+[,python]
+----
+# !/usr/bin/python3
+ 
+import requests,datetime
+from hashlib import sha256
+import hmac
+import base64
+ 
+ 
+def get_signature(method="GET", url="", sk="", headers={}):
+ 
+    content_md5 = headers.get("Content-MD5", "")
+    content_type = headers.get("Content-Type", "")
+    date = headers.get("Date", "")
+ 
+    string_to_sign  = method + "\n" + content_md5 + "\n" + content_type + "\n" \
+                      + date + "\n" + url
+    print("#string_to_sign: %s#" % string_to_sign)
+ 
+    h = hmac.new(sk.encode(encoding="utf-8"), digestmod=sha256)
+    h.update(string_to_sign.encode(encoding="utf-8"))
+    sign = base64.b64encode(h.digest()).strip()
+    signature = sign.decode()
+ 
+    print("#signature: %s#" % signature)
+    return signature
+ 
+ 
+TS_FORMAT = '%a, %d %b %Y %H:%M:%S GMT'
+EPFS_SERVICE = 'https://epfs-api.shanhe.com'
+ 
+AK_TEST = "QYACCESSKEYIDEXAMPLE"
+SK_TEST = "SECRETACCESSKEY"
+ 
+ 
+def get_fs_list():
+    ak = AK_TEST
+    sk = SK_TEST
+ 
+    method = "GET"
+    short_url = '/file-systems'
+    url = '%s%s' % (EPFS_SERVICE, short_url)
+    date = datetime.datetime.utcnow().strftime(TS_FORMAT)
+ 
+    headers = {'Date': date, 'Content-Type': 'application/json'}
+    signature = get_signature(method=method, url=short_url, sk=sk, headers=headers)
+    print("url: #%s#" % url)
+ 
+    headers['Authorization'] = 'QS %s:%s' % (ak, signature)
+    body = {'stor_type': 'HPC'}
+    r = requests.get(url, headers=headers, json=body, verify=False)
+    print(r.text)
+ 
+ 
+get_fs_list()
+----
+
+
+

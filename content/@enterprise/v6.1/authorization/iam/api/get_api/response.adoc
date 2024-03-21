@@ -1,0 +1,79 @@
+---
+title: "返回结构"
+description: API 返回结构。 
+keywords: API 返回结构
+draft: false
+weight: 40
+---
+本文介绍 API 返回结构组成及返回示例。
+
+== 返回结构
+[cols="1,2"]
+|===
+| 参数 | 描述
+
+| 指令名称
+| API 返回的指令名称 ( action )。
+
+API 返回的指令名称一般以 “API 请求指令名称” + “Response” 来表示，例如 *DescribeIAMRolesResponse*。 
+
+
+| 返回码
+a| 返回码 ( ret_code ) 用来表示 API 请求的返回值。 
+
+* *ret_code* 等于 0 表示 API 请求正常。
+* *ret_code* 不等于 0 表示 API 请求错误。
+
+详情可见link:../../error_code[错误码]。
+
+
+| 返回参数
+| 参数响应消息。
+
+|===
+
+== 返回示例
+
+API 的返回结果为 JSON 结构，以下为 *DescribeIAMRolesResponse* 的 API 请求返回：
+[source]
+----
+{"action":"DescribeIAMRolesResponse",
+  "role_set":[
+    {
+      "description":"",
+      "duration_seconds":3600,
+      "controller":"self",
+      "qrn":"qrn:qingcloud:iam::usr-LqKWUoWf:role/iamr-gbo0nbod",
+      "role_id":"iamr-gbo0nbod",
+      "root_user_id":"usr-LqKWUoWf",
+      "role_name":"approle1",
+      "create_time":"2020-06-28T03:49:41Z",
+      "policy_count":0,
+      "owner":"usr-LqKWUoWf",
+      "role_type":"application"
+    },
+    {
+      "application_id":"app-12345668",
+      "description":"",
+      "duration_seconds":3600,
+      "root_user_id":"usr-LqKWUoWf",
+      "qrn":"qrn:qingcloud:iam::usr-LqKWUoWf:role/iamr-lko7hwnn",
+      "role_id":"iamr-lko7hwnn",
+      "controller":"application",
+      "role_name":"RoleForapp-12345668",
+      "create_time":"2020-06-30T06:16:47Z",
+      "policy_count":0,
+      "owner":"usr-LqKWUoWf",
+      "role_type":"application"
+    }
+  ],
+  "ret_code":0,
+  "total_count":20,
+  "role_type_total_count":{
+    "cluster":1,
+    "account":7,
+    "application":8,
+    "instance":4
+  }
+}
+----

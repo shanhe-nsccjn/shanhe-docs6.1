@@ -1,0 +1,14 @@
+---
+title: "基础操作"
+weight: 1
+description: 本小节主要介绍基础操作接口相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket
+---
+
+- 创建 Bucket：link:put/[PUT Bucket]
+- 删除 Bucket：link:delete/[Delete Bucket]
+- 获取 Bucket 元信息：link:head/[Head Bucket]
+- 列取对象：link:get/[GET Bucket]
+- Bucket 使用统计：link:get_stats/[GET Bucket Statistics]
+- 列取分段上传：link:list_multipart_uploads/[List Multipart Uploads]
+- 批量删除对象：link:delete_multiple/[Delete Multiple]

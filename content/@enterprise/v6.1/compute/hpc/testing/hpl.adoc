@@ -1,0 +1,94 @@
+---
+title: "HPL 算力测试"
+draft: false
+weight: 5
+---
+
+== HPL 测试介绍
+
+HPL（The High-Performance Linpack Benchmark）是测试高性能计算集群系统浮点性能的基准，其通过对高性能计算机采用高斯消元法求解一元 N 次稠密线性代数方程组进行测试，评价高性能计算机的浮点性能。 +
+浮点计算峰值是指计算机每秒可以完成的浮点计算次数，包括理论浮点峰值和实测浮点峰值。理论浮点峰值是该计算机理论上每秒可以完成的浮点计算次数，主要由 CPU 的主频决定。 +
+
+理论浮点峰值 ＝ CPU 主频 × CPU 核数 ×  CPU 每周期执行浮点运算的次数。 +
+
+CPU 理论浮点运算速率计算公式：FLOPS = 核数 x 单核主频 x CPU 单个周期浮点计算值。 +
+
+其中， CPU 单周期双精度浮点计算能力 = 2(FMA 数量) x 2(同时加法和乘法) x 512/64
+
+== 准备工作
+
+. 准备测试环境，需创建一个最高规格单计算节点的 EHPC 集群，如 CPU 26 核、内存 80G，详细操作可参看link:../../quick-start/create_ehpc[创建 EHPC 集群]相关内容。
+
+. 下载 link:https://s4.qingcloud.com/files/2022/12/hpl-2.3.zip[HPL 软件]和link:https://s4.qingcloud.com/files/2022/12/hpl.sh[测试脚本]，以及link:https://s4.qingcloud.com/files/2022/12/HPL.dat[测试算例,window=_blank]。
+
+. 将 **HPL 软件**上传至已创建完成的 EHPC 集群的共享目录中，详细操作可参考link:../../manual/epfs/epfs_details#_上传删除本地文件[上传本地文件]相关内容。
+
+. 算例中，只需更改 NS，P，Q 这三个参数，其计算方式如下：
++
+NS 计算方法：N * N * 8 = 集群总内存 * 80%，此处计算出的 N 就是 NS 填入的值。
++
+P，Q 取值方法：P * Q = 核心数（P < = Q）其中，P 取值最好为 2 的幂。
++
+假设核心数为 24 核，那么 P，Q 可以选择的组合：
++
+* P = 2，Q = 12
+* P= 4，Q = 6
+任选一组即可。（P，Q 在跑不同用例前，要做对应调整）
+
+. 将**测试脚本**和**测试算例**上传至登录节点的目录下。
+
+. 参考 link:../../manual/cluster/node/ssh[WebSSH] 章节相关内容，登录至集群的登录节点，编写如下脚本。
++
+[,shell]
+----
+[admin@login1 ~]$ vim myscript
+
+// 内容如下：
+#!/bin/bash  
+   
+source /es01/software/profile.d/inteloneapi.sh
+ 
+mpirun /es01/software/hpl-2.3/bin/Linux_Intel64/xhpl HPL.dat
+----
+
+== 测试方法
+
+=== 单节点集群
+
+. 参考 link:../../manual/cluster/node/ssh[WebSSH] 章节相关内容，登录到集群登录节点。
+. 在测试脚本和算例文件所在目录，修改 HPL.dat 文件中的 P、Q 值，需要分别验证 8 核，16 核，24 核的浮点性能。
++
+
+include::../../../../../_components/note.adoc[]
+P、Q 修改及所对应的组合详见link:#_准备工作[准备工作]中的步骤 4。
+
+include::../../../../../_components/table_footer.adoc[]
+
+. 算例文件修改完成并保存。
+
+. 输入如下命令，其中，``-n`` 的取值应该分别为 8，16，24（即当前用例要测试的核心数）。
++
+[,shell]
+----
+# sbatch -n 2 hpl.sh
+Submitted batch job 10
+----
+. 登录 {console_name}，选择**产品与服务** > *计算* > *弹性高性能计算 EHPC*，点击左侧导航栏中的**作业管理**，进入作业页面，可以查看作业运行状态。
+. 等待作业运行完成，查看相应的运行结果，详细操作可参考link:../../quick-start/job_result[查看作业结果]相关内容。
+
+. 查看结果。需要关注的数据就是 Gflops，数值越高代表算力越强。如下所示三组 case 的预期是：核心数越多，Gflops 数值越高。
++
+image::/images/cloud_service/compute/hpc/hpl_1.png[,60%]
+
+=== 多节点集群
+
+. 单计算节点，测试其 CPU 26 核的算力，测试方法同link:#_单节点集群[单节点集群]。
++
+得出结果后，取平均单核算力，如总算力为 3.0015e+02，则单核算力为 3.0015e+02/26。
+
+. 双节点，单节点测试完成后，给集群添加一个同规格的计算节点，测试 52 核心的算力，测试方法同上。
+
+. 三节点，双节点测试完成后，给集群再添加一个同规格的计算节点，测试 78 核心的算力，测试方法同上。
+
+. 预期结果：节点数越多，单核算力越低
+

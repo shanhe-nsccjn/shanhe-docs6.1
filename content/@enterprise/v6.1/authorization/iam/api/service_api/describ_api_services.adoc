@@ -1,0 +1,119 @@
+---
+title: "DescribeIAMApiServices"
+draft: false
+weight: 25
+---
+
+== 接口描述
+
+返回 IAM 服务信息。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| offset
+| Interger
+| 否
+| 查询起点。
+
+| limit
+| Interger
+| 否
+| 偏移量。
+
+| search_word
+| String
+| 否
+| 搜索关键字。
+
+| reverse
+| Interger
+| 否
+| 是否降序查询。
+
+| sort_key
+| String
+| 否
+| 排序使用的列。
+
+| status
+| List
+| 否
+| 服务状态。
+
+| visiable
+| String
+| 否
+| 是否可见。
+
+| permission
+| String
+| 否
+| 默认权限。
+
+| service_name
+| String
+| 否
+| 服务名（英文）。
+
+|===
+
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| services
+| Dict
+| 服务信息。
+
+|===
+
+== 响应示例
+
+[source,json]
+----
+{
+  "services":{
+    "elb":{
+      "attributes":{
+        "actions":"elb"
+      },
+      "type":"service",
+      "id":"elb",
+      "description":""
+    },
+    "ecm":{
+      "attributes":{
+        "actions":"ecm"
+      },
+      "type":"service",
+      "id":"ecm",
+      "description":""
+    },
+    "vpc":{
+      "attributes":{
+        "actions":"vpc"
+      },
+      "type":"service",
+      "id":"vpc",
+      "description":""
+    }
+  },
+  "action":"DescribeIAMApiServicesResponse",
+  "ret_code":0
+}
+----

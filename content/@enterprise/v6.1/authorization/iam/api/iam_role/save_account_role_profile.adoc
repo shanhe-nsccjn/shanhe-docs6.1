@@ -1,0 +1,50 @@
+---
+title: "SaveAccountRoleProfile"
+draft: false
+weight: 6
+---
+== 接口描述
+
+保存账户类身份可见功能模块。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| role_id
+| String
+| 是
+| 身份 ID。
+
+| owner
+| String
+| 否
+| 身份 owner。
+
+| function
+| Map
+| 否
+| 身份拥有的功能。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| role
+| String
+| 身份 ID。
+
+|===

@@ -1,0 +1,66 @@
+---
+title: "DeleteSubUsers"
+description: 
+draft: false
+---
+删除子帐户。
+
+include::../../../../../../_components/attention.adoc[]
+这里并非完全删除数据，只是禁用了此子账号，还可以通过 link:../restore_sub_users/[RestoreSubUsers] 恢复。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| users.n
+| String
+| 子帐户 ID。
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| users
+| String
+| 被删除的子帐户 ID
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=DeleteSubUsers
+&users.1=usr-abcd1234
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"DeleteSubUsersResponse",
+  "ret_code":0,
+  "users":[
+    "usr-abcd1234"
+  ]
+}
+----

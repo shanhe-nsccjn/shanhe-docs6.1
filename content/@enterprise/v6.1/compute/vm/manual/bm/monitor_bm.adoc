@@ -1,0 +1,42 @@
+---
+title: "弹性裸金属服务器监控"
+weight: 2
+---
+
+山河云使用 zabbix 来收集弹性裸金属服务器的监控信息，包括 CPU 使用率、内存使用率、硬盘使用率等。 在创建云服务器时，山河云会在弹性裸金属服务器上部署 zabbix agent。 创建成功后，山河云会在弹性裸金属服务器所属的路由器上，通过 zabbix_get 收集弹性裸金属服务器监控信息。
+
+对于 Linux 操作系统, 用户如果不需要或不想使用监控服务，可以在弹性裸金属服务器内执行 `service stop gapd` 命令来停止服务，同时删除如下文件：
+
+* `/usr/sbin/zabbix_agentd`
+* `/etc/zabbix/zabbix_agentd.conf`
+* `/usr/bin/gapd`
+* `/etc/init/gapd.conf`
+* `/usr/lib/systemd/system/gapd.service`
+
+对于 Windows 操作系统, 没有预装 zabbix agent, 需要用户自己安装。 具体步骤如下:
+
+. 从 zabbix 官网下载 Windows 版本的 zabbix_agents, 为方便描述, 以 `zabbix_agents_2.2.19.win.zip` 为例。
+. 解压 `zabbix_agents_2.2.19.win.zip`, 将解压目录下的 `zabbix_agentd.exe`, `zabbix_agentd.win.conf` 拷贝到 C 盘下。
+. 编辑 `zabbix_agentd.win.conf`, 修改文件内容如下。
++
+[,shell]
+----
+ AllowRoot=1
+ EnableRemoteCommands=1
+ Server=<monitor_server_ip>
+ Hostname=<instance_id>
+----
++
+其中, instance_id 是云服务器 id, 类似: i-vmqi7s9z。 monitor_server_ip 是 VPC IPv4 地址范围内倒数第 4 个 IP, 例如, VPC IPv4 地址范围为 172.16.0.0/16, monitor_server_ip 为 172.16.255.252。
+
+. 执行如下命令, 安装启动 zabbix_agentd
++
+[,shell]
+----
+ C:\zabbix_agentd.exe -i -c C:\zabbix_agentd.win.conf
+ C:\zabbix_agentd.exe -s -c C:\zabbix_agentd.win.conf
+----
+
+. 防火墙入放行 zabbix_agentd 端口号 10050
+
+

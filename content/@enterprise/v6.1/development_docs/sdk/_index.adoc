@@ -1,0 +1,27 @@
+---
+title: "SDK 文档"
+linkTitle: "SDK 文档"
+weight: 3
+collapsible: true
+type: "product"
+
+study_section:
+  - title: 了解
+    icon: icon-wrench_duotone
+    children:
+      - title: 介绍
+        children:
+          - title: SDK 文档简介
+            url: intro/intro
+
+
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: Python
+        children:
+          - title: 安装指南
+            url: python/install/install
+          - title: 快速入门
+            url: python/manual/manual_guide
+---

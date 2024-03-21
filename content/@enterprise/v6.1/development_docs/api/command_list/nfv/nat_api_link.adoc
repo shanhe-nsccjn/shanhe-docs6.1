@@ -1,0 +1,8 @@
+---
+title: "NAT 网关接口"
+description: NAT 网关 API 接口。
+draft: false
+weight: 1
+keywords: 山河云, ShanHe, 云计算, API, NFV, NAT 网关, 网络组件
+---
+NAT 网关接口详细说明，请参见 link:/v6.1/network/nat_gateway/api/api_overview/[NAT 网关 API 接口]。

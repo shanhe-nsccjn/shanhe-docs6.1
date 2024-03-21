@@ -1,0 +1,63 @@
+---
+title: "卸载 GPU 驱动"
+weight: 45
+---
+
+本章节介绍如何手动卸载已安装好的 NVIDIA 驱动。
+
+include::../../../../../_components/attention.adoc[]
+GPU 云服务必须配置相应的驱动才可正常使用。驱动卸载完成后，请确保重新安装了与当前 GPU 云服务器操作系统相匹配的驱动，以防止该 GPU 云服务器无法正常使用。
+include::../../../../../_components/table_footer.adoc[]
+
+== Linux 系统下卸载 GPU 驱动
+
+以 Ubuntu 操作系统为例。
+
+. 参考link:../../../vm/manual/vm/connect_instance/linux_connect/[连接 Linux 云服务器]，连接 GPU 云服务器。
+. 执行如下命令，查看 nvidia-uninstall 路径。
++
+[,shell]
+----
+whereis nvidia-uninstall
+----
+
+. 执行如下命令，根据上一步返回结果中的路径，卸载 GPU 驱动。
++
+[,shell]
+----
+/usr/bin/nvidia-uninstall
+----
+
+. 执行如下命令卸载 CUDA。
++
+[,shell]
+----
+/usr/local/cuda/bin/cuda-uninstaller
+
+rm -rf /usr/local/cuda-11.4
+----
++
+include::../../../../../_components/note.adoc[]
+* 不同版本的 CUDA 卸载命令可能存在差异，若未找到 ``cuda-uninstaller`` 文件，可到 ``/usr/local/cuda/bin/`` 目录下查看是否存在 ``uninstall_cuda`` 开头的文件。若有，则将命令中的 ``cuda-uninstaller`` 替换为 ``uninstall_cuda`` 开头的文件名即可。
+* ``cuda-11.4`` 为相应版本的文件夹，需根据实际情况进行修改。
+include::../../../../../_components/table_footer.adoc[]
+
+. 执行如下命令，重启当前云服务器。
++
+[,shell]
+----
+reboot
+----
+
+== Windows 系统下卸载 GPU 驱动
+
+. 参考link:../../../vm/manual/vm/connect_instance/windows_connect/[连接 Windows 云服务器]，连接 GPU 云服务器。
+
+. 在远程桌面中，点击**开始**，选择并打开**控制面板**。
+
+. 在**控制面板**中，选择**程序** > **卸载程序**。
+
+. 在**卸载与更改程序**页面，右键点击待卸载的 NVIDIA 驱动程序，点击**卸载/更改(U)**。
+
+. 在弹出的 **NVIDIA 卸载程序**窗口中，点击**卸载**，等待卸载完成，点击**马上重新启动**即可。
+

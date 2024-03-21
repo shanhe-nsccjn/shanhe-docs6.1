@@ -1,0 +1,41 @@
+---
+title: "CLI安装"
+description: test
+draft: false
+keywords: CLI安装, ShanHe, 山河云, CLI
+---
+qingcloud-cli 是管理山河云资源的命令行接口 (Command Line Interface)， 可以通过它对资源进行查看、创建和操作。目前支持 Linux, Mac 及 Windows。 当前最新版本是 1.0.1
+
+include::../../../../../_components/note.adoc[]
+qingcloud-cli 的使用受 API 访问配额的限制，具体请查看link:../../../api/overview/[概述]中的 **API 请求配额限制**
+
+include::../../../../../_components/table_footer.adoc[]
+
+== 安装
+
+* 前提条件
++
+系统已经安装 link:https://www.python.org/downloads/[python] 和 link:https://pip.pypa.io/en/latest/installing.html[pip]
+
+* 操作步骤
++
+执行如下命令，通过 pip 安装 cli:
++
+[,shell]
+----
+$ pip install shanhe-cli
+
+----
++
+若不是在 virtualenv 上安装，则需要 sudo：
++
+[,shell]
+----
+$ sudo pip install shanhe-cli
+----
++
+若已安装 qingcloud-cli 并需要更新到最新版本，则可以:
++
+----
+$ pip install --upgrade shanhe-cli
+----

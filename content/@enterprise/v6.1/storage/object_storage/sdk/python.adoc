@@ -1,0 +1,125 @@
+---
+title: "Python SDK"
+description: 本小节主要介绍 Python SDK 快速指南相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor
+collapsible: false
+draft: false
+weight: 2
+---
+
+山河云对象存储的新版 Python SDK，已在 GitHub 开源。本文为简要使用文档，更多详细信息请参见 https://github.com/qingstor/qingstor-sdk-python[GitHub 项目]
+和 https://github.com/qingstor/qingstor-sdk-python/blob/master/docs/config_zh-CN.md[Python SDK API 文档]。
+
+Python SDK 使用 https://github.com/yunify/snips[Snips] 工具生成，各接口的调用均与 山河云对象存储的 API 相对应。其返回码、请求头、错误码等规定请参照具体的 link:../../api/[Qingstor Restful API 文档]。
+
+使用 SDK 之前请先在link:https://console.shanhe.com/access_keys/[ {console_name}] 申请 Access key。
+
+== 安装
+
+qingstor-sdk 自 v2.3.0 后，仅支持 python v3.6 及以上的版本。
+
+故，安装 qingstor-sdk 时，需确认当前环境中的 python 版本是否满足要求。若 python 版本低于 v3.6，则在使用该 SDK 的过程中，会出错。
+
+使用 Pip 安装:
+
+[source,bash]
+----
+pip install qingstor-sdk
+----
+
+== 初始化服务
+
+发起请求前需要初始化服务。以下代码初始化了一个 QingStor Service。
+
+[source,python]
+----
+from qingstor.sdk.service.qingstor import QingStor
+from qingstor.sdk.config import Config
+
+config = Config('ACCESS_KEY_ID_EXAMPLE', 'SECRET_ACCESS_KEY_EXAMPLE')
+qingstor = QingStor(config)
+----
+
+== 代码示例
+
+. 获取账户下的 Bucket 列表
++
+[source,python]
+----
+# List all buckets.
+output = qingstor.list_buckets()
+
+# Print HTTP status code.
+print(output.status_code)
+
+# Print the buckets.
+print(output['buckets'])
+----
+
+. 初始化并创建 Bucket。用户需要指定 Bucket 名称和所在 Zone:
+
++
+[source,python]
+----
+bucket = qingstor.Bucket('test-bucket', 'jn1a')
+output = bucket.put()
+----
+
+. 获取 Bucket 中存储的 Object 列表
++
+[source,python]
+----
+output = bucket.list_objects()
+
+# Print the HTTP status code.
+# Example: 200
+print(output.status_code)
+
+# Print the key count.
+# Example: 7
+print(output['keys'])
+----
+
+. 上传一个 Object
++
+[source,python]
+----
+with open('/tmp/sdk_bin', 'rb') as f:
+    output = bucket.put_object(
+        'example_key', body=f
+    )
+
+# Print the HTTP status code.
+# Example: 201
+print(output.status_code)
+----
+
+. 删除一个 Object
++
+[source,python]
+----
+output = bucket.delete_object('example_key')
+
+# Print the HTTP status code.
+# Example: 204
+print(output.status_code)
+----
+
+. 设置 Bucket ACL
++
+[source,python]
+----
+output = bucket.put_acl(acl=[
+    {
+        'grantee': {
+            'type': 'group',
+            'name': 'QS_ALL_USERS'
+        },
+        'permission': 'FULL_CONTROL'
+    }
+])
+
+# Print the HTTP status code.
+# Example: 200
+print(output.status_code)
+----

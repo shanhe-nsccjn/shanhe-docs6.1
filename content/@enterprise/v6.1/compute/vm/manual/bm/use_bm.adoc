@@ -1,0 +1,125 @@
+---
+title: "裸金属服务器使用共享存储"
+weight: 3
+---
+
+本章节主要介绍弹性裸金属服务器使用共享存储（vSAN）的操作流程，针对云服务器操作系统的不同其具体配置方式不同，用户根据实际需要进行参考。
+
+== 前置操作
+
+. 已创建弹性裸金属服务器。
+
+. link:../../../../../storage/disk/quickstart/create_disk[创建硬盘]，支持**增强型 SSD** 和**通用型 SSD**
+
+. 创建 vSAN，并将硬盘挂载到 vSAN 上，请参考：link:../../../../../storage/share/manual/create_vsan[Virtual SAN（vSAN）]
+
+== Windows 系统
+
+*以 Windows 2012 R2 版本为例（其他版本类似）*
+
+. 首先打开服务器管理器，选择**添加角色和功能**。
++
+image::/images/cloud_service/compute/vm/1.png[]
+
+. 点击**下一步**。
++
+image::/images/cloud_service/compute/vm/2.png[]
+
+. 点击**下一步**。
++
+image::/images/cloud_service/compute/vm/3.png[]
+
+. 点击**下一步**。
++
+image::/images/cloud_service/compute/vm/4.png[]
+
+. 点击**下一步**。
++
+image::/images/cloud_service/compute/vm/5.png[]
+
+. 重点：勾选``多路径 I/O`` ，点击**下一步**。
++
+image::/images/cloud_service/compute/vm/6.png[]
+
+. 勾选``如果需要，自动重新启动目标服务器``，安装 MPIO 是需要重启的。然后点击**安装**。
++
+image::/images/cloud_service/compute/vm/7.png[]
+. 等待重启安装完成。
+. MPIO 设置 （服务器管理-工具-MPIO），MPIO 属性页面，单击发现多路径，勾选``增加对 iSCSI 设备的支持``。
++
+image::/images/cloud_service/compute/vm/8.png[]
+. 配置 Windows iSCSI 客户端，请参考文档 link:../../../../../storage/share/manual/iscsi_config[Virtual SAN（vSAN）]
++
+include::../../../../../../_components/note.adoc[]
+当创建的 VSAN 为多节点时， 点击程序的发现页面，然后点击**发现门户**，输入每个 VSAN 节点的 IP 。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+== Linux 系统
+*以 ubuntu16.04 为例：*
+
+. 启动 ubuntu16.04 云服务器，安装 multipath。
++
+----
+apt-get install multipath-tools
+----
+
+. 关闭服务。
++
+----
+service multipath-tools stop
+----
+
+. 增加/修改配置。
++
+修改 `/etc/multipath.conf`
++
+配置内容如下：
++
+----
+blacklist{
+devnode "^vd"
+}
+defaults {
+user_friendly_names yes
+path_grouping_policy multibus
+failback immediate
+no_path_retry queue
+}
+devices {
+device {
+vendor "LIO-ORG"
+path_selector "queue-length 0"
+path_checker "tur"
+hardware_handler "1 alua"
+prio "alua"
+prio_args "exclusive_pref_bit"
+fast_io_fail_tmo 25
+}
+}
+----
+. 登录 iSCSI 目标。
++
+----
+#!/bin/bash
+mkdir -p /etc/multipath; touch /etc/multipath/wwids;
+for IP in ip1 ip2 ip3(这里输入 VSAN 各节点 IP 地址); do
+for IQN in `iscsiadm -m discovery -t st -p ${IP}:3260 | awk '{print $2}'`; do
+iscsiadm -m node -T ${IQN} -p ${IP}:3260 -l
+done
+done
+----
+
+. 启动服务。
++
+----
+service multipath-tools start
+----
++
+`multipath -ll`  可以看到 mpath 信息。
++
+`ls /dev/mapper/`  可以看到对应的盘符，后续可以格式化等操作。
+
+
+. 配置 Linux iSCSI 客户端，请参考文档 link:../../../../../storage/share/manual/iscsi_config[Virtual SAN（vSAN）]*
+

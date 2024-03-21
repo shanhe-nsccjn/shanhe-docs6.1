@@ -1,0 +1,58 @@
+---
+title: 禁用API密钥（DisableAccessKeys）
+weight: 5
+---
+
+== 基本信息
+
+=== Path
+/iaas
+
+=== Method
+GET
+
+== 请求参数
+[cols="1,1,1,2", options="header"]
+|===
+| 参数名 | 类型 | 是否必须 | 描述
+
+| access_keys
+| Array
+| true
+| API 密钥 ID 列表
+|===
+
+== 返回数据
+此接口除以下返回参数外，还包含公共响应头。关于公共响应头的更多信息，请参见link:../../../parameters[前文内容]。
+[cols="1,1,1,2", options="header"]
+|===
+| 参数名 | 类型 | 是否必须 | 描述
+
+| access_keys
+| Array
+| false
+| API 密钥 ID 列表
+|===
+
+== 请求示例
+[,javascript]
+----
+{
+  "access_keys": [
+    "LTMJGBXPHSEZRANNNNN"
+  ],
+  "action": "DisableAccessKeys"
+}
+----
+
+== 返回示例
+[,javascript]
+----
+{
+  "access_keys": [
+    "LTMJGBXPHSEZRANNNNN"
+  ],
+  "action": "DisableAccessKeysResponse",
+  "ret_code": 0
+}
+----

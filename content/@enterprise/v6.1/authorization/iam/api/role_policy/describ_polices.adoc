@@ -1,0 +1,207 @@
+---
+title: "DescribeIAMPolices"
+draft: false
+weight: 6
+---
+
+== 接口描述
+
+查询策略信息。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| policies
+| List
+| 是
+| 策略 ID。
+
+| controller
+| -
+| 否
+a| 策略类型。
+
+取值：
+
+* pitrix：系统预置
+* self：用户创建
+* application：应用创建
+
+| policy_name
+| String
+| 否
+| 策略名称。
+
+| base_type
+| String
+| 否
+a| 策略基础类型。
+
+取值：
+
+* identity：身份认证
+* resource：资源权限
+
+| owner
+| String
+| 否
+| 策略 owner。
+
+| status
+| List
+| 否
+a| 策略状态。
+
+取值：
+
+* active：活跃
+* deleted：已删除
+
+| is_draft
+| String
+| 否
+| 策略是否是草稿。
+
+| search_word
+| String
+| 否
+| 模糊搜索。
+
+| offset
+| Integer
+| 否
+| 查询起点。
+
+| limit
+| Integer
+| 否
+| 查询数量。
+
+| sort_key
+| String
+| 否
+| 用于返回结果排序的列。
+
+| reverse
+| String
+| 否
+| 返回结果是否倒序。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| total_count
+| Integer
+| 策略总数。
+
+| policy_set
+| List Dict
+| 返回策略信息。
+
+|===
+
+== 响应示例
+
+[source,json]
+----
+{
+  "action":"DescribeIAMPoliciesResponse",
+  "total_count":27,
+  "policy_set":[
+    {
+      "status":"active",
+      "description":"",
+      "statement":{
+        "Version":"2012-04-01",
+        "Statement":[
+          {
+            "action":[
+              "rcm:*",
+              "elb:*",
+              "vpc:*",
+              "ecm:*"
+            ],
+            "resource":"*",
+            "effect":"deny"
+          }
+        ]
+      },
+      "has_draft":false,
+      "qrn":"qrn:alphacloud:iam::usr-DRFFE3fH:policy/iamp-0d75qnqa",
+      "effect":"10",
+      "is_default":"1",
+      "controller":"self",
+      "base_type":"identity",
+      "create_time":"2020-08-27T09:53:51",
+      "version":1,
+      "path":"/",
+      "owner":"usr-DRFFE3fH",
+      "status_time":"2020-08-27T09:53:51",
+      "bindings":1,
+      "policy_name":"ALLDENY",
+      "is_draft":"0",
+      "revision_id":"iampr-pninhmmb",
+      "policy_id":"iamp-0d75qnqa"
+    },
+    {
+      "status":"active",
+      "description":"",
+      "statement":{
+        "Version":"2012-04-01",
+        "Statement":[
+          {
+            "action":[
+              "rcm:DescribeAlarmPolicies",
+              "rcm:GetMonitors",
+              "rcm:DescribeAlarmPolicyActions",
+              "rcm:GetMonitor",
+              "rcm:DescribeAlarmPolicyRules",
+              "rcm:GetResourceMonitor",
+              "rcm:GetLoadBalancerWafEventData",
+              "rcm:DescribeAutoScalingPolicies",
+              "rcm:GetClusterMonitor",
+              "rcm:GetLoadBalancerMonitor",
+              "rcm:DescribeAlarms",
+              "rcm:GetLeaseInfos",
+              "rcm:DescribeAlarmHistory"
+            ],
+            "resource":"*",
+            "effect":"allow"
+          }
+        ]
+      },
+      "has_draft":false,
+      "qrn":"qrn:alphacloud:iam::usr-DRFFE3fH:policy/iamp-9zafcq1n",
+      "effect":"01",
+      "is_default":"1",
+      "controller":"self",
+      "base_type":"identity",
+      "create_time":"2020-08-12T15:05:25",
+      "version":2,
+      "path":"/",
+      "owner":"usr-DRFFE3fH",
+      "status_time":"2020-08-12T15:05:25",
+      "bindings":0,
+      "policy_name":"NORMAL POLICY",
+      "is_draft":"0",
+      "revision_id":"iampr-qn3sqghh",
+      "policy_id":"iamp-9zafcq1n"
+    }
+  ]
+}
+----

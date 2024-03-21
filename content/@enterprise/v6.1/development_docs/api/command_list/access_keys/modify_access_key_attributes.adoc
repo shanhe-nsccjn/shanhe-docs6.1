@@ -1,0 +1,72 @@
+---
+title: 修改API密钥的属性（ModifyAccessKeyAttributes）
+weight: 8
+---
+
+== 基本信息
+
+=== Path
+/iaas
+
+=== Method
+GET
+
+== 请求参数
+[cols="1,1,1,2", options="header"]
+|===
+| 参数名 | 类型 | 是否必须 | 描述
+
+| access_key
+| String
+| true
+| API 密钥 ID
+
+| access_key_name
+| String
+| true
+| API 密钥名称
+
+| description
+| String
+| true
+| API 密钥的描述
+
+| ip_white_list
+| String
+| true
+| IP 白名单，限制使用 API 密钥的源 IP
+|===
+
+== 返回数据
+此接口除以下返回参数外，还包含公共响应头。关于公共响应头的更多信息，请参见link:../../../parameters[前文内容]。
+[cols="1,1,1,2", options="header"]
+|===
+| 参数名 | 类型 | 是否必须 | 描述
+
+| access_key_id
+| String
+| false
+| API 密钥 ID
+|===
+
+== 请求示例
+[,javascript]
+----
+{
+  "access_key": "LTMJGBXPHSEZRNVKKPHU",
+  "access_key_name": "test_name",
+  "action": "ModifyAccessKeyAttributes",
+  "description": "test name desc",
+  "ip_white_list": ""
+}
+----
+
+== 返回示例
+[,javascript]
+----
+{
+  "access_key_id": "LTMJGBXPHSEZRNVKKPHU",
+  "action": "ModifyAccessKeyAttributesResponse",
+  "ret_code": 0
+}
+----

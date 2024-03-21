@@ -1,0 +1,66 @@
+---
+title: "GrantImageToUsers"
+description: 
+draft: false
+---
+共享镜像给指定的用户。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| image
+| String
+| 镜像 ID
+| Yes
+
+| users.n
+| String
+| 用户id
+| Yes
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=GrantImageToUsers
+&image=img-rtyv0968
+&user.1=user-1234
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"GrantImageToUsersResponse",
+  "ret_code":0
+}
+----

@@ -1,0 +1,79 @@
+---
+title: "POST Bucket Retention"
+description: 本小节主要介绍 Bucket Retention 接口相关操作。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket, WORM
+collapsible: false
+draft: false
+weight: 2
+---
+
+用于锁定 Bucket 的保留策略。仅支持 Bucket 所有者使用该 API。
+
+== 请求语法
+
+[source,http]
+----
+PUT /?retention&worm-id=MTY4MjA0NjAyOS0zMTUzNjAwMDAw HTTP/1.1
+Host: <bucket-name>.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: <authorization-string>
+
+----
+
+== 请求参数
+
+调用该 API 需携带如link:#_请求语法[请求语法]中的参数。
+
+[cols='1,1,3,1']
+|===
+| 名称 | 类型 | 说明 | 是否必须
+
+| worm-id | String | 用来标识当前需要锁定的 retention_policy。 | 是
+
+|===
+
+include::../../../../../../../_components/note.adoc[]
+worm-id 值为调用 link:../put_bucket_retention[Put Bucket Retention] 后，返回的响应头中的 `x-qs-worm-id` 的值。
+
+include::../../../../../../../_components/table_footer.adoc[]
+
+== 请求头
+
+此接口仅包含公共请求头。关于公共请求头的更多信息，请参见link:../../../common_header/#_请求头字段_request_header[公共请求头]。
+
+== 请求体
+
+无。
+
+== 响应头
+
+此接口仅包含公共响应头。关于公共响应头的更多信息，请参见link:../../../common_header/#_响应头字段_response_header[公共响应头]。
+
+== 返回码
+
+可参考link:../../../error_code/#_错误码列表[错误码列表]。
+
+== 示例
+
+=== 请求示例
+
+[source,http]
+----
+POST /?retention&worm-id=MTY4MjA0NjAyOS0zMTUzNjAwMDAw HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2021 09:05:00 GMT
+Authorization: <authorization-string>
+
+----
+
+=== 响应示例
+
+[source,http]
+----
+HTTP/1.1 200 OK
+Server: QingStor
+Date: Sun, 16 Aug 2021 09:05:00 GMT
+Content-Length: 0
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+----

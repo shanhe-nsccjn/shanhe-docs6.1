@@ -1,0 +1,82 @@
+---
+title: "ModifyAlarmPolicyAttributes"
+description: 
+draft: false
+---
+修改告警策略的名称和描述等属性，如果修改告警检查周期或者连续告警次数， 改后需要调用 link:../apply_alarm_policy/[ApplyAlarmPolicy] 使修改生效。
+
+一次只能修改一个告警策略。
+
+*Request Parameters*
+
+[option="header",cols="2,1,3,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| alarm_policy
+| String
+| 告警策略 ID
+| Yes
+
+| alarm_policy_name
+| String
+| 告警策略名称
+| No
+
+| period
+| String
+| 告警策略检查周期
+| No
+
+| description
+| String
+| 告警策略描述
+| No
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+
+| notice_count
+| Integer
+| 连续告警次数（1-5）
+| No
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request:
+
+----
+https://api.shanhe.com/iaas/?action=ModifyAlarmPolicyAttributes
+&alarm_policy=alarm_policy-axbkmf21
+&alarm_policy_name=sample
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response:
+
+----
+{
+  "action":"ModifyAlarmPolicyAttributesResponse",
+  "ret_code":0
+}
+----

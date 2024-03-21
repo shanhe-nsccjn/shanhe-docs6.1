@@ -1,0 +1,30 @@
+---
+title: "作业问题"
+---
+== 常见问题
+
+'''''
+
+=== 一、 DOS UNIX格式问题导致的提交失败
+
+[source,bash]
+----
+# sbatch: error: Batch script contains Dos line breaks
+# sbatch: error: instead ofexpected UNIX line breaks
+----
+
+报错如上，解决方法是将文本dos格式转换为unix格式
+
+[source,bash]
+----
+dos2unix file
+# 将file改为实际要转换的文件，然后重新sbatch该文件即可
+----
+
+=== 二、 提交作业有足够的节点，为什么会有延时？
+
+==== 这是因为slurm会进行调度，偶尔会有正常的等待时间，这是正常的。
+
+=== 三、提交报错
+
+==== 可能是因为核心配置，以及作业分区编辑错误

@@ -1,0 +1,79 @@
+---
+title: "DescribeIAMApiActionsByTag"
+draft: false
+weight: 22
+---
+
+== 接口描述
+
+按标签分类返回已纳管的 API。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| owner
+| String
+| 是
+| 标签 owner。
+
+| tag
+| String
+| 否
+| 标签名称。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| actions
+| Dictionary
+| 以 Json 格式按照 “owner > tag > api” 层次返回已纳管的 API。
+
+|===
+
+== 响应示例
+
+[source,json]
+----
+{
+  "action":"DescribeIAMApiActionsByTagResponse",
+  "actions":{
+    "appCenter":{
+      "account":{
+        "DescribeUsers":{
+          "description":"",
+          "keys":{
+            "required":[],
+            "optional":[]
+          },
+          "service_name":"global",
+          "attributes":{
+            "actionGroups":[
+              "Other"
+            ],
+            "requiredResources":[],
+            "optionalResources":[]
+          },
+          "type":"action",
+          "id":"DescribeUsers"
+        }
+      }
+    }
+  },
+  "ret_code":0
+}
+----

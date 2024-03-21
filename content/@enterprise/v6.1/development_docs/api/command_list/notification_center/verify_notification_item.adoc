@@ -1,0 +1,60 @@
+---
+title: "VerifyNotificationItem"
+description: 
+draft: false
+---
+验证通知项。所有通知项都需要经过验证才能接收通知。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| notification_item_content
+| String
+| 要验证的通知项内容
+| Yes
+
+| verification_code
+| String
+| 验证码
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=VerifyNotificationItem
+&notification_item_content=test@example.com
+&verification_code=xxxxxxxxxxxxxxx
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"VerifyNotificationItemResponse",
+  "ret_code":0
+}
+----

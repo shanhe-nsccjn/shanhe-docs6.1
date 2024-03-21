@@ -1,0 +1,10 @@
+---
+title: "事件通知（Notification）"
+description: 本小节主要介绍事件通知接口相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket
+linkkey: storage_qingstor_notification_api_manual
+---
+
+- link:put_notification/[PUT Bucket Notification]
+- link:get_notification/[GET Bucket Notification]
+- link:delete_notification/[DELETE Bucket Notification]

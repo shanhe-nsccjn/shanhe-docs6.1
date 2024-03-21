@@ -1,0 +1,11 @@
+---
+title: "产品优势"
+linkTitle: "产品优势"
+description:  hpc 产品特点
+keywords: 云计算, 山河云, ShanHe, hpc，产品优势
+draft: false
+weight: 30
+---
+
+include::../../../../../_cloud_service/ehpc/intro/advantage.adoc[]
+

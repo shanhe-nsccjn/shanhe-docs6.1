@@ -1,0 +1,57 @@
+---
+title: "CreateGroupRoles"
+description: 
+draft: false
+---
+创建角色
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| role_type
+| String
+| 角色类型。当前仅支持 `rule`
+| Yes
+
+| group_role_name
+| String
+| 角色名称。
+| No
+
+| description
+| String
+| 角色描述
+| No
+
+| count
+| Integer
+| 一次创建的角色数量。
+| No
+|===
+
+link:../../../parameters/[公共参数]
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=CreateGroupRoles
+&group_role_name=T1
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"CreateGroupRolesResponse",
+  "group_role_ids":[
+    "gr-rlj5c72r"
+  ],
+  "ret_code":0
+}
+----

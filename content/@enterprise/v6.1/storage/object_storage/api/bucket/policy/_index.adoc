@@ -1,0 +1,10 @@
+---
+title: "Bucket 策略（Policy）"
+description: 本小节主要介绍 Bucket 策略接口相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket
+linkkey: storage_qingstor_bucket_policy_api_manual
+---
+
+- link:put_policy/[PUT Bucket Policy]
+- link:get_policy/[GET Bucket Policy]
+- link:delete_policy/[DELETE Bucket Policy]

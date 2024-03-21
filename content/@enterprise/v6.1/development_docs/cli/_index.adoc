@@ -1,0 +1,25 @@
+---
+title: "CLI 文档"
+linkTitle: "CLI 文档"
+weight: 5
+collapsible: true
+type: "product"
+
+study_section:
+  - title: 安装
+    icon: icon-wrench_duotone
+    children:
+      - title: 安装指南
+        children:
+          - title: CLI 安装
+            url: install/install
+
+
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: 操作指南
+        children:
+          - title: CLI 配置
+            url: manual/operation
+---

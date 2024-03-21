@@ -1,0 +1,81 @@
+---
+title: "DescribeIAMUsers"
+draft: false
+weight: 6
+---
+
+== 接口描述
+
+查询 IAM 用户信息。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| users
+| List
+| 否
+| 用户 ID 列表。
+
+| user_name
+| String
+| 否
+| 用户名称。
+
+| owner
+| String
+| 否
+| 用户 owner。
+
+| root_user
+| String
+| 否
+| 用户根账户 ID。 
+
+| offset
+| Integer
+| 否
+| 查询起点。
+
+| limit
+| Integer
+| 否
+| 查询数量。
+
+| sort_key
+| String
+| 否
+| 用于排序的列。
+
+| reverse
+| String
+| 否
+| 返回结果是否倒序。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| total_count
+| Integer
+| 返回数量。
+
+| role_set
+| List Dict
+| 返回的 IAM 用户信息。
+
+|===
+

@@ -1,0 +1,49 @@
+---
+title: "AddUserGroupMembers"
+description: 
+draft: false
+---
+添加用户组成员。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| user_group
+| String
+| 用户组 ID
+| Yes
+
+| users.n
+| String
+| 用户 ID，或者是用户登录邮箱。
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=AddUserGroupMembers
+&user_group=ug-6zp387ak
+&users.1=usr-iKf0yJEZ
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"AddUserGroupMembersResponse",
+  "user_group_id":"ug-6zp387ak",
+  "user_ids":[
+    "usr-iKf0yJEZ"
+4 ],
+  "ret_code":0
+}
+----

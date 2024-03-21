@@ -1,0 +1,76 @@
+---
+title: "ChangeS2ServerVxnet"
+description: 
+draft: false
+---
+修改共享存储服务器的属性。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| s2_server
+| String
+| 共享存储服务器 ID
+| Yes
+
+| vxnet
+| String
+| 私有网络 ID
+| Yes
+
+| private_ip
+| String
+| 指定私有网络 IP 地址
+| No
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| job_id
+| String
+| 执行任务的 Job ID
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=ChangeS2ServerVxnet
+&s2_servers.1=s2-lxqjtu3l
+&vxnet=vxnet-ln2mtlk
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"ChangeS2ServerVxnetResponse",
+  "job_id":"j-bdg2109b",
+  "ret_code":0
+}
+----

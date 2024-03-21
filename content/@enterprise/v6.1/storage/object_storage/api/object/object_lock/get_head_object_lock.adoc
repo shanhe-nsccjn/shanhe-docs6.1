@@ -1,0 +1,49 @@
+---
+title: "Get/Head Object-Lock"
+description: 本小节主要介绍对象版本锁相关接口。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, WORM, Bucket
+collapsible: false
+draft: false
+weight: 3
+---
+
+
+用户可以通过 link:../../basic_opt/get/[Get Object] 与 link:../../basic_opt/head/[Head Object] 接口获取对象的对象版本锁信息。
+
+== 新增响应头
+
+对于已设置对象版本锁的对象，除 link:../../basic_opt/get/[Get Object] 与 link:../../basic_opt/head/[Head Object] 中提及的响应头以外，还包含以下响应头字段。
+
+[cols='2,1,4a']
+|===
+| 头字段 | 类型 | 说明 
+
+| x-qs-object-lock-retain-until-date | Date | 用于标识对象版本锁保护截止时间。 
+| x-qs-object-lock-mode | String | 用于标识对象版本锁的模式。
+| x-qs-object-lock-legal-hold | Bool | 用于标识对象版本锁是否持有。`true` 为被持有状态，该状态下，对象不能被删除。
+
+|===
+
+
+
+== 响应示例
+
+
+[source,http]
+----
+HTTP/1.1 200 OK
+Server: QingStor
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Last-Modified: Fri, 14 Aug 2015 09:10:39 GMT
+ETag: "0c2f573d81194064b129e940edcefe9b"
+Content-Type: image/jpeg
+Content-Length: 7987
+Connection: close
+x-qs-storage-class: STANDARD
+x-qs-object-lock-retain-until-date: 2023-04-01T00:00:00Z
+x-qs-object-lock-mode: GOVERNANCE
+x-qs-object-lock-legal-hold: true
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+
+
+----

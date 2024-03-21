@@ -1,0 +1,113 @@
+---
+title: "CreateS2Account"
+description: 
+draft: false
+---
+创建 vnas 服务访问资源账号
+
+访问 vnas 类型共享服务的 NFS 和 SMB 协议的资源，用户需要定义登录账号，并将账号和 S2 Group 权限组进行绑定。
+
+此操作完成后需要调用 link:../update_s2_servers/[UpdateS2Servers] 以应用到共享存储服务器上。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2a,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| account_type
+| String
+| 账号的类型，为 NFS，SMB 类型
+| Yes
+
+| account_name
+| String
+| 账号名称
+| No
+
+| smb_name
+| String
+| SMB 协议访问的用户名
+| No
+
+| smb_passwd
+| String
+| SMB 协议访问的密码
+| No
+
+| nfs_ipaddr
+| String
+| NFS 协议访问的IP地址
+| No
+
+| s2_groups
+| Array
+| 需要绑定到 S2 Group 权限组的 ID，默认会加入到缺省权限组（自动创建） +
+每个权限组可定义该用户的读写权限，如：{"group_id":"s2g-g9xawjg7","rw_flag":"ro"} +
+rw_flag： +
+ro，只读权限 +
+rw，读写权限
+| No
+
+| opt_parameters
+| String
+| NFS 协议参数定义 +
+如：squash=root_squash,sync=async +
+squash： +
+root_squash，限制root用户权限 +
+all_squash，限制所有用户权限 +
+no_root_squash，不限制root用户权限（缺省） +
+sync： +
+sync，同步写入内存和硬盘 +
+async，先写入内存，后写入硬盘（缺省）
+| No
+
+| description
+| String
+| 共享存储目标描述
+| No
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+|===
+| action | String | 响应动作
+
+| s2_account_id
+| String
+| 新创建的 用户账户 ID
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=CreateS2Account
+&account_type=NFS
+&account_name=nfstest
+&nfs_ipaddr=192.168.1.10
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"CreateS2AccountResponse",
+  "ret_code":0,
+  "s2_account_id":"s2a-lxqjtu3l"
+}
+----

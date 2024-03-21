@@ -1,0 +1,315 @@
+---
+title: "HPC 集群调度系统"
+weight: 3
+draft: true
+---
+共享（HPC）集群中使用的调度器默认为天云 AIP 系统。 本章节将旨于介绍该调度器在作业运行及查看结果过程中将会用的常见命令。
+
+== 查看节点
+
+可执行如下命令，查看指定节点上的所有作业状态。
+[,shell]
+----
+aip host info 
+----
+image::/images/cloud_service/compute/hpc/node.png[]
+
+节点状态说明，即返回结果中的 `STAT` 字段所对应的结果 ：
+
+[options="header",cols="1,2"]
+|===
+|状态|解释说明
+|OK
+|正常
+
+|Unavail
+|主机异常，无法通讯
+
+|Unreach 
+|主机上的 cbjm 异常，无法分发作业
+
+|Closed-Admin
+|主机被管理员关闭，处于运维状态
+
+|Closed-Excl
+|主机上运行独占作业，不接受其他作业
+
+|Closed-Lock
+|主机由于调度策略被锁，不接受其他作业
+
+|Closed-LS
+|主机上的 cbls 工作异常，无法分发作业
+
+|Closed-Wind
+|主机由于配置的时间窗关闭，不接受新的作业
+
+|Closed-Full
+|主机所有 CPU 核都被占用，不接受新的作业
+
+|Closed-Busy
+|主机负载超过配置的阈值，不接受新的作业
+
+|Resuming
+|主机电源开机中（管理员通过命令 csadmin 开机, 或节电调度唤醒中）
+
+|Suspending
+|主机关闭过程中（管理员通过 csadmin 关机，或节电调度停机中）
+
+|Restarting
+|主机关闭过程中（管理员通过 csadmin 重启主机中）
+
+|OK-Power
+|主机处于节电调度停机状态
+
+|Closed-Power
+|主机已被管理员通过 csadmin 关机
+
+|Unknown
+|未知
+|===
+
+== 查看作业状态
+
+查看作业命令：`cjobs`
+
+* 指定 `-l` 参数，表示查看作业详细信息。
+
+* 指定 `-C` 参数，表示查看指定时间段的作业。
+
+* 指定 `-q` 参数，表示查看指定队列上的作业。
+
+* 指定 `-u` 参数，表示查看指定用户、用户组的作业。
+
+* 若不指定参数，则返回作业概要信息，如下所示：
++
+image::/images/cloud_service/compute/hpc/status1.png[]
+
+作业状态说明，即返回结果中的 `STAT` 字段：
+
+[options="header",cols="1,2"]
+|===
+|状态|解释说明
+|WAIT
+| 等待，进一步说明参考 WaitReason
+
+|WSTOP
+|等待时被暂停，进一步说明参考 WaitReason
+
+|RUN
+|运行
+
+|SYSSTOP
+|被调度策略暂停，进一步说明参考 StopReason
+
+|USERSTOP
+|被用户或管理员暂停，进一步说明参考 StopReason
+
+|ZOMBIE
+|作业进程异常，处于僵尸状态，需要人工干预
+
+|EXIT
+|退出或以非 0 退出码结束，进一步说明参考 EndReason
+
+|FINISH
+|作业正常结束
+
+|UNKNOW
+|由于作业运行主机失去联系，状态未知
+
+|ERROR
+|未知原因出错
+|===
+
+* 查看某个作业详细信息
++ 
+[,shell]
+----
+cjobs -l
+----
+
+* 查看某个用户作业
++
+[,shell]
+----
+# cjobs -u ${user_name}
+
+//${user_name} 需根据实际情况进行修改。
+----
+
+* 管理员查看所有用户作业
++
+[,shell]
+----
+cjobs -u all
+----
+
+== 查看历史作业
+
+[,shell]
+----
+# chist
+
+Usage: chist
+
+[-h] [-V] [-l] [-b] [-w] [-a] [-d] [-e] [-p] [-s] [-r] [-j]
+
+[-f logfile_name | -n num_logfiles | -n min_logfile, max_logfile]
+
+[-C time0,time1] [-S time0,time1] [-D time0,time1]
+
+[-N host_spec] [-P project_name]
+
+[-q queue_name] [-m host_name] [-J job_name]
+
+[-u user_name | -u all] [jobId | "jobId[index]" ...]
+
+chist [-h] [-V] -t [-f logfile_name] [-T time0,time1]
+----
+
+参数说明:
+
+* 指定 `-d` 参数，显示已完成作业。
+
+* 指定 `-e` 参数，显示退出作业。
+
+* 指定 `-p` 参数，显示 pending 作业。
+
+* 指定 `-s` 参数，显示 suspended 作业。
+
+* 指定 `-r` 参数，显示正在运行作业。
+
+* 不指定参数，显示 all pending, suspended 和 running jobs。
+
+* 显示指定用户某个时间段内的作业，可执行如下命令：
++
+image::/images/cloud_service/compute/hpc/user_job.png[]
+
+== 通过脚本提交作业
+
+通过脚本提交作业，更容易阅读，同类型的作业可以复用脚本，修改关键的几个参数即可
+
+提交作业脚本：`run_xhpl.aip.offload`
+
+脚本内容见下所示：
+
+image::/images/cloud_service/compute/hpc/submit_job.png[]
+
+执行如下命令，提交作业：
+
+[,shell]
+----
+csub < run_xhpl.aip.offload
+----
+
+include::../../../../../_components/attention.adoc[]
+此处有个 `<` 符号
+
+include::../../../../../_components/table_footer.adoc[]
+
+`csub` 帮助信息如下：
+[,shell]
+----
+# csub
+Usage: csub 
+[-h] [-V] [-B] [-H] [-I | -Ip | -Is | -K] [-N] [-r] [-x]
+        [-a esub_parameters] [-b [[month:]day:]hour:minute] [-C core_limit]
+        [-c [hour:]minute[/host_name | /host_model] | -cn]
+        [-cwd job_current_work_dir]
+        [-cwdc job_current_work_dir]
+        [-app|-A profile_name]
+        [-D data_limit] [-e | -eo err_file]
+        [-E "pre_exec_command [argument ...]"]
+        [-ENV "none" | "[~var_name[,~var_name]...][var_name=value[,var_name=value]...]"]
+        [-f "local_file op [remote_file]" ...]
+        [-F file_limit] [-G user_group] [-g job_group]
+        [-i input_file | -is input_file]
+        [-J job_name | -J "job_name[index_list]%job_limit"
+        [-k "checkpoint_dir [checkpoint_period] [method=method_name]"
+        [-L login_shell]
+        [-m "host_name[+[pref_level]] | host_group[+[pref_level]] ..."]
+        [-M mem_limit] [-n min_processors[,max_processors]]
+        [-o | -oo out_file] [-P project_name]
+        [-p process_limit] [-q "queue_name ..."]
+        [-R "res_req"] [-sp priority]
+        [-rnc resize_notify_command]
+        [-S stack_limit] [-t [[month:]day:]hour:minut]
+        [-u mail_user] [-w ’dependency_expression’]
+        [-W [hours:]minutes[/host_name | /host_model]]
+        [-XF] [-Zs] [-pack job_submission_file]
+----
+
+*参数说明*
+
+[options="header",cols="1,2"]
+|===
+|参数|说明
+|-I / -Ip / -Is /-K
+|交互方式
+        
+|-i 
+|用于指定输入文件
+        
+|-J 
+|用于指定作业名称
+        
+|-m 
+|用于指定所使用的主机名称，主机名称需要用 `“”` 指定，如 `“host_name”`
+
+|-n 
+|指定使用的核数量
+
+|-o 
+|指定输出文件的名称
+
+|-q 
+|用于指定队列名称，对列名称需要用 `“”` 指定，如 `“queue_name”`
+        
+|-R  
+|用于指定资源需求表达式，需要用 `“”` 指定，如 `“res_req”`
+|===
+
+// 无参数缺省队列，非交互模式， 1 个核
+
+示例，提交后台运行作业：
+[,shell]
+----
+csub -o test.log -e test.err -n 56 -cwd $\{PWD} ./run.sh
+----
+
+== 杀作业
+
+使用 `ckill` 命令进行杀作业的操作。
+
+[,shell]
+----
+# ckill -h
+[-h] [-V] [-l] [-m host_name] [-q queue_name] [-g job_group]
+[-u user_name | -u all] [0] [-r | -s sigval] [-J job_name]
+[jobId | "jobId[index_list]"]...
+----
+
+* 杀指定作业
++
+[,shell]
+----
+# ckill ${job_id}
+----
++
+
+include::../../../../../_components/note.adoc[]
+${job_id} 需根据实际情况进行修改。
+
+include::../../../../../_components/table_footer.adoc[]
++
+image::/images/cloud_service/compute/hpc/kill_job.png[]
+
+* 杀所有作业
++
+[,shell]
+----
+ckill 0
+----
++
+image::/images/cloud_service/compute/hpc/kill_all.png[]
+
+

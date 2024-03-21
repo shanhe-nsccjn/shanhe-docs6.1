@@ -1,0 +1,40 @@
+---
+title: "Delete Object-Lock"
+description: 本小节主要介绍对象版本锁相关接口。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, WORM, Bucket
+collapsible: false
+draft: false
+weight: 5
+---
+
+设置对象版本锁的对象，默认情况下，不支持删除操作。如需强制删除，可添加相应的请求头进行操作。
+
+
+== 新增请求头
+
+设置对象版本锁的对象，如需删除，除 link:../../basic_opt/delete/[Delete Object] 中提及的头以外，可添加以下请求头字段。
+
+[cols='2,1,4a']
+|===
+| 头字段 | 类型 | 说明 
+
+| x-qs-bypass-governance-retention | Bool | 满足以下条件时，Bucket 所有者可以设置该参数为 `true`，并指定版本来删除受保护的对象。
+
+. 需要修改或删除保留策略的对象，目前仍然处于保留策略的保护期内。
+. 且保留模式为 `GOVERNANCE` 模式。
+
+|===
+
+== 请求示例
+
+[source,http]
+----
+DELETE /myphoto.jpg?version_id=xxxxxx HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+x-qs-bypass-governance-retention : true
+Authorization: authorization string
+
+
+----
+

@@ -1,0 +1,147 @@
+---
+title: "DescribeIAMRoles"
+draft: false
+weight: 11
+---
+
+== 接口描述
+
+查询一个或多个身份信息。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| roles
+| List
+| 否
+| 身份 ID list。
+
+| role_name
+| String
+| 否
+| 身份名称。
+
+| role_type
+| -
+| 否
+a| 身份类型。
+
+取值如下：
+
+* account：云平台账户
+* instance：云服务器
+* cluster：集群
+* application：应用
+
+| owner
+| String
+| 否
+| 身份 owner。
+
+| status
+| List
+| 否
+a| 身份状态。
+
+取值：
+
+* active：活跃
+* deleted：已删除
+
+| offset
+| Integer
+| 否
+| 查询起点，默认为 0。
+
+| limit
+| Integer
+| 否
+| 查询数量。
+
+| sort_key
+| String
+| 否
+| 用于返回结果排序的列。
+
+| reverse
+| String
+| 否
+| 返回结果是否倒序。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| total_count
+| Integer
+| 身份数量。
+
+| role_set
+| List Dict
+| 返回身份信息。
+
+| role_type_total_count
+| Dict
+| 根据身份类型归类的身份数量。
+
+|===
+
+== 响应示例
+
+[source,json]
+----
+{
+  "action":"DescribeIAMRolesResponse",
+  "role_set":[
+    {
+      "description":"",
+      "duration_seconds":3600,
+      "controller":"self",
+      "qrn":"qrn:qingcloud:iam::usr-LqKWUoWf:role/iamr-gbo0nbod",
+      "role_id":"iamr-gbo0nbod",
+      "root_user_id":"usr-LqKWUoWf",
+      "role_name":"approle1",
+      "create_time":"2020-06-28T03:49:41Z",
+      "policy_count":0,
+      "owner":"usr-LqKWUoWf",
+      "role_type":"application"
+    },
+    {
+      "application_id":"app-12345668",
+      "description":"",
+      "duration_seconds":3600,
+      "root_user_id":"usr-LqKWUoWf",
+      "qrn":"qrn:qingcloud:iam::usr-LqKWUoWf:role/iamr-lko7hwnn",
+      "role_id":"iamr-lko7hwnn",
+      "controller":"application",
+      "role_name":"RoleForapp-12345668",
+      "create_time":"2020-06-30T06:16:47Z",
+      "policy_count":0,
+      "owner":"usr-LqKWUoWf",
+      "role_type":"application"
+    }
+  ],
+  "ret_code":0,
+  "total_count":20,
+  "role_type_total_count":{
+    "cluster":1,
+    "account":7,
+    "application":8,
+    "instance":4
+  }
+}
+----

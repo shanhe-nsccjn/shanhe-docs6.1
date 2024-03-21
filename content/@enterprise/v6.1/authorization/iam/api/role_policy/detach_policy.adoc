@@ -1,0 +1,49 @@
+---
+title: "DetachIAMPolicy"
+draft: false
+weight: 3
+---
+== 接口描述
+
+解绑策略。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| policies
+| List
+| 是
+| 策略 ID。
+
+| entity_urns
+| List
+| 否
+| 实体 urn。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| policies
+| List
+| 策略 ID。
+
+| entity_urn
+| List
+| 实体 urn。
+|===
+

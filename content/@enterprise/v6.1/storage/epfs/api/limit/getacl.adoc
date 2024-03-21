@@ -1,0 +1,112 @@
+---
+title: "获取规则组列表"
+weight: 1
+---
+
+
+获取指定策略组下的访问规则信息列表。
+
+== Action
+
+/access-groups/{access-group-id}?acls
+
+== 请求方式
+
+GET
+
+== 请求参数
+
+[options="header",cols="1,1,1,3"]
+|===
+| 参数 | 类型 | 是否必选 | 描述
+|timestamp	
+|date-time	
+|true	
+|API 操作时间戳
+
+|zone	
+|string	
+|true	
+|API 所操作环境
+
+|access-group-id	
+|string	
+|true	
+|策略组 ID
+
+|acls	
+|string	
+|true	
+|访问规则 ID
+
+|user_id	
+|string
+|true	
+|用户 ID
+|===
+
+== 响应消息
+
+[options="header",cols="1,1,2,2"]
+|===
+| 参数 | 类型 | 取值样例| 描述 
+
+|action	
+|string	
+|EpfsAccessGroupsGetACLResponse	
+|API 响应动作
+
+|ret_code	
+|integer	
+|0	
+|执行成功与否，成功为 0，其它值为错误代码
+
+|total_count	
+|integer	
+|1	
+|统计当前用户策略下规则组总数
+
+|acl_list	
+|array	
+|-
+|规则组详细信息
+|===
+
+== 示例
+
+=== 请求示例
+
+[,url]
+----
+http://epfs-api.shanhe.com/access-groups/krl258jy
+&acls=
+&access_group_id=krl258jy
+&COMMON_PARAMS
+----
+
+=== 响应示例
+
+[,json]
+----
+{
+  "acl_list": [
+    {
+      "access_group_id": "krl258jy",
+      "acl_id": "acl-w1umwftn",
+      "authorized_addr": "192.168.202.11",
+      "create_time": "2022-08-30T03:42:00Z",
+      "id": null,
+      "rw_permission": "ReadWrite",
+      "update_time": "2022-08-30T03:42:00Z",
+      "user_permission": "AllSquash"
+    }
+  ],
+  "action": "EpfsAccessGroupsGetACLResponse",
+  "ret_code": 0,
+  "total_count": 1
+}
+----
+
+
+
+

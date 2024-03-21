@@ -1,0 +1,7 @@
+---
+title: "ApplySecurityGroup"
+description: 
+draft: false
+---
+
+include::../../../../../../_cloud_service/sg/api_list/apply_security_group.adoc[]

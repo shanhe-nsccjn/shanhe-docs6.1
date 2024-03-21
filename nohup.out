@@ -1,0 +1,402 @@
+
+> qingcloud-docs-center@1.0.0 dev /home/ubuntu/docs6.1/shanhe-docs-6.1
+> node scripts/dev dev "enterprise"
+
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+Start building sites … 
+hugo v0.92.2+extended linux/amd64 BuildDate=2023-01-31T11:11:57Z VendorInfo=ubuntu:0.92.2-1ubuntu0.1
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+sending incremental file list
+
+sent 71 bytes  received 12 bytes  166.00 bytes/sec
+total size is 467  speedup is 5.63
+
+🎉 [32mRsync _variables.scss Success![39m
+
+WARN 2023/11/28 16:18:13 v6.1/chaosuan/environment/softwareuse/chemistry/conquest.adoc: asciidoctor: WARNING: <stdin>: line 24: unterminated listing block
+WARN 2023/11/28 16:18:13 v6.1/chaosuan/environment/softwareuse/chemistry/gromacs.adoc: asciidoctor: WARNING: <stdin>: line 42: unterminated listing block
+WARN 2023/11/28 16:18:14 v6.1/chaosuan/environment/softwareuse/earthSciences/conquest.adoc: asciidoctor: WARNING: <stdin>: line 24: unterminated listing block
+WARN 2023/11/28 16:18:14 v6.1/chaosuan/environment/softwareuse/earthSciences/cmaq.adoc: asciidoctor: WARNING: <stdin>: line 76: unterminated listing block
+WARN 2023/11/28 16:18:14 v6.1/chaosuan/environment/softwareuse/mechanicalengineering/comsol.adoc: asciidoctor: WARNING: <stdin>: line 30: unterminated listing block
+WARN 2023/11/28 16:18:14 v6.1/chaosuan/environment/softwareuse/mechanicalengineering/optistruct.adoc: asciidoctor: WARNING: <stdin>: line 32: unterminated listing block
+
+> qingcloud-docs-center@1.0.0 dev /home/ubuntu/docs6.1/shanhe-docs-6.1
+> node scripts/dev dev "enterprise"
+
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+Start building sites … 
+hugo v0.92.2+extended linux/amd64 BuildDate=2023-01-31T11:11:57Z VendorInfo=ubuntu:0.92.2-1ubuntu0.1
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+sending incremental file list
+
+sent 71 bytes  received 12 bytes  166.00 bytes/sec
+total size is 467  speedup is 5.63
+
+🎉 [32mRsync _variables.scss Success![39m
+
+
+> qingcloud-docs-center@1.0.0 dev /home/ubuntu/docs6.1/shanhe-docs-6.1
+> node scripts/dev dev "enterprise"
+
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+Start building sites … 
+hugo v0.92.2+extended linux/amd64 BuildDate=2023-01-31T11:11:57Z VendorInfo=ubuntu:0.92.2-1ubuntu0.1
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+sending incremental file list
+
+sent 71 bytes  received 12 bytes  166.00 bytes/sec
+total size is 467  speedup is 5.63
+
+🎉 [32mRsync _variables.scss Success![39m
+
+
+> qingcloud-docs-center@1.0.0 dev /home/ubuntu/docs6.1/shanhe-docs-6.1
+> node scripts/dev dev "enterprise"
+
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+Start building sites … 
+hugo v0.92.2+extended linux/amd64 BuildDate=2023-01-31T11:11:57Z VendorInfo=ubuntu:0.92.2-1ubuntu0.1
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+sending incremental file list
+
+sent 71 bytes  received 12 bytes  166.00 bytes/sec
+total size is 467  speedup is 5.63
+
+🎉 [32mRsync _variables.scss Success![39m
+
+WARN 2023/11/28 16:21:03 v6.1/chaosuan/environment/softwareuse/chemistry/conquest.adoc: asciidoctor: WARNING: <stdin>: line 24: unterminated listing block
+WARN 2023/11/28 16:21:04 v6.1/chaosuan/environment/softwareuse/chemistry/gromacs.adoc: asciidoctor: WARNING: <stdin>: line 42: unterminated listing block
+WARN 2023/11/28 16:21:04 v6.1/chaosuan/environment/softwareuse/earthSciences/conquest.adoc: asciidoctor: WARNING: <stdin>: line 24: unterminated listing block
+WARN 2023/11/28 16:21:04 v6.1/chaosuan/environment/softwareuse/earthSciences/cmaq.adoc: asciidoctor: WARNING: <stdin>: line 76: unterminated listing block
+WARN 2023/11/28 16:21:04 v6.1/chaosuan/environment/softwareuse/mechanicalengineering/comsol.adoc: asciidoctor: WARNING: <stdin>: line 30: unterminated listing block
+WARN 2023/11/28 16:21:05 v6.1/chaosuan/environment/softwareuse/mechanicalengineering/optistruct.adoc: asciidoctor: WARNING: <stdin>: line 32: unterminated listing block
+工作进程 108075 已退出
+
+> qingcloud-docs-center@1.0.0 dev /home/ubuntu/docs6.1/shanhe-docs-6.1
+> node scripts/dev dev "enterprise"
+
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+Start building sites … 
+hugo v0.92.2+extended linux/amd64 BuildDate=2023-01-31T11:11:57Z VendorInfo=ubuntu:0.92.2-1ubuntu0.1
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+sending incremental file list
+
+sent 71 bytes  received 12 bytes  166.00 bytes/sec
+total size is 467  speedup is 5.63
+
+🎉 [32mRsync _variables.scss Success![39m
+
+WARN 2023/11/28 16:22:22 v6.1/chaosuan/environment/softwareuse/chemistry/conquest.adoc: asciidoctor: WARNING: <stdin>: line 24: unterminated listing block
+WARN 2023/11/28 16:22:22 v6.1/chaosuan/environment/softwareuse/chemistry/gromacs.adoc: asciidoctor: WARNING: <stdin>: line 42: unterminated listing block
+WARN 2023/11/28 16:22:23 v6.1/chaosuan/environment/softwareuse/earthSciences/cmaq.adoc: asciidoctor: WARNING: <stdin>: line 76: unterminated listing block
+WARN 2023/11/28 16:22:23 v6.1/chaosuan/environment/softwareuse/earthSciences/conquest.adoc: asciidoctor: WARNING: <stdin>: line 24: unterminated listing block
+WARN 2023/11/28 16:22:23 v6.1/chaosuan/environment/softwareuse/mechanicalengineering/comsol.adoc: asciidoctor: WARNING: <stdin>: line 30: unterminated listing block
+WARN 2023/11/28 16:22:23 v6.1/chaosuan/environment/softwareuse/mechanicalengineering/optistruct.adoc: asciidoctor: WARNING: <stdin>: line 32: unterminated listing block
+
+                   |  ZH   
+-------------------+-------
+  Pages            | 2766  
+  Paginator pages  |    0  
+  Non-page files   |   17  
+  Static files     | 6586  
+  Processed images |    0  
+  Aliases          |    7  
+  Sitemaps         |    1  
+  Cleaned          |    0  
+
+Built in 225073 ms
+Watching for changes in /home/ubuntu/docs6.1/shanhe-docs-6.1/{content,package.json,static,themes}
+Watching for config changes in /home/ubuntu/docs6.1/shanhe-docs-6.1/config/default.yaml, /home/ubuntu/docs6.1/shanhe-docs-6.1/config/@enterprise/config.yaml, /home/ubuntu/docs6.1/shanhe-docs-6.1/config/@enterprise/external.yaml
+Environment: "development"
+Serving pages from /home/ubuntu/docs6.1/shanhe-docs-6.1/public
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at //localhost:1313/ (bind address 0.0.0.0)
+Press Ctrl+C to stop
+
+Change detected, rebuilding site.
+2023-11-28 16:38:30.363 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-2-hpc-cluster-shanhe2.adoc": WRITE
+Total in 593 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:39:01.863 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-4-hpc-cluster-shanhe-ai.adoc": WRITE
+Total in 592 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:39:17.363 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 587 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:40:13.363 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 681 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:40:19.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 595 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:41:12.332 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 576 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:41:13.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 620 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:41:14.833 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 612 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:00.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/community/mirror/os/centos/centos_vault.adoc": WRITE
+Total in 597 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:02.332 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/community/mirror/os/centos/centos_vault.adoc": WRITE
+Total in 586 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:06.332 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/community/mirror/os/centos/centos_vault.adoc": WRITE
+Total in 573 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:07.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/community/mirror/os/centos/centos_vault.adoc": WRITE
+Total in 583 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:10.332 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/community/mirror/os/centos/centos_vault.adoc": WRITE
+Total in 593 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:13.833 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-2-hpc-cluster-shanhe2.adoc": WRITE
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/community/mirror/os/centos/centos_vault.adoc": WRITE
+Total in 660 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:21.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 570 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:34.332 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-3-hpc-cluster-shanhe3.adoc": WRITE
+Total in 645 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:49.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-4-hpc-cluster-shanhe-ai.adoc": WRITE
+Total in 575 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:42:57.332 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-3-hpc-cluster-shanhe3.adoc": WRITE
+Total in 568 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:43:03.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 619 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:43:11.833 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-2-hpc-cluster-shanhe2.adoc": WRITE
+Total in 578 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:43:39.833 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-2-hpc-cluster-shanhe2.adoc": WRITE
+Total in 566 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:43:44.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-1-hpc-cluster-shanhe1.adoc": WRITE
+Total in 588 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:43:50.332 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-3-hpc-cluster-shanhe3.adoc": WRITE
+Total in 560 ms
+
+Change detected, rebuilding site.
+2023-11-28 16:43:54.832 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/chaosuan/jnsupercomputer/clusterlist/hpccluster/1-3-4-hpc-cluster-shanhe-ai.adoc": WRITE
+Total in 599 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:34:30.836 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 919 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:34:32.836 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 858 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:34:46.335 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 933 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:34:58.335 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 865 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:35:22.336 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 855 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:35:24.835 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 868 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:44:34.351 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 899 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:44:40.351 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 864 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:44:42.851 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 863 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:44:49.351 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 914 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:44:59.851 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 849 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:45:05.851 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 868 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:45:50.851 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 855 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:45:57.851 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 866 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:46:07.851 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 854 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:46:14.351 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 926 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:46:30.851 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 830 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:46:40.351 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 841 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:46:44.350 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 986 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:46:55.351 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 849 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:48:22.851 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 843 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:48:34.351 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 883 ms
+
+Change detected, rebuilding site.
+2023-11-28 17:48:42.351 +0800
+Source changed "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/ai/deep_learning/quickstart/deploy_app.adoc": WRITE
+Total in 839 ms
+
+> qingcloud-docs-center@1.0.0 dev /home/ubuntu/docs6.1/shanhe-docs-6.1
+> node scripts/dev dev "enterprise"
+
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+Start building sites … 
+hugo v0.92.2+extended linux/amd64 BuildDate=2023-01-31T11:11:57Z VendorInfo=ubuntu:0.92.2-1ubuntu0.1
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+sending incremental file list
+
+sent 71 bytes  received 12 bytes  166.00 bytes/sec
+total size is 467  speedup is 5.63
+
+🎉 [32mRsync _variables.scss Success![39m
+
+
+> qingcloud-docs-center@1.0.0 dev /home/ubuntu/docs6.1/shanhe-docs-6.1
+> node scripts/dev dev "enterprise"
+
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+Start building sites … 
+hugo v0.92.2+extended linux/amd64 BuildDate=2023-01-31T11:11:57Z VendorInfo=ubuntu:0.92.2-1ubuntu0.1
+🎉 [32m项目名 @enterprise 自检通过！[39m
+
+sending incremental file list
+
+sent 71 bytes  received 12 bytes  166.00 bytes/sec
+total size is 467  speedup is 5.63
+
+🎉 [32mRsync _variables.scss Success![39m
+
+WARN 2023/12/04 16:01:36 v6.1/chaosuan/environment/softwareuse/chemistry/conquest.adoc: asciidoctor: WARNING: <stdin>: line 24: unterminated listing block
+WARN 2023/12/04 16:01:36 v6.1/chaosuan/environment/softwareuse/chemistry/gromacs.adoc: asciidoctor: WARNING: <stdin>: line 42: unterminated listing block
+WARN 2023/12/04 16:01:37 v6.1/chaosuan/environment/softwareuse/earthSciences/conquest.adoc: asciidoctor: WARNING: <stdin>: line 24: unterminated listing block
+WARN 2023/12/04 16:01:37 v6.1/chaosuan/environment/softwareuse/earthSciences/cmaq.adoc: asciidoctor: WARNING: <stdin>: line 76: unterminated listing block
+WARN 2023/12/04 16:01:37 v6.1/chaosuan/environment/softwareuse/mechanicalengineering/comsol.adoc: asciidoctor: WARNING: <stdin>: line 30: unterminated listing block
+WARN 2023/12/04 16:01:37 v6.1/chaosuan/environment/softwareuse/mechanicalengineering/optistruct.adoc: asciidoctor: WARNING: <stdin>: line 32: unterminated listing block
+Error: Error building site: "/home/ubuntu/docs6.1/shanhe-docs-6.1/content/@enterprise/v6.1/container/harbor/best-practice/_index.adoc:1:1": timed out initializing value. You may have a circular loop in a shortcode, or your site may have resources that take longer to build than the `timeout` limit in your Hugo config file.
+Built in 67010 ms

@@ -1,0 +1,8 @@
+---
+title: "AddSecurityGroupRules"
+description: 
+draft: false
+weight: 1
+---
+
+include::../../../../../../_cloud_service/sg/api_list/add_security_group_rules.adoc[]

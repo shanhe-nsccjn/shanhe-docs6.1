@@ -1,0 +1,62 @@
+---
+title: "PUT Object-Lock"
+description: 本小节主要介绍对象版本锁相关接口。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, WORM, Bucket
+collapsible: false
+draft: false
+weight: 2
+---
+
+
+若对于新上传的对象，不使用默认的对象版本锁配置，则可在上传对象时，设置其对象版本锁信息。
+
+== 新增请求头
+
+对象版本锁的设置，除link:../../../common_header/#_请求头字段_request_header[公共请求头]以外，还包含以下请求头字段。
+
+[cols='2,1,4a']
+|===
+| 头字段 | 类型 | 说明 
+
+| x-qs-object-lock-retain-until-date | Date | 用于指定对象版本锁保护截止时间。 
+| x-qs-object-lock-mode | String | 用于指定对象版本锁的模式。
+| x-qs-object-lock-legal-hold | Bool | 用于指定对象版本锁是否持有。`true` 为被持有状态，该状态下，对象不能被删除。
+
+|===
+
+include::../../../../../../../_components/note.adoc[]
+
+* `x-qs-object-lock-retain-until-date` 与 `x-qs-object-lock-mode` 需同时设置。
+* `x-qs-object-lock-legal-hold` 可单独设置。
+
+include::../../../../../../../_components/table_footer.adoc[]
+
+== 请求示例
+
+=== 示例一
+
+[source,http]
+----
+PUT /myphoto.jpg HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2022 09:05:00 GMT
+Content-Length: 7987
+x-qs-object-lock-retain-until-date: 2023-04-01T00:00:00Z
+x-qs-object-lock-mode: GOVERNANCE
+x-qs-object-lock-legal-hold: true
+Authorization: authorization string
+
+----
+
+=== 示例二
+
+[source,http]
+----
+PUT /myphoto.jpg HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2022 09:05:00 GMT
+Content-Length: 7987
+x-qs-object-lock-legal-hold: true
+Authorization: authorization string
+
+----

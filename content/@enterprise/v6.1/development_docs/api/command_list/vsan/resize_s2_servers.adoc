@@ -1,0 +1,74 @@
+---
+title: "ResizeS2Servers"
+description: 
+draft: false
+---
+修改共享存储服务器的类型。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| s2_server
+| String
+| 共享存储服务器 ID
+| Yes
+
+| s2_server_type
+| Integer
+| 共享存储服务器类型
+| Yes
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| job_id
+| String
+| 执行任务的 Job ID
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=ResizeS2Servers
+&s2_servers.1=s2-lxqjtu3l
+&s2_server_type=1
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"ResizeS2ServersResponse",
+  "s2_servers":[
+    "s2-lxqjtu3l"
+  ],
+  "job_id":"j-iox6lwlc",
+  "ret_code":0
+}
+----

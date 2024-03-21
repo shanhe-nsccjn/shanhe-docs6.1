@@ -1,0 +1,10 @@
+---
+title: "跨源资源共享（CORS）"
+description: 本小节主要介绍跨源资源共享接口相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket
+linkkey: storage_qingstor_cors_api_manual
+---
+
+- link:put_cors/[PUT CORS]
+- link:get_cors/[GET CORS]
+- link:delete_cors/[DELETE CORS]

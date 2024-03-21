@@ -1,0 +1,14 @@
+---
+title: "WORM"
+description: 本小节主要介 WORM 接口相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket
+linkkey: storage_qingstor_worm_api_manual
+---
+
+该 API 接口用于对象存储的 WORM 相关操作。
+
+
+- link:put_bucket_retention/[PUT Bucket Retention]
+- link:get_bucket_retention/[GET Bucket Retention]
+- link:post_bucket_retention/[POST Object Retention]
+//- link:object_lock/[对象版本锁相关设置]

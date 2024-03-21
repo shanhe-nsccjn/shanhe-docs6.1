@@ -1,0 +1,17 @@
+---
+title: 山河云网络授时NTP
+linkTitle: "NTP"
+weight: 20
+description: 提供极速稳定的网络授时服务。
+
+study_section:
+
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: 用户指南
+        children:
+          - title: NTP服务器使用帮助
+            url: ntp/
+
+---

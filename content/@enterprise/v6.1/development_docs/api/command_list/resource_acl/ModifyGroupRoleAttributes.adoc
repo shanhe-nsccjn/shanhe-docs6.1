@@ -1,0 +1,62 @@
+---
+title: "ModifyGroupRoleAttributes"
+description: 
+draft: false
+---
+修改角色属性。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| group_role
+| String
+| 角色 ID
+| Yes
+
+| role_type
+| String
+| 角色类型，当前仅支持 `rule`
+| No
+
+| group_role_name
+| String
+| 角色名称
+| No
+
+| description
+| String
+| 角色描述
+| No
+
+| status
+| String
+| 角色状态，可以为 `disabled` 或 `enabled`
+| No
+|===
+
+link:../../../parameters/[公共参数]
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=ModifyGroupRoleAttributes
+&group_role=gr-170kkfim
+&description=X1
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"ModifyGroupRoleAttributesResponse",
+  "group_role_id":"gr-170kkfim",
+  "description":"X1",
+  "ret_code":0
+}
+----

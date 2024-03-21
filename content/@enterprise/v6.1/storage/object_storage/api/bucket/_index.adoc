@@ -1,0 +1,20 @@
+---
+title: "Bucket API"
+description: 本小节主要介绍 Bucket API 相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket
+draft: false
+weight: 5
+collapsible: true
+---
+
+- link:basic_opt/[基础操作]
+- link:acl/[存储空间访问控制（ACL）]
+- link:lifecycle/[生命周期（Lifecycle）]
+- link:external_mirror/[外部镜像（External Mirror）]
+- link:cors/[跨源资源共享（CORS）]
+- link:logging/[日志管理（Logging）]
+- link:replication/[跨区域复制（Replication）]
+- link:notification/[事件通知（Notification）]
+- link:cname/[自定义域名（CNAME）]
+- link:policy/[存储空间策略（Policy）]
+- link:worm/[WORM]

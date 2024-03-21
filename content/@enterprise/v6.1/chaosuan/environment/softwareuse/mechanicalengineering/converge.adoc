@@ -1,0 +1,44 @@
+---
+title: "Converge"
+---
+== Converge
+
+CONVERGE是由美国Convergent Science公司开发的新一代热流体分析软件。到目前为止，网格建模一直是影响CFD工作效率的主要障碍。而CONVERGE因为搭载了完全自动网格生成功能，工作效率与传统CFD软件相比有了飞跃性的提高。
+
+请自行购买Converge license许可，下载和安装。如需协助安装或使用，请联系我们，附上课题组拥有Converge license的证明。
+
+'''''
+
+=== 一、脚本模板
+
+[arabic]
+. Slurm
++
+[source,bash]
+----
+#!/bin/bash
+#SBATCH --nodes=1                   # 节点数量
+#SBATCH --ntasks-per-node=56        # 每个节点核心数量
+#SBATCH --ntasks=56                 # 总核心数
+#SBATCH --partition=g1_share        # 队列分区且必须指定正确分区
+#SBATCH --job-name=converge    	    # 作业名称
+#SBATCH --output=hello.%j.out       # 正常日志输出 (%j 参数值为 jobId)
+#SBATCH --error=hello.%j.err        # 错误日志输出 (%j 参数值为 jobId)
+
+##############################################
+#          Software Envrironment             #
+##############################################
+unset I_MPI_PMI_LIBRARY                        # 取消默认mpi库，使用intel自带
+export I_MPI_JOB_RESPECT_PROCESS_PLACEMENT=0   # intel 多节点作业所需修改参数 
+module load intel/2022 intelmpi/2022           # intel 环境加载
+
+##############################################
+#               Run job                      #
+##############################################
+cat /dev/null > machinefile
+scontrol show hostname $SLURM_JOB_NODELIST > machinefile
+
+mpirun -machinefile './machinefile' -np $SLURM_NPROCS converge-2.4.21-intel --super
+----
+
+=== 二、安装

@@ -1,0 +1,47 @@
+---
+title: "DeleteGroupRoleRules"
+description: 
+draft: false
+---
+删除角色里的某些规则。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| group_role_rules.n
+| String
+| 规则ID
+| No
+
+| group_roles.n
+| String
+| 角色ID
+| No
+|===
+
+link:../../../parameters/[公共参数]
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=DeleteGroupRoleRules
+&group_role_rules.1=grr-613v0o2p
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"DeleteGroupRoleRulesResponse",
+  "group_role_rule_ids":[
+    "grr-613v0o2p"
+  ],
+  "ret_code":0
+}
+----

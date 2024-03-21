@@ -1,0 +1,262 @@
+---
+title: "Java SDK"
+description: 本小节主要介绍 Java SDK 快速指南相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor
+---
+山河云对象存储的 Java SDK 已在 GitHub 开源，本文为简要使用文档。更多详细信息请参见 https://github.com/yunify/qingstor-sdk-java[GitHub 项目] 和 https://github.com/qingstor/qingstor-sdk-java/blob/master/README_zh-CN.md[Java SDK API 文档]。
+
+Java SDK 使用 https://github.com/yunify/snips[Snips] 工具生成，各接口调用的均与 山河云对象存储的 API 相对应。其返回码、请求头、错误码等规定请参照具体的 link:../../api/[Qingstor Restful API 文档]。
+
+SDK 示例请参见 https://github.com/qingstor/qingstor-sdk-java/blob/master/docs/examples_zh-CN.md[SDK Example]。
+
+使用 SDK 之前请先在link:https://console.shanhe.com/access_keys/[ {console_name}]申请 Access key。
+
+== 安装
+
+=== 在线安装
+
+山河云对象存储推荐使用如下方式进行安装。
+
+需要注意的是，需将以下配置中的版本号，替换为您所需要的版本号。山河云对象存储建议使用最新版本。
+
+* Gradle
++
+[source,gradle]
+----
+dependencies {
+  implementation 'com.yunify:qingstor.sdk.java:2.5.1'
+}
+----
+
+* Maven
++
+[source,xml]
+----
+<dependency>
+  <groupId>com.yunify</groupId>
+  <artifactId>qingstor.sdk.java</artifactId>
+  <version>2.5.1</version>
+</dependency>
+----
+
+=== 离线安装
+
+* **方式一：使用 Fat Jar**
++
+在 GitHub 上，山河云对象存储的 SDK，随着每次 Release 都会附上可供下载的 Fat Jar。Fat Jar 会将 SDK 和所有相关依赖打包为一个 Jar 包，这样用户在使用时只需导入该包就可以使用 SDK。
++
+下载时，按下图所示，选择报名中带有 `all` 的安装包。
++
+image::/images/cloud_service/storage/object_storage/java_sdk_1.png[java_sdk_1,80%]
+// +
+// 较只包含 SDK 自身代码的 Jar 包来说，Fat Jar 的唯一缺点就是体积大，因为纳入了所有依赖。
+// +
+// 自 2.6.2 版本开始，山河云对象存储提供的 Fat Jar 中，对于 SDK 的所有运行时依赖，都已经做了 Relocation，也就是说，Fat Jar 中被一起打包进去的依赖，不会与用户项目中引入的相同依赖起版本冲突。用户可放心使用。
+
+* **方式二：手动下载 SDK 所有依赖**
++
+. 浏览器中访问 `https://central.sonatype.com/artifact/com.yunify/qingstor.sdk.java`。进入 QingStor Java SDK 详情页面。
+
+. 在详情页点击 **Dependencies** 标签，**Dependencies** 标签页面，可查看所有的依赖以及对应的版本。
++
+image::/images/cloud_service/storage/object_storage/java_sdk_4.png[java_sdk_4,80%]
+
+. 具体到某一项来说，如下图所示，各参数说明如下。
++
+`artifactId: jackson-databind`
++
+`groupId: com.fasterxml.jackson.core`
++
+`version: 2.9.10.8`
++
+image::/images/cloud_service/storage/object_storage/java_sdk_6.png[java_sdk_6,70%]
+
+
+
+== 初始化服务
+
+发起请求前需要初始化服务。以下代码初始化了一个 QingStor Service。
+
+[source,java]
+----
+import com.qingstor.sdk.config.EnvContext;
+import com.qingstor.sdk.service.*;
+
+EvnContext env = new EnvContext("ACCESS_KEY_ID", "SECRET_ACCESS_KEY");
+QingStor stor = new QingStor(env);
+----
+
+*参数说明：*
+
+* 代码行中的 `env` 承载了用户的认证信息及 SDK 配置；
+* 代码行中的 `stor` 用于操作 山河云对象存储服务，如调用 Service 级别的 API 或创建指定的 Bucket 对象来调用 Bucket 和 Object 级别的 API。
+
+== 代码示例
+
+. 获取账户下的 Bucket 列表
+
++
+[source,java]
+----
+ListBucketsOutput listOutput = stor.listBuckets(null);
+----
+
+. 初始化并创建 Bucket，需要指定 Bucket 名称和所在 Zone:
+
++
+[source,java]
+----
+// 您要在哪个 zone 创建/操作 bucket.
+String zoneName = "jn1a";
+Bucket bucket = stor.getBucket("您的 bucket 名字", zoneName);
+Bucket.PutBucketOutput output = bucket.put();
+if (output.getStatueCode() == 201) {
+    // Created
+    System.out.println("Put Bucket: Created.");
+}
+----
+
+. 获取 Bucket 中存储的 Object 列表
+
++
+[source,java]
+----
+Bucket.ListjavaObjectsOutput listObjectsOutput = Bucket.listObjects(null);
+List<KeyModel> objectKeys = listObjectsOutput.getKeys();
+----
+
+. 创建一个 Object
+
+.. 上传一个文件
++
+[source,java]
+----
+String objKey = "object_name";
+Bucket.PutObjectInput input = new Bucket.PutObjectInput();
+// input 可以设置 File, Stream 等作为要上传的内容.
+File f = new File("test_file.txt");
+input.setBodyInputFile(f);
+// 可选设置.
+input.setContentType("text/plain");
+input.setContentLength(f.length());
+Bucket.PutObjectOutput putObjectOutput = bucket.putObject(objKey, input);
+----
+
+.. 上传一个流式文件。流式上传前计算流的 MD5 值，详细内容如下：
++
+[source,java]
+----
+    private void put(String key, InputStream body) throws QSException {
+        Bucket.PutObjectInput input = new Bucket.PutObjectInput();
+        try {
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            // 这里只起示例作用, 如果 body size 有可能非常大, 按一定 size 做拆分以分段
+            // 上传形式来分 part 计算 md5 上传才是比较经济的方式.
+            byte[] data = body.readAllBytes();
+            String contentMD5 = Base64.getEncoder().encodeToString(md5.digest(data));
+            input.setContentMD5(contentMD5);
+            // 此时 stream 已经被 consume 掉, 但对象存储 server side 也需要读取 body 内容,
+            //  所以在 setBodyInputStream 之前,  可以通过:
+            //  1. 流已经读取为 bytes array, 直接构造 ByteArrayInputStream 即可;
+            // body = new ByteArrayInputStream(data);
+            //  2. 如果流支持 markSupported(), 可以重设到流的开始.
+            //  下面是方式 2 的示例:
+            body.reset();
+            input.setBodyInputStream(body);
+        } catch (NoSuchAlgorithmException | IOException e) {
+            throw new QSException("");
+        }
+        Bucket.PutObjectOutput output = bucket.putObject(key, input);
+        System.out.println(output.getStatueCode());
+        if (output.getStatueCode() == 201) {
+            System.out.println(output.getETag());
+        } else {
+            System.out.println(output.getCode());
+            System.out.println(output.getMessage());
+        }
+        System.out.println(output.getRequestId());
+    }
+----
+
+. 删除一个 Object
+
++
+[source,java]
+----
+Bucket.DeleteObjectOutput deleteObjectOutput = bucket.deleteObject("test_file");
+----
+
+. 如果用户本地时间与网络时间不同步会因签名原因造成请求失败。用户还需要从服务端获取网络时间。
+
+.. 获取服务端时间：
++
+[source,java]
+----
+Calendar instance = Calendar.getInstance(TimeZone.getTimeZone("Asia/Beijing"));
+String gmtTime = QSSignatureUtil.formatGmtDate(instance.getTime());
+return gmtTime;
+----
+
+.. 将获取到的服务端时间设置到 SDK 中：
++
+[source,java]
+----
+reqHandler.getBuilder().setHeader(QSConstant.HEADER_PARAM_KEY_DATE, gmtTime);
+reqHandler.sendAsync();
+----
+
+. 使用服务端签名，以上传文件为例：
++
+[source,java]
+----
+public static void javaSdkSendDemo() {
+    try {
+        //引入jar包后先把相关导入按照IDE提示一一导入
+        //创建EvnContext
+        EnvContext env = new EnvContext("your_access_key", "your_secret_key");
+
+        //你的bucket所在的zone,比如pek3a
+        String zoneName = "jn1a";
+
+        //bucket名称，如果没有创建先从控制台或者api创建bucket
+        String bucketName = "demo_bucket";
+        Bucket bucket = new Bucket(env, zoneName, bucketName);
+
+        //最终上传到对象存储的文件显示的文件名称
+        String objectKey = "myfile";
+        Bucket.PutObjectInput input = new Bucket.PutObjectInput();
+
+        //要上传的本地文件的路径
+        File f = new File("/your_file_path.txt");
+        input.setBodyInputFile(f);
+        input.setContentLength(f.length());
+        RequestHandler reqHandler = bucket.putObjectAsyncRequest(objectKey, input,
+                new ResponseCallBack<Bucket.PutObjectOutput>() {
+                    public void onAPIResponse(Bucket.PutObjectOutput output) {
+                        if (output.getStatueCode() != 201) {
+                            System.out.println("Message = " + output.getMessage());
+                            System.out.println("RequestId = " + output.getRequestId());
+                            System.out.println("Code = " + output.getCode());
+                            System.out.println("StatueCode = " + output.getStatueCode());
+                            System.out.println("Url = " + output.getUrl());
+                        }
+                        System.exit(0);
+                    }
+                });
+        Calendar instance = Calendar.getInstance(TimeZone.getTimeZone("Asia/Shanghai"));
+        String gmtTime = QSSignatureUtil.formatGmtDate(instance.getTime());
+
+        //验证需要这个Date header
+        reqHandler.getBuilder().setHeader(QSConstant.HEADER_PARAM_KEY_DATE, gmtTime);
+        String strToSignature = reqHandler.getStringToSignature();
+        String serverAuthorization = QSSignatureUtil.generateSignature(env.getAccessSecret(),
+                strToSignature);
+        reqHandler.setSignature(env.getAccessKey(), serverAuthorization);
+        //异步发送
+        reqHandler.sendAsync();
+
+    }catch (QSException e) {
+        e.printStackTrace();
+    }
+}
+----

@@ -1,0 +1,23 @@
+---
+title: "提交作业"
+linkTitle: "slurm作业帮助文档"
+weight: 3
+description: 是一个用于 Linux 和 Unix 内核系统的免费、开源的任务调度工具，被世界上许多超级计算机和计算机集群广泛采用
+
+study_section:
+
+  - title: slurm
+    icon: icon-apps_2_duotone
+    children:
+      - title: 用户指南
+        children:
+          - title: slurm介绍
+            url: slurmintroduction/3-1-slurm-introduction/
+          - title: slurm使用
+            url: slurminuse/3-2-slurm-in-use/
+          - title: 提交运行作业
+            url: slurmsbatch/3-3-slurm-sbatch/
+          - title: 作业问题
+            url: slurmfaq/3-4-sbatch-faq/
+
+---

@@ -1,0 +1,147 @@
+---
+title: 查询 API 密钥（DescribeAccessKeys）
+weight: 4
+---
+
+== 基本信息
+
+=== Path
+/iaas
+
+=== Method
+GET
+
+== 请求参数
+[cols="1,1,1,2", options="header"]
+|===
+| 参数名 | 类型 | 是否必须 | 描述
+
+| access_key_name
+| String
+| false
+| API 密钥的名称
+
+| access_keys
+| Array
+| false
+| API 密钥 ID 列表
+
+
+| iam_user_id
+| String
+| false
+| IAM 用户的 ID
+
+| limit
+| Int
+| false
+| 偏移量
+
+| offset
+| Int
+| false
+| 起始坐标
+
+| owner
+| String
+| false
+| API 密钥的所有者
+
+| search_word
+| String
+| false
+| 搜索关键字
+
+| status
+| Array
+| false
+| API 密钥的状态
+|===
+
+== 返回数据
+此接口除以下返回参数外，还包含公共响应头。关于公共响应头的更多信息，请参见link:../../../parameters[前文内容]。
+[cols="1,1,1,2", options="header"]
+|===
+| 参数名 | 类型 | 是否必须 | 描述
+
+| access_key_id
+| String
+| false
+| API 密钥的 ID
+
+| access_key_name
+| String
+| false
+| API 密钥的名称
+
+| create_time
+| String
+| false
+| API 密钥的创建时间
+
+| description
+| String
+| false
+| API 密钥的描述
+
+| ip_white_list
+| String
+| false
+| IP 白名单，限制使用 API 密钥的源 IP
+
+| owner
+| String
+| false
+| API 密钥的所有者
+
+| status
+| String
+| false
+| API 密钥的状态
+
+| status_time
+| String
+| false
+| API 密钥的状态时间
+|===
+
+== 请求示例
+[,javascript]
+----
+{
+  "access_key_name": "access_name",
+  "access_keys": [
+    "LTMJGBXPHSEZRANNNNN"
+  ],
+  "action": "DescribeAccessKeys",
+  "limit": 20,
+  "offset": 0,
+  "owner": "usr-Bzp32eZ1",
+  "search_word": "test",
+  "status": [
+    "active"
+  ]
+}
+----
+
+== 返回示例
+[,javascript]
+----
+{
+  "access_key_set": [
+    {
+      "access_key_id": "ZQUAVQVTTGJBSSSSPOWW",
+      "access_key_name": "pitrix access key for mgmt",
+      "create_time": "2022-09-29T09:11:43Z",
+      "description": "PiFLi9yIcp3vHHWyGWHsGar1JHTFr3YRuaaaPg2Y",
+      "ip_white_list": "",
+      "owner": "usr-Bzp32eZ1",
+      "status": "active",
+      "status_time": "2022-09-29T09:11:43Z"
+    }
+  ],
+  "action": "DescribeAccessKeysResponse",
+  "ret_code": 0,
+  "total_count": 1
+}
+----

@@ -1,0 +1,16 @@
+---
+title: "产品类型及规格"
+weight: 30
+draft: false
+---
+
+本章节介绍 GPU 云服务器各类型的特点，并罗列具体规格实例。GPU 云服务器类型主要包括以下几种：
+
+* link:g2na100[GPU 加速型 g2na100]
+//** GPU 加速型 g2nrtx6000
+* link:g2ibna100[GPU 加速型 g2ibna100]
+//** GPU 加速型 g2as7150
+* link:g2nt4[GPU 加速型 g2nt4]
+* link:g2nrtx6000[GPU 加速型 g2nrtx6000]
+* link:g2as7150[GPU 加速型 g2as7150]
+//** GPU 加速型 g2n2080ti

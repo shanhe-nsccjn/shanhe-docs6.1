@@ -1,0 +1,49 @@
+---
+title: "软件安装"
+description: spack 的软件安装
+keywords: 云计算, 山河云, ShanHe, HPC，spack，软件安装
+draft: false
+weight: 5
+linkkey: compute_hpc_spack_install
+---
+
+安装软件有两种目录：
+
+* 集群内用户都可用，需要在 `opt` 下创建 spack。
+* 仅自己可用，需要在 `home\用户目录` 下创建 spack 目录，下面以这个为例讲解安装过程。
+
+== 操作步骤
+
+. 创建 .spack 目录
++
+image::/images/cloud_service/compute/hpc/spack-root.png[spack-root,70%]
+
+. 拷贝公共软件的配置文件到 .spack 目录
++
+image::/images/cloud_service/compute/hpc/spack-config.png[spack-config]
+
+. 查找可安装的软件
++
+image::/images/cloud_service/compute/hpc/spack-find-soft.png[spack-find-soft]
+
+. 安装软件
++
+image::/images/cloud_service/compute/hpc/spack-install-soft.png[spack-install-soft]
+
+. 查找、加载本地软件
++
+[,shell]
+----
+# spack find
+
+# spack load software@version
+----
+
+. 查找加载公共软件
++
+[,shell]
+----
+# spack-pub find
+
+# spack-pub load software@version
+----

@@ -1,0 +1,95 @@
+---
+title: "修改挂载点"
+weight: 2
+---
+
+修改挂载点名称/描述。
+
+
+== Action
+
+/file-systems/{file-system-id}/{export-id}
+
+== 请求方式
+
+PUT
+
+== 请求参数
+
+[options="header",cols="1,1,1,3"]
+|===
+| 参数 | 类型 | 是否必选 | 描述
+|timestamp	
+|date-time	
+|true	
+|API 操作时间戳
+
+|zone	
+|string	
+|true	
+|API 所操作的环境
+
+|name	
+|string	
+|true	
+|挂载点新名称
+
+|description	
+|string	
+|true	
+|挂载点描述信息
+
+|access_group_id	
+|string
+|true	
+|挂载点权限组 ID
+
+|file_systems_id	
+|string
+|true	
+|文件系统 ID
+|===
+
+== 响应消息
+
+[options="header",cols="1,1,2,2"]
+|===
+| 参数 | 类型 | 取值样例| 描述 
+
+| action
+| string
+| EpfsFileSystemsModifyExportResponse
+| 响应动作
+
+
+| ret_code
+| int
+| 0
+| 执行成功与否，成功为 0，其他值则为错误代码
+|===
+
+== 示例
+
+=== 请求示例
+
+[,url]
+----
+http://epfs-api.shanhe.com/file-systems/qfs-2r6hk5w8/exp-ypxbkfm2
+&access_group_id=dbshdnua
+&user_id=usr-vceaHsJu
+&name=test02
+&COMMON_PARAMS
+----
+
+=== 响应示例
+
+[,json]
+----
+{
+
+    "action": "EpfsFileSystemsModifyExportResponse",
+
+    "ret_code": 0
+
+}
+----

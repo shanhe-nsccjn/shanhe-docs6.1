@@ -1,0 +1,48 @@
+---
+title: "MATLAB"
+---
+
+== Matlab 是美国MathWorks公司出品的商业数学软件
+
+MATLAB 用于数据分析、无线通信、深度学习、图像处理与计算机视觉、信号处理、量化金融与风险管理、机器人，控制系统等领域
+
+请自行购买MATLAB license许可，下载和安装。如需协助安装或使用，请联系我们，附上课题组拥有MATLAB license的证明。
+
+'''''
+
+=== 一、脚本模板
+
+[arabic]
+. Slurm
++
+[source,bash]
+----
+#!/bin/bash
+#SBATCH --nodes=1                   # 节点数量
+#SBATCH --ntasks-per-node=56        # 每个节点核心数量
+#SBATCH --ntasks=56                 # 总核心数
+#SBATCH --partition=g1_share        # 队列分区且必须指定正确分区
+#SBATCH --job-name=matlab           # 作业名称
+#SBATCH --output=matlab.%j.out      # 正常日志输出 (%j 参数值为 jobId)
+#SBATCH --error=matlab.%j.err       # 错误日志输出 (%j 参数值为 jobId)
+
+##############################################
+#          Software Envrironment             #
+##############################################
+unset I_MPI_PMI_LIBRARY                        # 取消默认mpi库，使用intel自带
+export I_MPI_JOB_RESPECT_PROCESS_PLACEMENT=0   # intel 多节点作业所需修改参数 
+# module load intel/2022 intelmpi/2022           # intel 环境加载
+
+##############################################
+#               Run job                      #
+##############################################
+# 单个计算文件
+# matlab -nodisplay < run.m
+
+# 指定计算文件夹
+matlab -nodesktop -nosplash -nodisplay -r abc
+----
+
+'''''
+
+=== 二、安装

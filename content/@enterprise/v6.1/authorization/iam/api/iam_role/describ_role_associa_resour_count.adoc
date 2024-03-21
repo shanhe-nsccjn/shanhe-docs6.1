@@ -1,0 +1,43 @@
+---
+title: "DescribeIAMRoleAssociatedResourceCount"
+description: 修改公网 IP 名称及描述。
+draft: false
+weight: 9
+keywords: 公网 IP API,修改公网 IP
+---
+
+== 接口描述
+
+返回身份关联的资源个数。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| role
+| String
+| 是
+| 身份 ID。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| counts
+| Integer
+| 身份关联的资源总数。
+
+|===

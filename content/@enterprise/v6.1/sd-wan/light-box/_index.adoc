@@ -1,0 +1,62 @@
+---
+title: "光盒"
+linkTitle: "光盒"
+weight: 2
+description: 光盒是光格网络 SD-WAN 服务的重要接入组件，便于用户最后一公里快速接入到 WAN 网。
+
+
+study_section:
+
+
+  - title: 了解
+    icon: icon-note_tree_duotone
+    children:
+      - title: 产品简介
+        children:
+          - title: 产品简介 
+            url: intro/intro
+
+  - title: 上手
+    icon: icon-note_tree_duotone
+    children:
+      - title: 快速上手
+        children:
+          - title: 如何申请光盒
+            url: "manual/base/"
+          - title: 光盒服务的分类
+            url: "manual/service/"
+
+
+
+  - title: 使用
+    icon: icon-note_tree_duotone
+    children:
+      - title: 用户指南
+        children:
+          - title: 动态与公告
+            url: storage/object-storage/news/history
+          - title: 产品简介
+            url: intro/intro/
+          - title: 计费指南
+            url: billing/price/
+          - title: 快速入门
+            url: quick-start/cpe_connect_vpc/
+          - title: 操作指南
+            url: manual/wan_access/
+          - title: 最佳实践
+            url: best-practices/best_practices/
+          - title: 常见问题
+            url: faq/faq/
+
+      - title: 开发者指南
+        icon: icon-note_tree_duotone
+        children:
+          - title: API 文档
+            url: development_docs/api/
+          - title: SDK 文档
+            url: development_docs/sdk/
+          - title: CLI 文档
+            url: development_docs/cli/
+
+
+---

@@ -1,0 +1,42 @@
+---
+title: "公共参数"
+keywords: 公共参数；api 公共参数
+draft: false
+weight: 2
+---
+
+公共参数是指所有接口调用都需要用到的公共请求参数。
+
+== 请求头参数
+
+[options="header",cols="1,2"]
+|===
+|参数 |描述
+
+|Date	
+|此次请求时间，需要符合 HTTP 规定的 GMT 格式，例如：``Wed, 02 Aug 2023 14:19:43 GMT``
+
+|Content-Type	
+|请求内容类型，和请求头字段保持一致，如：``application/json``
+
+|Authorization	
+|EPFS 签名 Authorization，格式如： ``QS <access_key_id>:<signature>``
+|===
+
+== 请求参数
+[options="header",cols="1,2,2"]
+|===
+|参数 |描述 |说明
+|action	
+|每个 API 都有自己的 action，用来标识请求指令。例如 ``/file-systems``。	
+|完整指令名称请查看各 API 接口。
+|===
+
+== 请求示例
+
+[,url]
+----
+URL：http://epfs-api.qinglcoud.com/file-systems/
+
+headers：header {'Date': 'Wed, 02 Aug 2023 14:19:43 GMT', 'Content-Type': 'application/json', 'Authorization': u'QS PBFSQBGOIZVBIWAQWKRF:jtJPmSG1+ufts+negQsZDQnS0tePMX7uO5icEiMrJ2k='}
+----

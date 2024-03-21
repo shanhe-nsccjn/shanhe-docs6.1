@@ -1,0 +1,161 @@
+---
+title: "Put Bucket Retention"
+description: 本小节主要介绍 Bucket Retention 接口相关操作。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket, WORM
+collapsible: false
+draft: false
+weight: 1
+---
+
+调用该接口给指定 Bucket 设置桶级别合规保留策略。仅支持 Bucket 所有者使用该 API。使用流程如下。
+
+. 首次调用时，是给 Bucket 开启桶级别锁，并设置一个保护时间。
+. 在桶级别锁未锁定时再次调用该 API，可修改保留策略。若 Body 为空，则可以用来删除桶级别锁的 retention_policy，使 Bucket 回到未保护的状态。
+. 在桶级别锁锁定时再次调用该 API，则可以用来延长保护时间。
+
+== 注意事项
+
+* 目前仅支持针对 Bucket 级别设置桶级别锁，不支持针对目录设置；单个对象设置参考link:../../../object/object_lock[对象版本锁]。
+* 同一个 Bucket 中，**版本管理**功能和桶级别锁无法同时配置。若 Bucket 已开启版本管理功能，则无法再配置桶级别锁。
+* Bucket 内的 Object 在桶级别锁生效期间，可以配置存储类型转化，在保证合规性的前提下，降低存储成本；也可以配置生命周期规则，在 Object 保护期结束后，Object 会自动删除。
+* 处于桶级别锁保护期内的 Object 支持 AppendObject 操作。
+
+== 请求语法
+
+[source,http]
+----
+PUT /?retention HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: authorization string
+
+{
+"days": integer
+"years": integer
+}
+----
+
+== 请求参数
+
+无。
+
+
+== 请求头
+
+此接口仅包含公共请求头。关于公共请求头的更多信息，请参见link:../../../common_header/#_请求头字段_request_header[公共请求头]。
+
+== 请求消息体
+
+调用该 API 需携带如link:#_请求语法[请求语法]中的 Json 消息体。该消息体各字段说明如下。
+
+[cols='1,1,3,1']
+|===
+| 名称 | 类型 | 说明 | 是否必须
+
+| days | Integer | 数据保留时间，最大限制为 36500 天。这里的一天是指 86400 秒。 | 否
+| years | Integer | 数据保留时间，最大限制为 100 年。这里的一年是指 365 天。 | 否
+|===
+
+include::../../../../../../../_components/note.adoc[]
+`days` 与 `years` 只能配置一种，不能同时存在。
+
+include::../../../../../../../_components/table_footer.adoc[]
+
+
+== 响应头
+
+除link:../../../common_header/#_响应头字段_response_header[公共响应头]外，山河云对象存储服务端还会返回如下消息头。
+
+[cols='1,1,3']
+|===
+| 名称 | 类型 | 说明 
+
+| x-qs-worm-id | String |  保留规则 ID，由系统生成，用于唯一标识该条 WORM 规则。
+
+|===
+
+
+== 响应体
+
+无。
+
+
+
+== 返回码
+
+[cols='2,3,1']
+|===
+| 返回码 | 描述 | HTTP 状态码
+
+| OK| 成功| 200
+| ERR_INVALID_BUCKET_STATE| Bucket 已经开启多版本管理功能| 400
+| ERR_ACCESS_DENIED| 删除保留策略失败| 403
+| ERR_INVALID_ARGUMENT| 保留时间超过最大保留期限| 400
+
+|===
+
+其他返回码可参考link:../../../error_code/#_错误码列表[错误码列表]。
+
+== 示例
+
+=== 示例一
+
+开启桶级别锁。
+
+* 请求示例
++
+[source,http]
+----
+PUT /?retention HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: <authorization-string>
+{
+    "days": 1
+}
+
+----
+
+* 响应示例
++
+[source,http]
+----
+HTTP/1.1 200 OK
+Server: QingStor
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Content-Length: 809
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+x-qs-worm-id: MTY4MjA0NjAyOS0zMTUzNjAwMDAw
+
+----
+
+=== 示例二
+
+删除桶级别锁的保留策略。
+
+* 请求示例
++
+[source,http]
+----
+PUT /?retention HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: <authorization-string>
+{}
+
+----
+
+* 响应示例
++
+[source,http]
+----
+HTTP/1.1 200 OK
+Server: QingStor
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Content-Length: 809
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+
+
+----

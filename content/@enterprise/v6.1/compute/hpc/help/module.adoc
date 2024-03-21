@@ -1,0 +1,79 @@
+---
+title: "moudle 常用命令"
+weight: 4
+---
+
+
+EHPC 集群中内置 link:https://modules.sourceforge.net/[module 工具]，可以实现软件环境变量的管理，用于快速加载和切换软件的环境变量。EHPC 集群的公共软件位于 ``/es01/software`` 目录下。
+
+* 显示帮助信息。
++
+[source,shell]
+----
+$ module help
+----
+
+* 显示已安装的软件环境。
++
+[source,shell]
+----
+$ module avail
+----
++
+image::/images/cloud_service/compute/hpc/help_moudle_1.png[]
+
+* 导入相应的软件环境。
++
+[source,shell]
+----
+$ module load <software_name>
+----
++
+include::../../../../../_components/note.adoc[]
+* <software_name> 为待导入的软件环境的名称，需根据实际情况进行修改。
+* 可导入的软件环境，可通过执行 ``module avail`` 进行查看。
+include::../../../../../_components/table_footer.adoc[]
+
+* 显示当前集群中已导入的软件环境。
++
+[source,shell]
+----
+$ module list
+----
++
+image::/images/cloud_service/compute/hpc/help_moudle_2.png[]
+
+* 删除已导入的软件环境。
++
+[source,shell]
+----
+$ module unload <software_name>
+----
++
+include::../../../../../_components/note.adoc[]
+<software_name> 为待删除的软件环境的名称，需根据实际情况进行修改。
+include::../../../../../_components/table_footer.adoc[]
+
+* 清除所有已导入的软件环境。
++
+[source,shell]
+----
+$ module purge
+----
+* 删除软件环境 1，同时导入软件环境 2。
++
+[source,shell]
+----
+$ module switch <software_name_1> <software_name_2>
+----
++
+image::/images/cloud_service/compute/hpc/help_moudle_3.png[]
++
+include::../../../../../_components/note.adoc[]
+* <software_name_1> 为集群中待删除的软件环境的名称，需根据实际情况进行修改。
+* <software_name_2> 为待导入的软件环境的名称，需根据实际情况进行修改。 
+* 可执行 ``module list`` 查看替换结果。
+include::../../../../../_components/table_footer.adoc[]
+
+
+

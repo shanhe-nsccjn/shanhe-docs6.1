@@ -1,0 +1,75 @@
+---
+title: "DescribeIAMRoleWithResource"
+draft: false
+weight: 15
+---
+
+== 接口描述
+
+返回资源关联的 IAM 身份。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| resources
+| List
+| 是
+| 资源 ID。
+
+| zone
+| String
+| 是
+| 区域（Region）ID。
+
+| owner
+| String
+| 否
+| 身份 owner。
+
+| offset
+| Integer
+| 否
+| 查询起点，默认为 0。
+
+| limit
+| Integer
+| 否
+| 查询数量。
+
+| sort_key
+| String
+| 否
+| 用于返回结果排序的列。
+
+| reverse
+| String
+| 否
+| 返回结果是否倒序。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| total_count
+| Integer
+| 身份总数。
+
+| associations
+| List Dict
+| 与资源关联的身份。
+
+|===

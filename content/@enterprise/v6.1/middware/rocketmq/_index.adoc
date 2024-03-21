@@ -1,0 +1,52 @@
+---
+title: RocketMQ 服务
+weight: 7
+description: Apache RocketMQ 是一个基于 Apache2.0 协议开源的分布式消息和流数据平台，具有低延时、高吞吐、可审计、可几乎无限水平扩展等优点。
+bannerImage: /images/pic-banner.png
+study_section:
+  - title: 了解
+    icon: icon-note_tree_duotone
+    children:
+      - title: 产品简介
+        children:
+          - title: 什么是 RocketMQ
+            url: intro/introduction
+          - title: 基本概念
+            url: intro/concept/
+      - title: 计费指南
+        children:
+          - title: 计费说明
+            url: billing/price/
+          - title: 费用变更
+            url: billing/change_price/
+  - title: 上手
+    icon: icon-gamepad_2_duotone
+    children:
+      - title: 快速入门
+        children:
+          - title: 创建 Kafka 集群
+            url: quickstart/create_cluster/
+          - title: 创建 Topic
+            url: quickstart/create_resource/
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: 操作指南
+        children:
+          - title: 集群管理
+            url: manual/cluster_lifecycle/summary/
+          - title: 节点管理
+            url: manual/mgt_node/summary/
+          - title: 使用 RocketMQ 控制台
+            url: manual/rocketmq_console/access/
+          - title: 使用 RocketMQ 客户端
+            url: manual/rocketmq_client/login_client/
+  - title: 实践
+    icon: icon-simulation_duotone
+    children:
+      - title: 最佳实践
+        children:
+          - title: 消息堆积和延迟问题
+            url: best-practices/practice01/
+linkkey: middleware_rocketmq_guide
+---

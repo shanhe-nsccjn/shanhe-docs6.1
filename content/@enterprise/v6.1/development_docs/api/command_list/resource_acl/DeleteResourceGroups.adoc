@@ -1,0 +1,41 @@
+---
+title: "DeleteResourceGroups"
+description: 
+draft: false
+---
+删除资源组。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| resource_groups.n
+| String
+| 资源组ID
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=DeleteResourceGroups
+&resource_groups.1=rg-5ukijwcx
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"DeleteResourceGroups",
+  "resource_groups":[
+    "rg-5ukijwcx"
+  ]
+}
+----

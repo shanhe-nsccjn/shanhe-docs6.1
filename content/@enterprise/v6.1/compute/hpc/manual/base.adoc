@@ -1,0 +1,17 @@
+---
+title: "创建集群"
+draft: false
+weight: 10
+---
+本章节介绍如何创建集群。
+
+== 前提条件
+
+* 已获取 {console_name}账号和密码。
+* 已完成个人实名认证且账户余额大于 0 元。
+* 已开通弹性高性能计算 EHPC 服务。
+
+== 创建 EHPC 集群
+
+详细内容可参考link:../../quick-start/create_ehpc[创建 EHPC 集群]
+

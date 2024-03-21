@@ -1,0 +1,65 @@
+---
+title: "GPU 加速型 g2nt4"
+weight: 10
+draft: false
+---
+
+
+GPU 加速型 g2nt4 类型的云服务器采用Intel Xeon Gold 处理器，同时搭载Turing架构的 NVIDIA Tesla T4 GPU 卡，可针对 AI、数据分析和 高性能计算 HPC 应用场景，在不同规模下实现出色的加速，有效助力更高性能的弹性数据中心。用户可以根据需要自由选择不同卡数以及 CPU 资源的规格，进而灵活适应不同的 AI、数据分析和 HPC 场景下的业务需求。
+
+include::../../../../../../_components/note.adoc[]
+该类型 GPU 云服务器仅支持在济南 1 区进行创建。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+GPU 加速型 g2nt4 云服务器的特点：
+
+* 计算： 
+** 采用 NVIDIA Tesla T4 GPU 卡，具备 Turing 架构。
+** 处理器采用 2.00 GHz 主频的 Intel Xeon 处理器
+** 内存支持 48 G ~ 384 G。
+** 支持选配 1 个，2 个，4 个，5 个 或 8 个 GPU 显卡数。 
+* 存储：支持使用通用型 SSD 云盘和容量型云盘，详细内容可参考link:../../../../../storage/disk/intro/introduction/#_硬盘类型[硬盘介绍]相关内容。
+* 网络：内网带宽支持 2 Gbps ~ 20 Gbps，各实例的网络性能与实际规格对应，规格越高网络性能越好。
+* 适用场景：配备高性能的 CPU、内存、GPU，可应用于 AI、深度学习训练、深度学习推理、数据分析以及高性能计算 HPC 等业务场景。
+
+GPU 加速型 g2nt4 类型云服务器实例规格列表如下：
+
+[options="header",cols="3,2,2,3,2,3"]
+|===
+|实例规格 |vCPUs|内存|CPU|内网带宽|GPU
+|g2nt4.4large.g1
+|16 核
+|48G
+|Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz
+|2 Gbps
+|1 * NVIDIA Tesla T4
+
+|g2nt4.8large.g2
+|32 核
+|96G
+|Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz 
+|4 Gbps
+|2 * NVIDIA Tesla T4
+
+|g2nt4.16large.g4
+|64 核
+|192G
+|Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz 
+|8 Gbps
+|4 * NVIDIA Tesla T4
+
+|g2nt4.31large.g6
+|120 核
+|299G
+|Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz 
+|20 Gbps
+|6 * NVIDIA Tesla T4
+
+|g2nt4.31large.g8
+|124 核
+|384G
+|Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz 
+|20 Gbps
+|8 * NVIDIA Tesla T4
+|===

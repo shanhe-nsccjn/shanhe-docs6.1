@@ -1,0 +1,38 @@
+---
+title: "发送消息"
+description: 通过 RocketMQ 控制台发送消息。
+keywords: 云计算,大数据,消息队列,中间件,RocketMQ,Topic,发送消息
+weight: 30
+draft: false
+---
+下面列举几个常见操作，详情可参见link:https://github.com/apache/rocketmq-dashboard/blob/master/docs/1_0_0/UserGuide_CN.md[官方使用文档]。
+
+== 注意事项
+
+通过 RocketMQ 控制台可以对集群中的实际数据进行增删改，请谨慎操作。
+
+== 发送消息
+
+. link:../access[登录 RocketMQ 控制台]。
+. 选择 *Topic*，进入 Topic 页面。
+. 在目标 Topic 的 Operation 列，点击 *SEND MASSAFGE*，进入发送消息页面。
++
+在 Message Body 处填写消息内容。
++
+image::/images/cloud_service/middware/rocketmq/send_message.png[send message]
+
+. 点击 COMMIT，开始发送消息到目标 Topic。
++
+image::/images/cloud_service/middware/rocketmq/send_message_successed.png[send message]
+
+== 查询消息
+
+. link:../access[登录 RocketMQ 控制台]。
+. 选择 *Message*，进入 Message 页面。
+. 选择 Topic 和时间范围，点击 SEARCH 进行查询。
++
+image::/images/cloud_service/middware/rocketmq/search_message.png[search message]
+
+. 在查询结果的 Operation 列，点击 MESSAGE DETAIL 查看消息详情。
++
+image::/images/cloud_service/middware/rocketmq/message_detail.png[message detail]

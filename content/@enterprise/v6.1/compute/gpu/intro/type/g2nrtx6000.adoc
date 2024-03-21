@@ -1,0 +1,46 @@
+---
+title: "GPU 加速型 g2nrtx6000"
+weight: 15
+draft: false
+---
+
+GPU 加速型 g2nrtx6000 类型的云服务器采用 Intel Xeon Gold 5218 处理器，同时搭载 NVIDIA RTX6000 GPU 卡，RTX 6000 基于 NVIDIA Ada Lovelace GPU 架构构建，结合使用了 142 个第三代 RT Core 、568 个第四代 Tensor Core 和 18176 个 CUDA 核心以及 48GB 显存，可提供远超过往的渲染、AI、图形处理和计算性能。
+
+include::../../../../../../_components/note.adoc[]
+该类型 GPU 云服务器仅支持在济南 1 区进行创建。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+GPU 加速型 g2nrtx6000 云服务器特点：
+
+* 计算： 
+** 采用 NVIDIA RTX6000 GPU 卡，其运用 Turing 架构。
+** 配有全新的 Intel Advanced Vector Extension (AVX-512) 指令集，在深度学习的多种场景性能提升 4 倍。
+** 处理器采用 2.3 GHz 主频的 Intel Xeon Gold 5218 处理器，全核睿频 3.9 GHz。
+** CPU 核数：支持选择 64、128 核。
+** 内存：随 CPU 核数的不同，支持 192 G ~ 384 G。
+** 支持选配 1 个或 2 个 GPU 显卡数。 
+
+* 存储：支持使用通用型 SSD 云盘和容量型云盘，详细内容可参考link:../../../../../storage/disk/intro/introduction/#_硬盘类型[硬盘介绍]相关内容。
+* 网络：内网带宽支持 25 Gbps ~ 50 Gbps，各实例的网络性能与实际规格对应，规格越高网络性能越好。
+* 适用场景：配备高性能的 CPU、内存、GPU，可适用于人工智能深度学习、高性能计算、图形图像处理等领域。
+
+GPU 加速型 g2nrtx6000 类型云服务器实例规格列表如下：
+
+[options="hader",cols="3,2,2,3,2,3"]
+|===
+|实例规格 |vCPUs|内存|CPU|内网带宽|GPU
+| g2nrtx6000.8large.g1
+| 64 核
+| 192G
+| Intel Xeon Gold 5218 主频 2.3GHz\|睿频 3.9GHz
+| 25 Gbps
+| 1 * NVIDIA RTX6000
+
+| g2nrtx6000.16large.g2
+| 128 核
+| 384G
+| Intel Xeon Gold 5218 主频 2.3GHz\|睿频 3.9GHz
+| 50 Gbps
+| 2 * NVIDIA RTX6000
+|===

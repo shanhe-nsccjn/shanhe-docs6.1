@@ -1,0 +1,248 @@
+---
+title: "获取挂载点信息列表"
+weight: 5
+---
+
+根据指定文件系统 ID，获取此文件系统下的挂载点信息列表。
+
+== Action
+
+/file-systems/{file-system-id}?exports
+
+== 请求方式
+
+GET
+
+== 请求参数
+
+[options="header",cols="1,1,1,3"]
+|===
+| 参数 | 类型 | 是否必选 | 描述
+|timestamp	
+|date-time	
+|true	
+|API 操作时间戳
+
+|zone	
+|string	
+|true	
+|API 所操作的环境
+
+|file-system-id	
+|string	
+|true	
+|挂载点所属的文件系统 ID，通过查询文件系统接口获取，如 qfs-xxxxx
+
+|exports	
+|string	
+|true	
+|此值传入 ""，即为空
+
+|user_id	
+|string	
+|true	
+|用户 ID
+|===
+
+== 响应消息
+
+**response parameters**
+
+[options="header",cols="1,1,2,2"]
+|===
+| 参数 | 类型 | 取值样例| 描述 
+
+| action
+| string
+| EpfsFileSystemsGetFileSystemsList
+| 响应动作
+
+|ret_code	
+|integer	
+|0	
+|执行是否成功，成功为 0，其它值为错误代码
+
+|total_count	
+|integer	
+|1	
+|统计挂载点个数
+
+|export_list	
+|array	
+|-
+|挂载点相关信息
+
+|data	
+|array	
+|{mount_point:{total:2,left:0},mount_total_size:{total:100 left:0}}	
+a|挂载点可用容量相关信息，根据挂载点额度与容量检查是否有足够资源创建挂载点。 +
+mount_point 用户挂载点配额使用情况，默认 2 个挂载点额度。 +
+
+* total：用户创建挂载点个数
+* left：用户剩余挂载点个数
+
+mount_total_size 用户挂载点容量使用情况，默认 100GB。 +
+
+* total：用户可创建挂载点总容量
+* left：用户剩余可创建挂载点容量
+|===
+
+
+**response item**
+[options="header",cols="1,1,2,2"]
+|===
+| 参数 | 类型 | 取值样例| 描述
+|access_group_id	
+|string	
+|6b09qhbn	
+|挂载点权限组ID
+
+|acl	
+|arrray	
+|{acl_id: "acl-1tjwuqes", access_group_id: "6b09qhbn"},…}	
+|挂载点权限组 IP，此值根据挂载点是否增加权限组 IP 而返回相关信息
+
+|bill_id	
+|string	
+|epfs-boi3j2hv.#@nscca	
+|挂载点账单 ID
+
+|billing_resource_id	
+|string	
+|epfs-boi3j2hv.#@nscca	
+|挂载点账单 ID
+
+|create_time 	
+|string	
+|2023-05-24T07:09:14Z	
+|挂载点创建时间
+
+|description	
+|string	
+|test	
+|挂载点描述信息
+
+|export_id	
+|string	
+|epfs-boi3j2hv	
+|挂载点 ID
+
+|export_path	
+|string	
+|10.0.0.7@o2ib:/lustrefs/testepfs/test_ob	
+|文件存储中挂载点真实路径
+
+|fs_id	
+|string	
+|qfs-2r6hk5w8	
+|文件存储 ID
+
+|fs_path	
+|string	
+|/test_ob	
+|挂载点存储目录
+
+|gid	
+|integer	
+|41522	
+|用户 gid
+
+|name	
+|string	
+|测试_产品中心	
+|挂载点目录
+
+|owner	
+|string	
+|usr-vceaHsJu	
+|挂载点所属用户
+
+|quota	
+|integer	
+|23622320128	
+|挂载点容量
+
+|uid	
+|integer	
+|41522	
+|用户 uid
+
+|update_time	
+|date-time	
+|2023-08-02T02:02:22Z	
+|挂载点更新时间
+
+|used	
+|integer	
+|9177329664	
+|挂载点容量
+
+|utilization_rate	
+|double	
+|0.39	
+|挂载点容量使用百分比
+|===
+
+== 示例
+
+=== 请求示例
+
+[,url]
+----
+
+http://epfs-api.shanhe.com/file-systems/qfs-2r6hk5w8
+&user_id=usr-vceaHsJu
+&exports=
+&file_systems_id=qfs-2r6hk5w8
+&COMMON_PARAMS
+----
+
+=== 响应示例
+
+[,json]
+----
+{
+  "action": "EpfsFileSystemsGetFileSystemsListResponse",
+  {mount_point:{total:2,left:0},mount_total_size:{total:100,left:0}} 
+  "export_list": [
+    {
+      access_group_id: "6b09qhbn"
+      acl: {acl-1tjwuqes: {acl_id: "acl-1tjwuqes", access_group_id: "6b09qhbn"},…}
+      bill_id: "epfs-boi3j2hv.#@nscca"
+      billing_resource_id: "epfs-epfs-boi3j2hv.#@nscca"
+     console_id: "nscccloud"
+     controller: "self"
+     create_time: "2023-05-24T07:09:14Z"
+     created: "2023-05-24T07:09:14Z"
+     description: "计费测试：产品中心\n创建、扩容成功，计费已保存epfs-boi3j2hv.#@nscca，恢复未测试"
+     export_id: "epfs-boi3j2hv"
+     export_path: "10.0.0.7@o2ib:/lustrefs/testepfs/test_ob"
+     fs_id: "qfs-2r6hk5w8"
+     fs_path: "/test_ob"
+     gid: 41522
+     id: "epfs-boi3j2hv"
+     is_bill_notify: 0
+     is_cluster: 0
+     is_start_export: 0 
+     name: "测试_产品中心"
+     owner: "usr-vceaHsJu"
+     prod_inst_id_ext: "epfs-epfs-boi3j2hv.#@nscca"
+     project_id: 196222844
+     quota: 23622320128
+     root_user_id: "usr-vceaHsJu"
+     shared_path: "test_ob"
+     status: "Active"
+     uid: 41522
+     update_time: "2023-08-02T02:02:22Z"
+     used: 9177329664
+     user_id: "usr-vceaHsJu"
+     utilization_rate: 0.39
+    }
+  ],
+  "ret_code": 0,
+  "total": 1
+}
+----
+
+
+

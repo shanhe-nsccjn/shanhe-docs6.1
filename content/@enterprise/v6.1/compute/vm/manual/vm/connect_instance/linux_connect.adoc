@@ -1,0 +1,51 @@
+---
+title: "Linux 云服务器 Web 终端登录"
+description: 本章节介绍如何连接云服务器
+draft: false
+weight: 10
+---
+
+
+通过 Web 终端连接 Linux 云服务器，您可以选择使用 **WebSSH 远程连接**方式或者 **VNC 连接**方式。
+
+* WebSSH 远程连接
+** CentOS 或 Ubuntu 系列操作系统支持。
+** 云服务器必须绑定弹性公网 IP。
+
+* VNC 连接
+** 所有 Linux 操作系统云服务器均支持。
+** 适用于无法使用 WebSSH 或远程连接工具登录 Linux 云服务器的场景。
+** 云服务器无需绑定弹性公网 IP。
+ 
+== WebSSH 连接
+
+使用 WebSSH 远程连接的云服务器，若使用 SSH 密钥，则在绑定 SSH 时**不要勾选禁止密码登录**。
+
+. 登录 {console_name}。
+. 选择**产品与服务** > *计算* > *云服务器*，进入云服务器列表页。
+. 点击指定云服务器 ID （名称）右侧的 *Web 终端* 图标。
+. 在弹出的**远程连接**窗口中，选择 **WebSSH 远程连接**，并根据需要使用**密码认证**或者**证书认证**，登录云服务器。
++
+include::../../../../../../../_components/note.adoc[]
+证书认证中仅支持上传 ssh-rsa 或 ecdsa-sha2-nistp521 加密方法的证书。
+include::../../../../../../../_components/table_footer.adoc[]
++
+image::/images/cloud_service/compute/vm/manual_linux_connect_4.png[,60%]
+
+== VNC 连接
+
+. 登录 {console_name}。
+. 选择**产品与服务** > *计算* > *云服务器*，进入云服务器列表页。
+. 点击指定云服务器 ID （名称）右侧的 *Web 终端* 图标。
++
+image::/images/cloud_service/compute/vm/manual_linux_connect_1.png[]
+
+. 打开 VNC 远程连接会话窗口，根据提示信息输入**用户名**和**密码**，按 *Enter*，登录云服务器。在 VNC 远程连接页面，为用户提供便捷的**按键操作**与**复制命令输入**操作。
++
+若云服务器不接受您的密码，您可以将云服务器关机后 link:../../mgmt_vm/reset_pw[重置云服务器的登录密码]。
++
+image::/images/cloud_service/compute/vm/manual_linux_connect_2.png[]
+
+
+
+

@@ -1,0 +1,10 @@
+---
+title: "跨区域复制（Replication）"
+description: 本小节主要介绍跨区域复制接口相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket
+linkkey: storage_qingstor_bucket_cross_region_replication_api_manual
+---
+
+- link:[PUT Bucket Replication](put_replication/)
+- link:[GET Bucket Replication](get_replication/)
+- link:[DELETE Bucket Replication](delete_replication/)

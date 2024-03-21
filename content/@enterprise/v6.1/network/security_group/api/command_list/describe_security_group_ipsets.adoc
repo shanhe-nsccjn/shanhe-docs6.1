@@ -1,0 +1,7 @@
+---
+title: "DescribeSecurityGroupIPSets"
+description: 
+draft: false
+---
+
+include::../../../../../../_cloud_service/sg/api_list/describe_security_group_ipsets.adoc[]

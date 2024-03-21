@@ -1,0 +1,14 @@
+---
+title: "基本概念"
+linkTitle: "基本概念"
+description: 基本概念
+keywords: 云计算, 山河云, ShanHe, HPC，高性能计算
+draft: false
+weight: 50
+---
+
+本章节介绍弹性高性能计算的基本概念。
+
+include::../../../../../_cloud_service/ehpc/intro/concept.adoc[]
+
+

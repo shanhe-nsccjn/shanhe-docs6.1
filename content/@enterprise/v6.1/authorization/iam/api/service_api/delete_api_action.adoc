@@ -1,0 +1,41 @@
+---
+title: "DeleteIAMApiAction"
+draft: false
+weight: 9
+---
+
+== 接口描述
+
+删除 API 指令。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| action_name
+| String
+| 是
+| 需要删除的 API 指令名称。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| action_name
+| String
+| 已删除的 API 指令名称。
+
+|===

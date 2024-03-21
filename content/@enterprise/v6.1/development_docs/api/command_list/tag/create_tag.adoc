@@ -1,0 +1,72 @@
+---
+title: "CreateTag"
+description: 
+draft: false
+---
+创建标签，每个标签可以绑定多个资源。
+
+include::../../../../../../_components/attention.adoc[]
+标签名称少于15个字符, 不可重复.
+
+include::../../../../../../_components/table_footer.adoc[]
+
+标签数据可以随时通过 link:../describe_tags/[DescribeTags] 得到。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| tag_name
+| String
+| 标签名称, 名称不可重复
+| No
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| tag_id
+| String
+| 创建成功的标签 ID
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=CreateTag
+&tag_name=test
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"CreateTagResponse",
+  "tag_id":"tag-axbkmf20",
+  "ret_code":0
+}
+----

@@ -1,0 +1,45 @@
+---
+title: 开启 SASL 协议连接 Kafka 集群
+description: 本小节主要介绍如何配置 SASL 协议。 
+keywords: sasl,Kafka
+weight: 40
+---
+
+从 3.1.0 - v3.0.1 版本开始，Kafka 开始支持 SASL 协议。
+
+== 配置 SASL
+
+部署集群时，在**第6步: 服务环境参数设置**模块中，参数 **sasl.type** 下拉框中，选择目标加密算法。比如这里选择 `SCRAM-SHA-256`。
+
+image::/images/cloud_service/middware/kafka/sasl_1.png[,80%]
+
+include::../../../../../_components/note.adoc[]
+
+参数 **sasl.type** 下拉框中的 `无` 代表着不开启 SASL 协议，默认值是 `无`。
+
+include::../../../../../_components/table_footer.adoc[]
+
+其余步骤按参考link:../../quickstart/create_cluster/[前文内容]正常创建 Kafka 集群即可。
+
+== 验证方式
+
+需要用户自行登录其 `客户端` 节点后，执行以下命令行。
+
+//用户如需确认配置的 SASL 模式是否生效，可登陆 Kafka 集群的 Broker 节点，执行以下命令行。
+
+* 生产消息命令，使用 SASL 协议
++
+[source,shell]
+----
+/opt/kafka/current/bin/kafka-console-producer.sh --bootstrap-server broker_ip:9092 --topic test --producer.config /ssl/kafka.config
+----
+
+* 消费消息命令，使用 SASL 协议
++
+[source,shell]
+----
+/opt/kafka/current/bin/kafka-console-consumer.sh --bootstrap-server broker_ip:9092 --topic test  --group test --from-beginning --consumer.config /ssl/kafka.config
+----
+
+
+第一次执行**生产消息**命令时，会报错，是因为 `topic` 不存在，但系统默认设置了 `auto create topic`，再次执行命令行就可以正常验证。

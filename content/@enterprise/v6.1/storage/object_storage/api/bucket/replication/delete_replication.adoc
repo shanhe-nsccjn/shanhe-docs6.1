@@ -1,0 +1,75 @@
+---
+title: "Delete Bucket Replication"
+description: 本小节主要介绍 Delete Bucket Replication 接口相关操作。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket
+collapsible: false
+draft: false
+weight: 3
+---
+该接口用于删除 Bucket 的跨区域复制相关设置。山河云对象存储定义只有 Bucket 的所有者才能调用该 API。
+
+== 请求语法
+
+[source,http]
+----
+DELETE /?replication HTTP/1.1
+Host: <bucket-name>.<zone_id>.qingstor.com
+Date: <date>
+Authorization: <authorization-string>
+----
+
+== 请求参数
+
+无。
+
+== 请求头
+
+此接口仅包含公共请求头。关于公共请求头的更多信息，请参见link:../../../common_header/#_请求头字段_request_header[公共请求头]。
+
+== 请求消息体
+
+无。
+
+== 响应头
+
+此接口仅包含公共响应头。关于公共响应头的更多信息，请参见link:../../../common_header/#_响应头字段_response_header[公共响应头]。
+
+== 错误码
+
+|===
+| 错误码 | 错误描述 | HTTP 状态码
+
+| OK
+| 成功删除跨区域复制相关设置
+| 204
+|===
+
+其他错误码可参考link:../../../error_code/#_错误码列表[错误码列表]。
+
+== 示例
+
+=== 请求示例
+
+[source,http]
+----
+DELETE /?replication HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Mon, 1 Oct 2018 15:04:01 GMT
+Authorization: authorization string
+----
+
+=== 响应示例
+
+[source,http]
+----
+HTTP/1.1 204 NoContent
+Server: QingStor
+Date: Mon, 1 Oct 2018 15:04:01 GMT
+Content-Length: 0
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+----
+
+== SDK
+
+此接口所对应的各语言 SDK 可参考 link:../../../../sdk/[SDK 文档]。

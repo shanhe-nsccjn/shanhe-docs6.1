@@ -1,0 +1,156 @@
+---
+title: "数据传输"
+---
+
+
+本节介绍从本地向山河云内虚机传输数据4种方式及操作步骤。
+
+== 需求示例
+
+*前提要求：*
+
+____
+已有山河云console（控制台）账户
+登录地址:link:https://console.shanhe.com/login[https://console.shanhe.com/login]  +
+已有山河云EasyConnect(VPN)账户
+登录地址:link:https://124.128.58.194:4433[https://124.128.58.194:4433]
+____
+
+需求：本地机器中有部分文件需要上传至山河云云服务器。  +
+
+== 需求分析
+
+目前平台支持提供了4种向云服务器内上传文件的方式，从云服务器内取数据同理。下面将根据4种传输方式，两种云服务器系统场景进行演示。
+
+* *1. 拨通VPN直接传输：* +
+*操作最为简单，但受限于VPN带宽最大限制5M，可传输小型文件，大文件传输效率极低。* +
+** Linux云服务器 +
+** Windows云服务器 +
+
+* *2. 使用公网FTP中转服务器：* +
+*通过山河云部署的的FTP中转服务器进行文件中转，传输效率受限于客户本机上传流量，无隐私防护，其他使用FTP中转服务器的客户可查看，修改，下载文件内容。* +
+** Linux云服务器 +
+** Windows云服务器 +
+
+* *3.通过对象存储转存：* +
+*操作大体流程与通过FTP中转服务器类似，但操作较为复制，需要有一定基础，全盘迁移或其他大文件建议使用这种方式。* +
+** Linux云服务器 +
+** Windows云服务器 +
+
+* *4. 线下邮寄数据盘：* +
+*将数据物理盘线下邮寄给云平台运维团队操作，运输过程中数据安全性难以保证，传输时效性不做保证。* +
+
+== 测试环境： 
+测试云服务器两台：   +
+
+[width=75%, cols="1,1,1"]
+|===
+|云服务器类型 |内网远程连接地址 |VPC端口转发地址
+|Linux |192.168.30.17:22 |10.106.17.12:16001
+|Windows |192.168.30.19:3389 |10.106.17.12:16004
+|===
+
+== 操作示例:
+== *拨通VPN直接传输* +
+
+1.确保已登录山河云EasyConnect，并有对应云服务器所在VPC网络权限。 +
+2.已为云服务器远程连接端口配置好VPC端口转发与放开对应安全组权限。Windows使用3389端口，Linux使用22端口。 +
+如前提条件未满足或不清楚，请查看link:https://docs.shanhe.com/v6.1/gudie2/use/manual/operation/[操作指南]。
+
+=== Linux云服务器
+
+[#连接Xftp]
+* *本机是Windows* +
+** 通过ftp客户端连接xtp服务器，以Xshell7所带Xftp示范 +
+1.输入连接信息：*ssh root@10.106.17.12 -p16001* +
+2.点击上方绿色Sftp图标连接 +
+3.连接后从左边拖动文件进行传输
+
+image::/images/cloud_service/gudie/trans01.png[width=50%]
+
+[#连接Transmit]
+* *本机是Mac* +
+** 使用文件传输工具连接，以Transmit示范 +
+1.输入连接信息点击连接 +
+2.连接后从左边拖动文件进行传输
+
+image::/images/cloud_service/gudie/trans02.png[width=60%]
+
+=== Windows云服务器
+
+* *本机是Windows* +
+** 使用本机自带RDP远程桌面连接进行连接 +
+1.计算机项填写IP:端口：*10.106.17.12:16004* +
+
+image::/images/cloud_service/gudie/trans03.png[width=40%]
+
+2.点击连接信息后输入账号密码
+
+image::/images/cloud_service/gudie/trans04.png[width=40%]
+
+3.成功连接到远程桌面后可直接拖动文件或复制粘贴文件
+
+* *本机是Mac* +
+** 使用文件传输工具连接，以Microsoft Remote Desktop示范 +
+1.点击Add PC，PC name填入IP及端口 +
+
+image::/images/cloud_service/gudie/trans05.png[width=40%]
+
+2.点击Add连接后输入账号密码
+
+image::/images/cloud_service/gudie/trans06.png[width=40%]
+
+3.成功连接到远程桌面后可直接拖动文件或复制粘贴文件
+
+== *使用公网FTP中转服务器* +
+
+* 传输分为两部分：客户端上传至FTP文件服务器与云服务器从FTP文件服务器拉取文件，首先在本机客户端连接上公网FTP云服务器，上传相关文件，然后使用云服务器连接同一FTP服务器下载相关文件。 + 
+* 在window和Mac环境下，连接FTP服务器时，可使用资源管理器或通过ftp客户端连接xtp服务器，为满足断点续传等需求，以下操作都使用FTP客户端进行连接
+
+1.确保已登录山河云EasyConnect，并有对应云服务器所在VPC网络权限。 +
+2.已为云服务器远程连接端口配置好VPC端口转发与放开对应安全组权限。Windows使用3389端口，Linux使用22端口。 +
+如前提条件未满足或不清楚，请查看link:https://docs.shanhe.com/v6.1/gudie2/use/manual/operation/[操作指南]。 +
+3.*如需使用FTP中转服务器，请工单联系工程师获取服务器地址及账号密码。*
+
+=== 客户端上传至FTP文件服务器
+
+* *本机是Windows* +
+** 使用ftp客户端连接与上述连接方式相同 +
+1.link:#连接Xftp[连接Xftp] +
+2.将需上传至虚机文件上传至FTP中转服务器
+
+* *本机是Mac* +
+** 使用文件传输工具连接与上述连接方式相同 +
+1.link:#连接Transmit[连接Transmit] +
+2.将需上传至虚机文件上传至FTP中转服务器
+
+
+=== 云服务器从FTP文件服务器拉取文件
+
+* *云服务器是Windows* +
+** 登陆云服务器后，使用ftp客户端连接与上述连接方式相同 +
+1.link:#连接Xftp[连接Xftp] +
+2.选中传输文件复制粘贴至云服务器内
+
+* *云服务器是Linux* +
+** 下载ftp客户端工具，连接后下载文件 +
+. 下载安装ftp客户端（如果尚未安装）： +
+   sudo yum install -y ftp 
+. 连接到ftp服务器 +
+   ftp ftp服务器地址 端口： 
+. 输入用户名和密码进行认证 +
+. 列出目录并下载相应文件 +
+   ls +
+   get 文件名称 +
+. 退出ftp会话 +
+   bye +
+
+== *通过对象存储转存* +
+
+* 操作流程与通过FTP中转服务器类似，但操作较为复制，需要有一定基础，全盘迁移或其他大文件建议使用这种方式。传输分为两部分：本机配置好对象存储客户端，将要传输数据上传至对象存储；云内云服务器挂载对象存储至本地盘下载文件。 +
+客户端上传数据至对象存储请参考：link:https://docs.shanhe.com/v6.1/storage/object_storage/s3/s3_browser/[安装 S3 Browser ] +
+云内云服务器挂载对象存储至本地盘请参考：link:https://docs.shanhe.com/v6.1/storage/object_storage/beat_practices/linux_uses_object_storage_as_a_local_disk/[Linux 使用对象存储作为本地盘 ] +
+
+== *线下邮寄数据盘* +
+
+* 线下邮寄整块数据盘，运输途中数据安全性不做保障，依照工作人员时间处理，数据传输时效性不做保证，如有需要请工单联系获取收货地址。

@@ -1,0 +1,11 @@
+---
+title: "anaconda"
+---
+== anaconda镜像使用帮助
+
+....
+conda config --add channels https://mirrors.shanhe.com/anaconda/pkgs/free/
+conda config --add channels https://mirrors.shanhe.com/anaconda/pkgs/main/
+conda config --add channels https://mirrors.shanhe.com/anaconda/cloud/conda-forge/
+conda config --set show_channel_urls yes
+....

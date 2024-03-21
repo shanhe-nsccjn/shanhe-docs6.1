@@ -1,0 +1,7 @@
+table {
+  break-inside: avoid;
+}
+
+table.allow_break_inside {
+  break-inside: auto;
+}

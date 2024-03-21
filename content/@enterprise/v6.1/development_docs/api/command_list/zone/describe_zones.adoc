@@ -1,0 +1,99 @@
+---
+title: "DescribeZones"
+description: 
+draft: false
+---
+获取可访问的区域列表。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| zones.n
+| String
+| 区域ID
+| No
+
+| status.n
+| String
+| 区域状态，有效值为 active, faulty, defunct。
+| No
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| zone_set
+| Array
+| JSON 格式的区域数据列表，每项数据可见下面 ResponseItemType
+
+| total_count
+| Integer
+| 根据过滤条件得到的区域总数
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*ResponseItemType*
+
+[option="header",cols="1,1,2a"]
+|===
+| Name | Type | Description
+
+| zone_id
+| String
+| 区域ID
+
+| status
+| String
+| 区域状态，有效值为 active, faulty, defunct。 +
+
+* active: 正常开放 +
+* faulty: 不可用 +
+* defunct: 已报废
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=DescribeZones
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"DescribeZonesResponse",
+  "total_count":1,
+  "zone_set":[
+    {
+      "status":"active",
+      "zone_id":jn1a
+    },
+    {
+      "status":"active",
+      "zone_id":gd2
+    },
+    {
+      "status":"active",
+      "zone_id":ap2a
+    }
+  ],
+  "ret_code":0
+}
+----

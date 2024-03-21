@@ -1,0 +1,9 @@
+---
+title: "返回结构"
+description: API 返回结构。 
+keywords: 云计算, API 返回结构
+draft: false
+weight: 20
+---
+
+include::../../../../../../_cloud_service/api_common/response.adoc[]

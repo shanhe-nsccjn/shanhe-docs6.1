@@ -1,0 +1,38 @@
+[.preface.reset_page_num]
+--
+[.preface_title]
+前言
+
+本文档介绍{pdf_coverDocName}的{pdf_Title}。
+
+[discrete]
+=== 产品版本
+
+本文档适用于 {pdf_projectName} {pdf_projectVersion} 版本。
+
+[discrete]
+=== 读者对象
+
+本文档主要适用于以下读者：
+
+* {pdf_projectName} 终端用户
+
+* 交付工程师
+
+* 运维工程师
+
+* 售后工程师
+
+// [discrete]
+// === 修订记录
+
+// [cols="1a,1a,3a"]
+// |===
+// |文档版本 |发布日期 |修改说明
+
+// |01
+// |2022-07-13
+// |第一次正式发布。
+
+// |===
+--

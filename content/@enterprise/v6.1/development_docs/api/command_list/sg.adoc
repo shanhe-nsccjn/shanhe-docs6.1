@@ -1,0 +1,11 @@
+---
+title: "安全组"
+description: test
+draft: false
+collapsible: false
+weight: 15
+keywords: 错误码, ShanHe, 山河云, 客户端错误码, API
+---
+为了加强位于基础网络 vxnet-0 中的云服务器或 VPC 网络的安全性，可以为云服务器或 VPC 网络绑定安全组。山河云系统为每个用户提供了一个缺省安全组（ID 之后带有星标），默认允许 ping 和 ssh 的端口。您也可以根据需要创建新的安全组。对于自建的安全组，初始状态下，均不包含任何安全组规则，即，任何端口都是封闭的，您需要建立规则以打开相应的端口。
+
+安全组详情接口说明，请参见link:../../../../network/security_group/api/command_list/add_security_group_rules/[安全组 API 接口]。

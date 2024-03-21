@@ -1,0 +1,105 @@
+---
+title: "CreateS2SharedTarget"
+description: 
+draft: false
+---
+新建共享存储目标，在新建时可以直接添加硬盘作为 backstore，也可以以后添加。
+
+此操作完成后需要调用 link:../update_s2_servers/[UpdateS2Servers] 以应用到共享存储服务器上。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| s2_server
+| String
+| 共享存储服务器ID
+| Yes
+
+| export_name
+| String
+|-
+|-
+|===
+
+共享存储目标名称，及 IQN
+
+include::../../../../../../_components/note.adoc[]
+也可以输入短名，QingCloud 会自动帮你补全 IQN。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+[cols=4*]
+|===
+| Yes
+|-
+|-
+|-
+
+| target_type
+| String
+| 共享存储目标类型，目前仅支持ISCSI
+| Yes
+
+| description
+| String
+| 共享存储目标描述
+| No
+
+| volumes.n
+| String
+| 添加硬盘作为backstore
+| No
+
+| initiator_names.n
+| String
+| 指定客户端IQN
+| No
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=CreateS2SharedTarget
+&s2_server=s2-lxqjtu3l
+&export_name=demo
+&description=demo_descritpion
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response 
+
+----
+{
+  "action":"CreateS2SharedTargetResponse",
+  "s2_shared_target":"s2st-gkps8hq9",
+  "ret_code":0
+}
+----

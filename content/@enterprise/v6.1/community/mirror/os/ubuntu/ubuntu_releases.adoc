@@ -1,0 +1,38 @@
+---
+title: "Ubuntu Releases"
+---
+== Ubuntu Releases 源使用帮助
+
+=== 地址
+
+link:https://mirrors.shanhe.com/ubuntu-releases/[https://mirrors.shanhe.com/ubuntu-releases/]
+
+=== 说明
+
+Ubuntu 镜像
+
+=== 收录架构
+
+AMD64 (x86_64), Intel x86
+
+其他架构请参考
+link:http://mirrors.shanhe.com/manual/mirrors/Ubuntu%20CD%20Image[Ubuntu CD
+Image 源使用帮助]
+
+=== 收录版本
+
+所有 Ubuntu 当前支持的版本，包括开发版，具体版本见
+link:https://wiki.ubuntu.com/Releases[https://wiki.ubuntu.com/Releases]
+
+对于 Ubuntu 不再支持的版本，请参考
+link:https://mobile.mirrors.ustc.edu.cn/help/ubuntu-old-releases.html[Ubuntu
+Old Releases 源使用帮助]
+
+=== 使用说明
+
+Ubuntu 当前支持的版本的 ISO 镜像，下载请直接前往
+link:https://mirrors.shanhe.com/ubuntu-releases/[https://mirrors.shanhe.com/ubuntu-releases/]
+
+另外 link:https://mirrors.shanhe.com/ubuntu-releases/ubuntu-core/[https://mirrors.shanhe.com/ubuntu-releases/ubuntu-core/] 中包含了
+Ubuntu Core 16 的 ISO，支持 AMD64, Intel x86, Raspberry Pi 2/3,
+DragonBoard 410c 等。

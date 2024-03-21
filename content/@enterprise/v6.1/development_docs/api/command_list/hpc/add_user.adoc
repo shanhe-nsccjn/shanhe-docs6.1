@@ -1,0 +1,96 @@
+---
+title: "AddUser"
+description: 
+draft: false
+weight: 20
+---
+=== 增加集群用户
+
+调用 adduser 可以在当前集群上新增一个集群用户。
+
+=== 接口说明
+
+可在集群的用户&权限组界面新增用户。
+
+=== 参数
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| timestamp
+| string
+| 执行当前api时间戳
+| true
+
+| cluster_id
+| string
+| ladp用户所属的集群id
+| true
+
+| password
+| string
+| 设置新增用户密码
+| true
+
+| username
+| string
+| 设置新增用户名称
+| true
+
+| zone
+| string
+| 区域id
+| true
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Name | Type | Sample value | Description
+
+| action
+| string
+| HpcClusterListClusterResponse
+| 响应动作名称
+
+| ret_code
+| int
+| 0
+| 执行成功与否，成功为0，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://hpc.api.shanhe.com:443/api/user/addUser
+----
+
+Example Response
+
+----
+{action: "HpcUserAddUserResponse",
+
+job_id: "j-2awn7xwq815",
+
+ret_code: 0}
+----
+
+*错误码*
+
+[option="header",cols="1,1,2"]
+|===
+| ret_code | name | error info
+
+| 5000
+| ERR_MSG_ADD_HPC_APP_CLUSTERS_USER_FAILED
+| add hpc cluster [%s] user failed +
+添加HPC集群[%s]用户失败
+|===

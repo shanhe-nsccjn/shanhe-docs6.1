@@ -1,0 +1,142 @@
+---
+title: "GetMongoMonitor"
+description: 
+draft: false
+---
+获取指定 Mongo 节点的监控信息。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2a,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| resource
+| String
+| Mongo 节点 ID
+| Yes
+
+| meters.n
+| String
+| 监控项，Mongo 的监控项包括： +
+
+*   若要查询节点云服务器相关的信息，meters 可以是： 
+** cpu: 节点的 CPU 使用率 
+** memory: 节点内存使用率 
+** disk-us-volume: 节点磁盘空间使用率 
+** disk-iops-volume: 节点磁盘 IOPS 监控 
+** disk-volume: 节点磁盘
+
+* 若要查询 MongoDB 相关的信息，meters 可以是： +
+
+** status: MongoDB 状态数据，返回值是由`"\|`"分隔的多项状态值： 
+** opcounters insert 
+** opcounters query 
+** opcounters update 
+** opcounters delete 
+** opcounters getmore 
+** opcounters command 
+** opcountersRepl insert 
+** opcountersRepl query 
+** opcountersRepl update 
+** opcountersRepl delete 
+** opcountersRepl getmore 
+** opcountersRepl command \| connections: 当前连接数 
+
+* *参数值请使用小写字母*
+| Yes
+
+| step
+| String
+| 数据间隔时间，有效值为：5m, 15m, 2h, 1d (m 表示分钟，h 表示小时，d 表示天) +
+
+若请求最近15天以内的数据，数据间隔最小可以到5m；若请求15天以上的数据，数据间隔可选 2h 或 1d
+
+| Yes
+
+| start_time
+| String
+| 监控数据的起始 *UTC* 时间，格式为 2011-07-11T11:07:00Z 或 2011-07-11T11:07:00.520Z
+| Yes
+
+| end_time
+| String
+| 监控数据的结束 *UTC* 时间，格式为 2011-07-11T11:07:00Z 或 2011-07-11T11:07:00.520Z
+| Yes
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2a"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| resource_id
+| String
+| 资源 ID
+
+| meter_set
+| Array
+| 监控数据集
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=GetMongoMonitor
+&resource=mi-ole0pgn1
+&meters.1=status
+&start_time=2015-06-21T01:10:10Z
+&end_time=2015-06-22T01:10:10Z
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"GetMongoMonitorResponse",
+  "ret_code":0,
+  "resource":"mongo-uja5twny",
+  "meter_set":[
+    {
+      "data_set":[
+        {
+          "role":"replica",
+          "data":[
+            [
+              1434876300,
+              "0|0|0|0|0|193|0|0|0|0|0|0|2"
+            ],
+            "0|0|0|0|0|419|200|0|0|0|0|0|2",
+            "0|0|0|0|0|420|2300|0|0|0|0|0|1",
+            "0|0|0|0|0|420|0|0|0|0|0|0|1",
+            "0|0|0|0|0|420|700|0|0|0|0|0|1",
+            "0|0|0|0|0|420|0|0|0|0|0|0|1",
+            "0|0|0|0|0|420|0|0|0|0|0|0|1"
+          ]
+        }
+      ],
+      "meter":"status"
+    }
+  ]
+}
+----

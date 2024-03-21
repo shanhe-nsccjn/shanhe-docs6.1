@@ -1,0 +1,50 @@
+---
+title: "DeleteIAMPolicyVersions"
+draft: false
+weight: 16
+---
+
+== 接口描述
+
+删除策略版本。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| policy
+| String
+| 是
+| 策略 ID。
+
+| versions
+| List
+| 是
+| 需要删除的策略版本号。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| policy_id
+| String
+| 已删除的策略 ID。
+
+| versions
+| List
+| 已删除的版本号。
+
+|===

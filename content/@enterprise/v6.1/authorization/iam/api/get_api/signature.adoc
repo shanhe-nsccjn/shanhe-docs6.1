@@ -1,0 +1,203 @@
+---
+title: "签名认证"
+description: 介绍 API 签名方法。 
+keywords: API 调用,签名,认证,密钥
+draft: false
+weight: 30
+---
+
+本小节介绍使用 **API 密钥**生成签名（signature）的方法。
+
+== 前提条件
+
+已完成 link:/user_guide/authorization/access_key/manual/create/[API 密钥创建]，获取到 *accesss_key_id* 和 *secret_access_key*。
+
+== 步骤一：参数排序
+
+例如请求参数如下：
+
+[source]
+----
+{
+  "count":1,
+  "vxnets.1":"vxnet-0",
+  "zone":"jn1a",
+  "instance_type":"small_b",
+  "signature_version":1,
+  "signature_method":"HmacSHA256",
+  "instance_name":"demo",
+  "image_id":"centos64x86a",
+  "login_mode":"passwd",
+  "login_passwd":"QingCloud20210712",
+  "version":1,
+  "access_key_id":"QYACCESSKEYIDEXAMPLE",
+  "action":"RunInstances",
+  "time_stamp":"2021-08-27T14:30:10Z"
+}
+----
+
+按参数名进行升序排列，排序后的参数为:
+[source]
+----
+{
+  "access_key_id":"QYACCESSKEYIDEXAMPLE",
+  "action":"RunInstances",
+  "count":1,
+  "image_id":"centos64x86a",
+  "instance_name":"demo",
+  "instance_type":"small_b",
+  "login_mode":"passwd",
+  "login_passwd":"login20130712",
+  "signature_method":"HmacSHA256",
+  "signature_version":1,
+  "time_stamp":"2021-08-27T14:30:10Z",
+  "version":1,
+  "vxnets.1":"vxnet-0",
+  "zone":"jn1a"
+}
+----
+
+== 步骤二：参数 URL 编码
+
+对参数名称和参数值进行 URL 编码，编码后的请求串为:
+
+[source]
+----
+{
+  "access_key_id":"QYACCESSKEYIDEXAMPLE",
+  "action":"RunInstances",
+  "count":1,
+  "image_id":"centos64x86a",
+  "instance_name":"demo",
+  "instance_type":"small_b",
+  "login_mode":"passwd",
+  "login_passwd":"login20130712",
+  "signature_method":"HmacSHA256",
+  "signature_version":1,
+  "time_stamp":"2021-08-27T14%3A30%3A10Z",
+  "version":1,
+  "vxnets.1":"vxnet-0",
+  "zone":"jn1a"
+}
+----
+
+include::../../../../../../_components/note.adoc[]
+
+* 编码时空格要转换成 “%20” , 而不是 “+”。
+* 转码部分的字符要用大写，如 “:” 应转成 “%3A”，而不是 “%3a”。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+== 步骤三：构造 URL 请求
+
+参数名和参数值之间用 “=” 号连接，参数和参数之间用 “＆” 号连接。
+
+构造后的 URL 请求示例如下：
+
+[source]
+----
+access_key_id=QYACCESSKEYIDEXAMPLE&action=RunInstances&count=1&image_id=centos64x86a&instance_name=demo&instance_type=small_b&login_mode=passwd&login_passwd=login20130712&signature_method=HmacSHA256&signature_version=1&time_stamp=2021-08-27T14%3A30%3A10Z&version=1&vxnets.1=vxnet-0&zone=jn1a
+----
+
+== 步骤四：构造被签名串
+
+被签名串的构造规则为: 被签名串 = HTTP请求方式 + “\n” + uri + “\n” + url 请求串。
+
+include::../../../../../../_components/note.adoc[]
+
+* “\n” 是换行符，不要将 “\” 转义，即不使用 “\n” 。
+* php、ruby 等语言，请用 “\n” , 而不是 '\n'。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+假设 HTTP 请求方法为 GET 请求的 URI 路径为 `/iaas/`，则被签名串示例如下：
+
+[source]
+----
+GET\n/iaas/\naccess_key_id=QYACCESSKEYIDEXAMPLE&action=RunInstances&count=1&image_id=centos64x86a&instance_name=demo&instance_type=small_b&login_mode=passwd&login_passwd=login20130712&signature_method=HmacSHA256&signature_version=1&time_stamp=2021-08-27T14%3A30%3A10Z&version=1&vxnets.1=vxnet-0&zone=jn1a
+----
+
+[#步骤5_计算签名]
+== 步骤五：计算签名
+
+计算被签名串的签名 signature。
+
+. 将 API 密钥的私钥（secret_access_key）作为 key，生成被签名串的 HMAC-SHA256 或者 HMAC-SHA1 签名，更多信息可参见 http://www.ietf.org/rfc/rfc2104.txt[RFC2104]。
+. 将签名进行 Base64 编码。
+. 将 Base64 编码后的结果进行 URL 编码。
++
+
+include::../../../../../../_components/note.adoc[]
+当 Base64 编码后存在空格时，不要对空格进行 URL 编码，而要直接将空格转为 “+”。
+
+include::../../../../../../_components/table_footer.adoc[]
++
+以 Python（版本 2.7）代码为例（其他语言类似），签名计算如下：
++
+[source]
+----
+import base64
+import hmac
+import urllib
+from hashlib import sha256
+
+# 前面生成的被签名串
+string_to_sign = 'GET\n/iaas/\naccess_key_id=QYACCESSKEYIDEXAMPLE&action=RunInstances&count=1&image_id=centos64x86a&instance_name=demo&instance_type=small_b&login_mode=passwd&login_passwd=login20130712&signature_method=HmacSHA256&signature_version=1&time_stamp=2021-08-27T14%3A30%3A10Z&version=1&vxnets.1=vxnet-0&zone=jn1a'
+h = hmac.new(secret_access_key, digestmod=sha256)
+h.update(string_to_sign)
+sign = base64.b64encode(h.digest()).strip()
+signature = urllib.quote_plus(sign)
+----
+
+== 步骤六：添加签名
+
+将签名参数附在原有请求串的最后面。最终的 HTTP 请求串示例如下(为了查看方便，可将参数之间用回车分隔开)。
+
+[source]
+----
+access_key_id=QYACCESSKEYIDEXAMPLE
+&action=RunInstances
+&count=1
+&image_id=centos64x86a
+&instance_name=demo
+&instance_type=small_b
+&login_mode=passwd
+&login_passwd=login20130712
+&signature_method=HmacSHA256
+&signature_version=1
+&time_stamp=2021-08-27T14%3A30%3A10Z
+&version=1
+&vxnets.1=vxnet-0
+&zone=jn1a
+&signature=byjccvWIvAftaq%2BoublemagH3bYAlDWxxLFAzAsyslw%3D
+----
+
+完整的请求 URL 示例如下：
+
+[,url]
+----
+https://api.shanhe.com/iaas/?access_key_id=QYACCESSKEYIDEXAMPLE
+&action=RunInstances
+&count=1
+&image_id=centos64x86a
+&instance_name=demo
+&instance_type=small_b
+&login_mode=passwd
+&login_passwd=login20130712
+&signature_method=HmacSHA256
+&signature_version=1
+&time_stamp=2021-08-27T14%3A30%3A10Z
+&version=1
+&vxnets.1=vxnet-0
+&zone=jn1a
+&signature=byjccvWIvAftaq%2BoublemagH3bYAlDWxxLFAzAsyslw%3D
+----
+
+实际 URL 如下：
+
+[,url]
+----
+https://api.shanhe.com/iaas/?access_key_id=QYACCESSKEYIDEXAMPLE&action=RunInstances&count=1&image_id=centos64x86a&instance_name=demo&instance_type=small_b&login_mode=passwd&login_passwd=login20130712&signature_method=HmacSHA256&signature_version=1&time_stamp=2021-08-27T14%3A30%3A10Z&version=1&vxnets.1=vxnet-0&zone=jn1a&signature=byjccvWIvAftaq%2BoublemagH3bYAlDWxxLFAzAsyslw%3D
+----
+
+

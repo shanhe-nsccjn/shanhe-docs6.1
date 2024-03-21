@@ -1,0 +1,31 @@
+---
+title: API 文档
+linkTitle: API 文档
+weight: 1
+collapsible: true
+type: product
+study_section:
+  - title: 了解
+    icon: icon-note_tree_duotone
+    children:
+      - title: 介绍
+        children:
+          - title: 概述
+            url: overview
+          - title: 公共参数
+            url: parameters
+          - title: 签名方式
+            url: signature
+          - title: 错误码
+            url: error_code
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: API 指令列表
+        children:
+          - title: 产品相关
+            url: command_list/instance/describe_instances/
+          - title: 通用部分
+            url: common/offset
+linkkey: development_docs_api_manual
+---

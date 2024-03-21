@@ -1,0 +1,17 @@
+---
+title: "山河云域名解析DNS"
+linkTitle: "DNS"
+weight: 3
+description: 提供极速稳定的域名解析服务。
+
+study_section:
+
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: 用户指南
+        children:
+          - title: 域名解析DNS
+            url: dns1/
+
+---

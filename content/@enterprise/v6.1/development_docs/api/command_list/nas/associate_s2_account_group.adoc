@@ -1,0 +1,74 @@
+---
+title: "AssociateS2AccountGroup"
+description: 
+draft: false
+---
+将访问 NFS 和 SMB 资源的用户账户和权限组进行关联，用户加入资源组之后，就可以访问共享目录的资源。
+
+此操作完成后需要调用 link:../update_s2_servers/[UpdateS2Servers] 以应用到共享存储服务器上。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| s2_group
+| String
+| 权限组 ID
+| Yes
+
+| s2_accounts.n
+| String
+| 用户账号的 ID
+| No
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=AssociateS2AccountGroup
+&s2_group=s2g-5xmpse7o
+&s2_accounts.1=s2a-3f181hmo
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"AssociateS2AccountGroupResponse",
+  "s2_group_account":{
+    "s2_accounts":[
+      "s2a-3f181hmo"
+    ],
+    "s2_group":"s2g-5xmpse7o"
+  },
+  "ret_code":0
+}
+----

@@ -1,0 +1,30 @@
+---
+title: "集群概述"
+description: 本小节主要介绍 RocketMQ 集群基本信息。 
+keywords: 云计算,大数据,消息队列,中间件,RocketMQ,集群信息,
+weight: 05
+collapsible: false
+draft: false
+---
+一个 RocketMQ 集群即一个独立运行的资源组合，包含服务器、存储磁盘、私有网络等云资源。
+
+== 资源控制组
+
+RocketMQ 集群默认有两个资源控制组：`测试环境`、`生产环境`。
+
+[cols="1,4"]
+|===
+| 资源控制组 | 资源说明
+
+| 测试环境 a| 
+* 2核2G Broker及slave节点 x 1
+* 1核1G客户端节点 x 1
+* 1核1G名称服务器节点 x 1
+* 1核1G网页控制台节点 x 1
+
+| 生产环境 a| 
+* 4核8G Broker及slave节点 x 3
+* 1核1G客户端节点 x 1
+* 2核4G名称服务器节点 x 2
+* 2核2G网页控制台节点 x 1
+|===

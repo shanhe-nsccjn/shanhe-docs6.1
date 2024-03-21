@@ -1,0 +1,7 @@
+---
+title: "DeleteSecurityGroups"
+description: 
+draft: false
+---
+
+include::../../../../../../_cloud_service/sg/api_list/delete_security_groups.adoc[]

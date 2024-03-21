@@ -1,0 +1,65 @@
+:toc: macro
+:toc-title: 目录
+:toclevels: 3
+:figure-caption!:
+:sectnums:
+:sectnumlevels: 5
+
+= {empty}
+
+[.top_left]
+{pdf_projectName} {pdf_Title}
+
+[.bottom_left]
+文档版本 {pdf_docVersion}
+
+[.bottom_center]
+{pdf_copyright}
+
+[.cover_product_logo]
+image::{pdf_coverDocLogo}[]
+
+[.cover_doc_image]
+image::{pdf_coverDocImage}[]
+
+[.cover_doc_name]
+|===
+|
+{pdf_coverDocName}
+
+{pdf_Title}
+
+|===
+
+
+[.cover_footer]
+|===
+|
+文档版本：{pdf_docVersion}
+
+发布日期：{pdf_releaseDate}
+
+|===
+
+[.legal_info]
+--
+**【版权声明】**
+
+{pdf_legalInfo}
+
+非经本公司书面许可，任何单位和个人不得摘抄、复制或以任何形式传播本文档的部分或全部内容。
+
+{empty} +
+
+**【产品或服务声明】**
+
+本文档描述的部分产品、服务和特性可能不在您的购买或使用范围之内，您购买的产品、服务或特性应受青云公司商业合同和条款的约束。
+
+本文档内容会不定期进行更新。本文档仅作为使用指导，本文档中的所有陈述、信息和建议不构成任何明示或暗示的担保。
+
+{empty} +
+
+{pdf_companyFullName}
+
+网址：link:{pdf_companyUrl}[]
+--

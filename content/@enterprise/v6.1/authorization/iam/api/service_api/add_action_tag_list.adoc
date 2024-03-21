@@ -1,0 +1,73 @@
+---
+title: "AddIAMApiActionTagList"
+draft: false
+weight: 4
+---
+== 接口描述
+
+批量添加 API 指令标签。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| owner_tag_list
+| List_Dict
+| 是
+| owner 与标签列表。
+
+| apis	
+| List
+| 是
+| API 名称列表。
+
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+
+| owner_tag_list
+| List_Dict
+| owner 与标签列表。
+
+| apis	
+| List
+| API 名称列表。
+|===
+
+== 请求示例
+
+[source,json]
+----
+{
+  "action":"AddIAMApiActionTagList",
+  "owner_tag_list":[
+    {
+      "owner":"oo1",
+      "tag":"tt1"
+    },
+    {
+      "owner":"oo2",
+      "tag":"tt2"
+    }
+  ],
+  "apis":[
+    "MyFirstAPI",
+    "MySecondAPI"
+  ]
+}
+----

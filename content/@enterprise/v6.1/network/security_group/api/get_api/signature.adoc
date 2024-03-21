@@ -1,0 +1,10 @@
+---
+title: "签名方法"
+description: Test description
+draft: false
+weight: 15
+collapsible: false
+keywords: 秘钥签名, 签名方法, API
+---
+
+include::../../../../../../_cloud_service/api_common/signature.adoc[]

@@ -1,0 +1,90 @@
+---
+title: "DELETE Bucket"
+description: 本小节主要介绍 DELETE Bucket 接口相关操作。
+keywords: 云计算, 山河云, ShanHe, 对象存储, 删除Bucket, QingStor
+collapsible: false
+draft: false
+weight: 4
+---
+该接口用于删除指定的 Bucket。待删除的 Bucket 需为空，且是活跃状态。由于计费系统的要求，Bucket 的创建和删除操作之间，需要相差一分钟以上。
+
+若待删除 Bucket 不为空，需先删除存储于该 Bucket 中的对象，再删除该 Bucket。删除对象可参考 link:../../../object/basic_opt/delete/[Delete Object]。
+
+
+== 请求语法
+
+[source,http]
+----
+DELETE / HTTP/1.1
+Host: <bucket-name>.jn1.is.shanhe.com
+Date: <date>
+Authorization: <authorization-string>
+----
+
+== 请求参数
+
+无。
+
+== 请求头
+
+此接口仅包含公共请求头。关于公共请求头的更多信息，请参见link:../../../common_header/#_请求头字段_request_header[公共请求头]。
+
+== 请求体
+
+无。
+
+== 响应头
+
+此接口仅包含公共响应头。关于公共响应头的更多信息，请参见link:../../../common_header/#_响应头字段_response_header[公共响应头]。
+
+== 错误码
+
+|===
+| 错误码 | 错误描述 | HTTP 状态码
+
+| OK
+| 成功删除 Bucket
+| 204
+
+| bucket_not_exists
+| Bucket 不存在
+| 404
+
+| bucket_not_empty
+| Bucket 不为空
+| 409
+
+| lease_not_ready
+| Bucket 计费信息尚未准备好
+| 403
+|===
+
+其他错误码可参考link:../../../error_code/#_错误码列表[错误码列表]。
+
+== 示例
+
+=== 请求示例
+
+[source,http]
+----
+DELETE / HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: authorization string
+----
+
+=== 响应示例
+
+[source,http]
+----
+HTTP/1.1 204 NoContent
+Server: QingStor
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Content-Length: 0
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+----
+
+== SDK
+
+此接口所对应的各语言 SDK 可参考 link:../../../../sdk/[SDK 文档]。

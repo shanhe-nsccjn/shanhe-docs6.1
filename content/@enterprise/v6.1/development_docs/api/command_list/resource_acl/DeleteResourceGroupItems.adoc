@@ -1,0 +1,52 @@
+---
+title: "DeleteResourceGroupItems"
+description: 
+draft: false
+---
+将资源从资源组里删除。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| zone
+| String
+| zone ID
+| Yes
+
+| resource_group
+| String
+| 资源组ID
+| Yes
+
+| resources.n
+| String
+| 资源ID
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=DeleteResourceGroupItems
+&resource_group=rg-c7hmvt8u
+&zone=beta
+&resources.1=i-i8wewg3l
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"DeleteResourceGroupItemsResponse",
+  "resource_group_id":"rg-c7hmvt8u",
+  "ret_code":0
+}
+----

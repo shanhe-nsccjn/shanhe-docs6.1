@@ -1,0 +1,57 @@
+---
+title: "推理引擎"
+linkTitle: "推理引擎"
+weight: 2
+collapsible: true
+type: "product"
+
+study_section:
+  - title: 了解
+    icon: icon-note_tree_duotone
+    children:
+      - title: 产品简介
+        children:
+          - title: 产品概述
+            url: intro/intro/
+          - title: 计费指南
+            url: billing/price/
+
+  - title: 上手
+    icon: icon-gamepad_2_duotone
+    children:
+      - title: 快速入门
+        children:
+          - title: 部署 Inference Engine 应用
+            url: quickstart/deploy_app/
+
+
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: 操作指南
+        children:
+          - title: 部署模型
+            url: manual/depoly_model/
+          - title: 使用模型
+            url: manual/use_model/
+          - title: 查看日志
+            url: manual/log/
+          - title: 性能测试
+            url: manual/testing/
+          - title: 负载均衡
+            url: manual/launching/
+
+  - title: 开发者指南
+    icon: icon-note_tree_duotone
+    children:
+      - title: 开发者文档
+        children: 
+          - title: API 文档
+            url: /v6.1/development_docs/api/
+          - title: SDK 文档
+            url: /v6.1/development_docs/sdk/
+          - title: CLI 文档
+            url: /v6.1/development_docs/cli/
+
+    
+---

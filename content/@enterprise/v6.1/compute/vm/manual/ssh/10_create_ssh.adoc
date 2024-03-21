@@ -1,0 +1,99 @@
+---
+title: "创建 SSH 密钥"
+description: 本章节介绍如何创建 SSH 密钥。
+draft: false
+weight: 10
+---
+若您使用的是 Linux 云服务器，强烈建议使用 SSH 公钥、私钥（Keypair）进行远程登录身份验证。
+
+您可以创建一个 SSH 密钥，并立刻下载其私钥。云平台不保存您的私钥，此下载链接将保留 10 分钟，请保管好私钥。
+
+== 前提条件
+
+已获取 {console_name}的账号和密码。
+
+== 操作步骤
+
+. 登录 {console_name}。
+. 选择**产品与服务** > *计算* > *云服务器*，进入云服务器页面。
+. 在左侧导航栏中，选择 *SSH 密钥* ， 进入 **SSH 密钥**页面。
+
+. 点击**创建** ，弹出**创建 SSH 密钥**窗口。
++
+image::/images/cloud_service/compute/vm/vm_ssh_win.png[,60%]
+
+. 配置 SSH 密钥参数。
+ ** 创建新密钥对
+  ... 设置 SSH 密钥名称。
+  ... 选择**创建新密钥对**。
+  ... 点击**提交**，弹出**下载 SSH 密钥的私钥**窗口。
++
+image::/images/cloud_service/compute/vm/vm_ssh_download.png[,70%]
+
+  ... 点击**下载**，下载私钥，此下载链接将保留 10 分钟。
++
+
+include::../../../../../../_components/attention.adoc[]
+为保证私钥的安全，此下载链接将保留 10 分钟，请妥善保管。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+  ... 关闭下载链接，弹出 SSH 密钥绑定云服务器提示信息。
++
+image::/images/cloud_service/compute/vm/vm_ssh_bind_prompt.png[,70%]
+
+  ... 请根据需要确定是否绑定到云服务器。
+ ** 使用已有公钥
+  ... 设置 SSH 密钥名称。
+  ... 将已有的公钥拷贝到公钥文本框。
++
+格式：ssh-rsa AAAAB3NzaC1ycEAAArwtrqwerJAsdfdgjUTEEHh...
+
+  ... 点击**提交**，完成 SSH 密钥的创建操作。
+. 创建完成后，您可以在 SSH 密钥列表中，查看已创建的 SSH 密钥。
++
+包含 SSH 密钥 ID、名称、加密方法、创建时间等。
+
+== 相关操作
+
+=== 绑定 SSH 密钥
+
+link:../20_bind_ssh[绑定 SSH 密钥]
+
+=== 开放 TCP 22 端口
+
+请确认 TCP 22 端口已打开，若未打开，请参照如下步骤打开 TCP 22 端口。
+
+. 进入云服务器列表页面。
+. 点击云服务器 ID，进入云服务器详情页面。
+. 在`绑定资源`区域，可以看到该云服务器正在使用的安全组。
++
+image::/images/cloud_service/compute/vm/vm_security_group.png[]
+
+
+. 点击**安全组**，进入安全组配置页面。
+. 点击**添加规则**，新建一个下行规则。
++
+image::/images/cloud_service/compute/vm/vm_security_rule.png[]
+
++
+需要关注如下参数。
++
+|===
+| 参数 | 取值
+
+| 方向
+| 下行规则
+
+| 行为
+| 接受
+
+| 协议
+| TCP
+
+| 起始端口
+| 22
+|===
+
+. 点击**提交**，完成安全组规则的创建操作。
+. 点击**应用修改**，使配置生效。

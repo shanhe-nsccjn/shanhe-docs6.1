@@ -1,0 +1,8 @@
+---
+title: "CreateSecurityGroupIPSet"
+description: 
+draft: false
+---
+
+
+include::../../../../../../_cloud_service/sg/api_list/create_security_group_ipset.adoc[]

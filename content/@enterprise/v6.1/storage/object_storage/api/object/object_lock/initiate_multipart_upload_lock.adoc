@@ -1,0 +1,48 @@
+---
+title: "Initiate Multipart Upload-Lock"
+description: 本小节主要介绍对象版本锁相关接口。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, WORM, Bucket
+collapsible: false
+draft: false
+weight: 4
+---
+
+用户在使用 link:../../multipart/initiate/[Initiate Multipart Upload] 初始化一个分段上传时，可添加相应的请求头，为其设置对象版本锁。
+
+
+== 新增请求头
+
+对象版本锁的设置，除 link:../../multipart/initiate/[Initiate Multipart Upload] 中提及的头以外，还包含以下请求头字段。
+
+[cols='2,1,4a']
+|===
+| 头字段 | 类型 | 说明 
+
+| x-qs-object-lock-retain-until-date | Date | 用于指定对象版本锁保护截止时间。 
+| x-qs-object-lock-mode | String | 用于指定对象版本锁的模式。
+| x-qs-object-lock-legal-hold | Bool | 用于指定对象版本锁是否持有。`true` 为被持有状态，该状态下，对象不能被删除。
+
+|===
+
+include::../../../../../../../_components/note.adoc[]
+
+* `x-qs-object-lock-retain-until-date` 与 `x-qs-object-lock-mode` 需同时设置。
+* `x-qs-object-lock-legal-hold` 可单独设置。
+
+include::../../../../../../../_components/table_footer.adoc[]
+
+== 请求示例
+
+[source,http]
+----
+POST /large-object?uploads HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 13:25:10 GMT
+x-qs-object-lock-retain-until-date: 2023-04-01T00:00:00Z
+x-qs-object-lock-mode: GOVERNANCE
+x-qs-object-lock-legal-hold: true
+Authorization: authorization string
+
+
+----
+

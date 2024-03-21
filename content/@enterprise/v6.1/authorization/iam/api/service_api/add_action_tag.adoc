@@ -1,0 +1,58 @@
+---
+title: "AddIAMApiActionTag"
+draft: false
+weight: 3
+---
+== 接口描述
+
+单个添加 API 指令标签。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| owner
+| String
+| 是
+| 标签 owner。
+
+| api
+| String
+| 是
+| API 名称。
+
+| tag
+| String
+| 是
+| 标签名称。
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| owner
+| String
+| 标签 owner。
+
+| api
+| String
+| API 名称。
+
+| tag
+| String
+| 标签名称。
+|===
+

@@ -1,0 +1,34 @@
+---
+title: "开启 HDFS Balancer"
+weight: 53
+---
+
+HDFS Balancer 服务，即 HDFS 存储均衡服务，运行该服务可将各个 HBase 从节点磁盘使用率保持在均衡状态。该服务需用户根据各个 HBase 从节点的监控数据手动运行。
+
+== 限制条件
+
+仅适用于 HBase 2.4.4 - v3.0.0 及以上版本。
+
+== 提前条件
+
+* 已获取管理控制台登录账号和密码，且已获取集群操作权限。
+* 已创建 HBase 集群，且集群状态为``活跃``。
+
+== 操作步骤
+
+. 登录管理控制台。
+. 选择**产品与服务** > *大数据服务* > *HBase 服务*，进入 HBase 列表页面。
+. 点击目标集群 ID，进入集群详情页面。
+. 在**基本属性**模块，点击集群操作下拉菜单，并选择 **HDFS Balancer**。
++
+image::/images/cloud_service/bigdata/hbase/hdfs_balancer_1.png[,40%]
+
+. 在弹出的**运行 HDFS Balancer 服务**窗口中，设置阈值，点击**提交**。 
++
+include::../../../../../../_components/note.adoc[]
+* 此处设置的 ``threshold``，表示运行 HDFS Balancer 服务后，集群内各个从节点的 DataNode 磁盘使用率的差值不会超过当前设定阈值。
+
+* ``threshold`` 支持设置 1~99，推荐值为 ``10``。
+include::../../../../../../_components/table_footer.adoc[]
++
+image::/images/cloud_service/bigdata/hbase/hdfs_balancer_2.png[,60%]

@@ -1,0 +1,12 @@
+---
+title: "DNS配置帮助文档"
+---
+
+# 第一节
+== 配置dns
+
+修改/etc/resolv.conf
+
+....
+nameserver 10.105.20.7
+....

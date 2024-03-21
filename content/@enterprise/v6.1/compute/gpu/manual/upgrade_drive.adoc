@@ -1,0 +1,31 @@
+---
+title: "升级或降级 GPU 驱动"
+weight: 46
+---
+
+若 GPU 云服务器上现有的驱动无法满足当前的业务需求，或驱动版本安装错误导致 GPU 云服务器无法使用，可通过卸载当前驱动，重新安装配置新的驱动的方式，完成 GPU 驱动的升级或降级。
+
+
+== 步骤一：卸载 GPU 驱动
+
+根据 GPU 云服务器操作系统，选择相应的操作，可参考link:../uninstall_drive[卸载驱动]相关内容。
+
+== 步骤二：安装 GPU 驱动
+
+根据 GPU 云服务器操作系统，选择相应的操作。
+
+[options="header",cols="1,1"]
+|===
+|操作系统 | 安装配置方法
+|Linux
+|link:../configure_gpu[配置 GPU 驱动（Linux）] 
+
+|Windows
+|link:../config_gpu_windows[配置 GPU 驱动（Windows）]
+|===
+
+include::../../../../../_components/attention.adoc[]
+
+Windows 操作系统的 GPU 云服务器，若开启系统自动更新功能，有可能会造成 GPU 驱动升级失败，用户可自行手动关闭系统自动更新功能。
+include::../../../../../_components/table_footer.adoc[]
+

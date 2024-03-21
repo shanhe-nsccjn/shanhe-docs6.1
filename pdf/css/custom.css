@@ -1,0 +1,991 @@
+/*margin-top, margin-bottom, padding-top, and padding-bottom
+may cause incorrect page breaks due to a bug of Paged.js.*/
+
+/*vertical-align may result in decimal height values,
+which are rounded down in rendering but rounded up in printing, causing content loss.*/
+
+
+/*Fonts*/
+@font-face {
+  font-family: 'NotoSansSC';
+  src: url('../fonts/NotoSansSC-Regular.otf');
+}
+
+@font-face {
+  font-family: 'NotoSansMono';
+  src: url('../fonts/NotoSansMono-Regular.ttf');
+}
+
+.page-break {
+  break-after: page;
+}
+
+
+body {
+  font-family: 'NotoSansSC';
+  font-weight: regular;
+  font-size: 14px;
+}
+
+/*Page headers and footers*/
+.reset_page_num {
+  counter-reset: page 1;
+}
+
+.legal_info {
+  page: legal_info;
+}
+
+.preface, .toc {
+  page: front_matter;
+}
+
+.top_left {
+  position: running(top_left);
+}
+
+.bottom_left {
+  position: running(bottom_left);
+}
+
+.bottom_center {
+  position: running(bottom_center)
+}
+
+@page {
+  size: 794px 1123px;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  /*
+  background-image: url('./images/pdf/watermark@68592c54ba3f40149794ab74ed25d64e@.png');
+  background-size: 100%;
+  */
+
+  @top-left {
+    border-bottom: 1px solid #d2d2d2;
+    content: element(top_left);
+    vertical-align: bottom;
+    font-size: 12px;
+  }
+
+  @top-center {
+    border-bottom: 1px solid #d2d2d2;
+    content: normal;
+    font-size: 12px;
+  }
+
+  @top-right {
+    border-bottom: 1px solid #d2d2d2;
+    content: string(chapter, first);
+    vertical-align: bottom;
+    width: 300px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  @bottom-center {
+    border-top: 1px solid #d2d2d2;
+    vertical-align: top;
+    text-align: center;
+    width: 400px;
+    content: element(bottom_center);
+    font-size: 12px;
+  }
+
+  @bottom-right {
+    border-top: 1px solid #d2d2d2;
+    vertical-align: top;
+    text-align: right;
+    content: counter(page);
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  @bottom-left {
+    border-top: 1px solid #d2d2d2;
+    vertical-align: top;
+    text-align: left;
+    content: element(bottom_left);
+    font-size: 12px;
+  }
+}
+
+@page :first {
+  background-image: none;
+
+  @top-left {
+    border-bottom: none;
+    content: normal;
+  }
+
+  @top-center {
+    border-bottom: none;
+  }
+
+  @top-right {
+    border-bottom: none;
+  }
+
+  @bottom-center {
+    border-top: none;
+    content: normal;
+  }
+
+  @bottom-right {
+    border-top: none;
+    content: normal;
+  }
+
+  @bottom-left {
+    border-top: none;
+    content: normal;
+  }
+}
+
+@page legal_info {
+  @top-left {
+    border-bottom: none;
+    content: normal;
+  }
+
+  @top-center {
+    border-bottom: none;
+  }
+
+  @top-right {
+    border-bottom: none;
+  }
+
+  @bottom-center {
+    border-top: none;
+    content: normal;
+  }
+
+  @bottom-right {
+    border-top: none;
+    content: normal;
+  }
+
+  @bottom-left {
+    border-top: none;
+    content: normal;
+  }
+}
+
+@page front_matter {
+  @bottom-right {
+    content: counter(page,lower-roman);
+  }
+}
+
+ul.sectlevel1, ul.sectlevel2 {
+  list-style-type: none;
+}
+
+/*Heading styles*/
+h2, div#toctitle.title, .preface_title>p {
+  margin-left: 0px;
+  border-bottom: 1px solid black;
+  line-height: 58px;
+  margin-top: 58px;
+  font-size: 29px;
+  font-weight: bold;
+  text-align: right;
+  string-set: chapter content(text);
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  padding: 0px;
+  margin: 23px 0;
+}
+
+h4 {
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 32px;
+  padding: 0px;
+  margin: 20px 0;
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 66px;
+  padding: 0px;
+  margin: 0px;
+}
+
+h6, .file-class-level-2 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 62px;
+  padding: 0px;
+  margin: 0px;
+}
+
+h7, .file-class-level-3 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 58px;
+  padding: 0px;
+  margin: 0px;
+}
+
+h8 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 54px;
+  padding: 0px;
+  margin: 0px;
+}
+
+h9 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 50px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.discrete {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0px 0px 0px 30px;
+  line-height: 62px;
+}
+
+/*Use pseudo elements to resolve the bug of Paged.js where list markers are lost after page breaks.*/
+ul {
+  margin: 0px 0px 0px 30px;
+  list-style-type: none;
+  padding: 0px;
+}
+
+ul ul {
+  margin-left: 0px;
+}
+
+table ul {
+  margin-left: 0px;
+}
+
+ol ul {
+  margin-left: 0px;
+}
+
+ul>li>p {
+  text-indent: -20px;
+  padding-left: 20px;
+}
+
+ul>li>div {
+  margin-left: 20px;
+}
+
+ul>li>p:first-child::before {
+  content: '\2022';
+  font-size: 20px;
+  font-weight: bold;
+  vertical-align: bottom;
+  /* margin-right: 12px; */
+}
+
+ul ul>li>p:first-child::before {
+  content: '\25E6';
+  font-size: 20px;
+  font-weight: normal;
+  vertical-align: bottom;
+  /* margin-right: 12px; */
+}
+
+/*Use counters to resolve the bug of Paged.js where list numbers are lost after page breaks.*/
+ol {
+  margin: 0px 0px 0px 30px;
+  padding: 0px;
+}
+
+ol ol {
+  margin-left: 0px;
+}
+
+table ol {
+  margin: 0px;
+}
+
+ol>li>p {
+  text-indent: -15px;
+  padding-left: 15px;
+}
+
+ol>li>table {
+  margin-left: 15px;
+  width: calc(100% - 15px);
+}
+
+ol ol>li>table {
+  margin-left: 17px;
+  width: calc(100% - 17px);
+}
+
+ul>li>table {
+  margin-left: 15px;
+  width: calc(100% - 15px);
+}
+
+ol ul>li>table {
+  margin-left: 17px;
+  width: calc(100% - 17px);
+}
+
+ol>li>div {
+  margin-left: 15px;
+}
+
+ol ol>li>div {
+  margin-left: 17px;
+}
+
+ol.arabic {
+  counter-reset: list1;
+  list-style-type: none;
+}
+
+ol.arabic>li {
+  counter-increment: list1;
+}
+
+ol>li>p:first-child::before {
+  content: counter(list1)'. ';
+}
+
+ol.arabic[start="1"]>li:first-child {
+  counter-reset: list1 0 !important;
+}
+ol.arabic[start="2"]>li:first-child {
+  counter-reset: list1 1 !important;
+}
+ol.arabic[start="3"]>li:first-child {
+  counter-reset: list1 2 !important;
+}
+ol.arabic[start="4"]>li:first-child {
+  counter-reset: list1 3 !important;
+}
+ol.arabic[start="5"]>li:first-child {
+  counter-reset: list1 4 !important;
+}
+ol.arabic[start="6"]>li:first-child {
+  counter-reset: list1 5 !important;
+}
+ol.arabic[start="7"]>li:first-child {
+  counter-reset: list1 6 !important;
+}
+ol.arabic[start="8"]>li:first-child {
+  counter-reset: list1 7 !important;
+}
+ol.arabic[start="9"]>li:first-child {
+  counter-reset: list1 8 !important;
+}
+ol.arabic[start="10"]>li:first-child {
+  counter-reset: list1 9 !important;
+}
+ol.arabic[start="11"]>li:first-child {
+  counter-reset: list1 10 !important;
+}
+ol.arabic[start="12"]>li:first-child {
+  counter-reset: list1 11 !important;
+}
+ol.arabic[start="13"]>li:first-child {
+  counter-reset: list1 12 !important;
+}
+ol.arabic[start="14"]>li:first-child {
+  counter-reset: list1 13 !important;
+}
+ol.arabic[start="15"]>li:first-child {
+  counter-reset: list1 14 !important;
+}
+ol.arabic[start="16"]>li:first-child {
+  counter-reset: list1 15 !important;
+}
+ol.arabic[start="17"]>li:first-child {
+  counter-reset: list1 16 !important;
+}
+ol.arabic[start="18"]>li:first-child {
+  counter-reset: list1 17 !important;
+}
+ol.arabic[start="19"]>li:first-child {
+  counter-reset: list1 18 !important;
+}
+ol.arabic[start="20"]>li:first-child {
+  counter-reset: list1 19 !important;
+}
+ol.arabic[start="21"]>li:first-child {
+  counter-reset: list1 20 !important;
+}
+ol.arabic[start="22"]>li:first-child {
+  counter-reset: list1 21 !important;
+}
+ol.arabic[start="23"]>li:first-child {
+  counter-reset: list1 22 !important;
+}
+ol.arabic[start="24"]>li:first-child {
+  counter-reset: list1 23 !important;
+}
+ol.arabic[start="25"]>li:first-child {
+  counter-reset: list1 24 !important;
+}
+ol.arabic[start="26"]>li:first-child {
+  counter-reset: list1 25 !important;
+}
+ol.arabic[start="27"]>li:first-child {
+  counter-reset: list1 26 !important;
+}
+ol.arabic[start="28"]>li:first-child {
+  counter-reset: list1 27 !important;
+}
+ol.arabic[start="29"]>li:first-child {
+  counter-reset: list1 28 !important;
+}
+ol.arabic[start="30"]>li:first-child {
+  counter-reset: list1 29 !important;
+}
+
+ol ol {
+  counter-reset: list2;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+ol ol>li {
+  counter-increment: list2;
+}
+
+ol ol>li>p:first-child::before {
+  content: counter(list2,lower-alpha)'. ';
+}
+
+/*Links*/
+a {
+  color: #0000FF;
+  white-space: nowrap;
+}
+
+.toc a {
+  margin-left: 0px;
+  line-height: 30px;
+}
+
+/*Table of contents*/
+.toc a {
+  background-color: white;
+  text-decoration:none;
+}
+
+.toc a::after {
+  text-align: right;
+  right: 0px;
+  position: absolute;
+  content:
+  '.......................'
+  '.......................'
+  '.......................'
+  '.......................'
+  '.......................'
+  '.......................'
+  '......................'
+  target-counter(attr(href url), page);
+  display: inline;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.toc ul {
+  list-style-type: none;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.toc li {
+  margin-left: 0px;
+  padding-left: 12px;
+}
+
+/*Paragraphs*/
+p {
+  margin: 0px 0px 0px 30px;
+  line-height: 30px;
+}
+
+ul p {
+  margin-left: 0px;
+}
+
+ol p {
+  margin-left: 0px;
+}
+
+table p {
+  margin: 0px;
+  line-height: 24px;
+}
+
+code {
+  color: #15A675;
+  background-color: #DFF7F0;
+  text-wrap: wrap;
+}
+
+code a {
+  color: #15A675;
+}
+
+pre code {
+  color: #000000;
+  background-color: #efefef;
+  text-wrap: wrap;
+}
+
+pre code a {
+  color: #000000;
+  background-color: #efefef;
+}
+
+/*Use nbsp to control the blank before and after code blocks.*/
+.code_blank p {
+  line-height: 8px;
+}
+
+.cover_doc_name {
+  background-color: #00a971;
+  margin: 30px 0px 60px 60px;
+  max-width: 574px;
+}
+
+.cover_doc_name th,
+.cover_doc_name td {
+  border: 0;
+  padding: 0;
+}
+
+.cover_doc_name td {
+  padding: 12px 20px;
+}
+.cover_doc_name p {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: left;
+  line-height: 40px;
+  margin: 0px;
+  color: white;
+}
+
+.cover_doc_name p:last-child {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.cover_footer p {
+  line-height: 21px;
+}
+
+.cover_footer td p {
+  margin-left: 0px;
+  line-height: 30px;
+}
+
+div.title {
+  text-align: center;
+  line-height: 30px;
+}
+
+.top_left p,
+.top_right p,
+.bottom_left p,
+.bottom_center p,
+.bottom_right p {
+  margin: 0px;
+  line-height: 20px;
+}
+
+/*Tables*/
+table {
+  margin: 8px 0px 8px 30px;
+  border-collapse:collapse;
+  width: 666px;
+  break-inside: avoid;
+}
+
+table.allow_break_inside {
+  break-inside: auto;
+}
+
+li table {
+  width: 100%;
+  margin-left: 0px;
+}
+
+table.cover_footer {
+  margin-left: 50px;
+  width: 650px;
+  vertical-align: bottom;
+  border: none;
+}
+
+.glossary td,
+.glossary th {
+  border: none;
+}
+
+.cover_footer td,
+.cover_footer th {
+  vertical-align: bottom;
+  border: none;
+}
+
+th {
+  line-height: 22px;
+  background-color: #efefef;
+  text-align: left;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 4px 8px;
+}
+
+tr {
+  break-inside: avoid;
+}
+
+/*Admonitions*/
+/*table.admon {
+  border-top: 4px double gray;
+  border-right: none;
+  border-bottom: 4px double gray;
+  border-left: none;
+}*/
+
+table.admon p,
+table.admon th {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+table.admon th,
+table.admon td {
+  border-style: none;
+  background-color: transparent;
+}
+
+table.admon th {
+  color: white;
+}
+
+table.note thead {
+  background-color: #6ab0de;
+}
+
+table.note tbody {
+  background-color: #e7f2fa;
+}
+
+table.warning thead {
+  background-color: #e06f6c;
+}
+
+table.warning tbody {
+  background-color: #fae2e2;
+}
+
+table.danger thead {
+  background-color: #e06f6c;
+}
+
+table.danger tbody {
+  background-color: #fae2e2;
+}
+
+table.attention thead {
+  background-color: #BB9D1C;
+}
+
+table.attention tbody {
+  background-color: #FFF9D9;
+}
+
+table.tip thead {
+  background-color: #78c578;
+}
+
+table.tip tbody {
+  background-color: #e6f9e6;
+}
+
+td .admon [id] {
+  color: #fff;
+  font-size: 14px !important;
+  border-width: 0;
+  padding: 4px 8px;
+  line-height: 24px;
+  font-weight: 700;
+  display: block;
+  width: 100%;
+  display: block;
+  font-weight: 700 !important;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+td .admon .paragraph {
+  padding: 4px 8px;
+  width: 100%;
+  display: block;
+}
+
+div.admon .ulist {
+  padding: 4px 8px;
+  width: 100%;
+  display: block;
+}
+
+div.admon.note .ulist {
+  background-color: #e7f2fa;
+}
+div.admon.warning .ulist {
+  background-color: #fae2e2;
+}
+div.admon.danger .ulist {
+  background-color: #fae2e2;
+}
+div.admon.attention .ulist {
+  background-color: #FFF9D9;
+}
+
+div.admon .olist {
+  padding: 4px 8px;
+  width: 100%;
+  display: block;
+}
+div.admon.note .olist {
+  background-color: #e7f2fa;
+}
+div.admon.warning .olist {
+  background-color: #fae2e2;
+}
+div.admon.danger .olist {
+  background-color: #fae2e2;
+}
+div.admon.attention .olist {
+  background-color: #FFF9D9;
+}
+
+td .admon.note [id] {
+  background-color: #6ab0de;
+}
+
+td .admon.note .paragraph {
+  background-color: #e7f2fa;
+}
+
+td .admon.warning [id] {
+  background-color: #e06f6c;
+}
+
+td .admon.warning .paragraph {
+  background-color: #fae2e2;
+}
+
+td .admon.danger [id] {
+  background-color: #e06f6c;
+}
+
+td .admon.danger .paragraph {
+  background-color: #fae2e2;
+}
+
+td .admon.attention [id] {
+  background-color: #BB9D1C;
+}
+
+td .admon.attention .paragraph {
+  background-color: #FFF9D9;
+}
+
+td .admon.tip [id] {
+  background-color: #78c578;
+}
+
+td .admon.tip .paragraph {
+  background-color: #e6f9e6;
+}
+
+table thead {
+  display: table-header-group;
+  break-inside: avoid;
+}
+
+/*Code blocks*/
+pre {
+  background-color: #efefef;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0px 8px 0px;
+  margin: 8px 0px 8px 30px;
+  line-height: 18px;
+  width: 666px;
+  font-family: 'NotoSansMono';
+  font-size: 12px;
+  padding: 8px 12px;
+}
+
+li pre {
+  width: 100%;
+  margin: 0px;
+}
+
+/*Images*/
+img {
+  margin: 8px 0px 8px 30px;
+  max-width: 666px;
+}
+
+li img {
+  margin-left: 0px;
+  /* width: 100%; */
+}
+
+p span {
+  vertical-align: baseline;
+}
+
+p img {
+  margin: 0px;
+  vertical-align: text-bottom;
+  width: auto;
+  height: 18px;
+}
+
+li img {
+  margin-left: 0px;
+}
+
+/*
+span.admon>img {
+  margin: 0px;
+  height: 20px;
+  width: 20px;
+  vertical-align: baseline;
+}
+*/
+
+div.cover_product_logo img {
+  margin: 30px 0px 0px 444px;
+  width: 200px;
+}
+
+div.cover_doc_image img {
+  margin: 90px 0px 30px 147px;
+  width: 400px;
+}
+
+div.cover_qc_logo img {
+  margin: 0px;
+  width: 150px;
+}
+
+table img {
+  margin-left: 0px
+}
+
+video {
+  width: 100%;
+}
+
+/*
+.toc>ul {
+  counter-reset: toclist1;
+}
+
+.toc>ul>li {
+  counter-increment: toclist1;
+}
+
+.toc>ul>li::before {
+  content: counter(toclist1)' ';
+  background-color: white;
+  color: #0000FF;
+}
+
+.toc>ul>li>ul {
+  counter-reset: toclist2;
+}
+
+.toc>ul>li>ul>li {
+  counter-increment: toclist2;
+}
+
+.toc>ul>li>ul>li:before {
+  content: counter(toclist1)'.'counter(toclist2)' ';
+  background-color: white;
+  color: #0000FF;
+}
+
+.toc>ul>li>ul>li>ul {
+  counter-reset: toclist3;
+}
+
+.toc>ul>li>ul>li>ul>li {
+  counter-increment: toclist3;
+}
+
+.toc>ul>li>ul>li>ul>li:before {
+  content: counter(toclist1)'.'counter(toclist2)'.'counter(toclist3)' ';
+  background-color: white;
+  color: #0000FF;
+}
+
+.toc>ul>li>ul>li>ul>li>ul {
+  counter-reset: toclist4;
+}
+
+.toc>ul>li>ul>li>ul>li>ul>li {
+  counter-increment: toclist4;
+}
+
+.toc>ul>li>ul>li>ul>li>ul>li:before {
+  content: counter(toclist1)'.'counter(toclist2)'.'counter(toclist3)'.'counter(toclist4)' ';
+  background-color: white;
+  color: #0000FF;
+}
+
+.toc>ul>li>ul>li>ul>li>ul>li>ul {
+  counter-reset: toclist5;
+}
+
+.toc>ul>li>ul>li>ul>li>ul>li>ul>li {
+  counter-increment: toclist5;
+}
+
+.toc>ul>li>ul>li>ul>li>ul>li>ul>li:before {
+  content: counter(toclist1)'.'counter(toclist2)'.'counter(toclist3)'.'counter(toclist4)'.'counter(toclist5)' ';
+  background-color: white;
+  color: #0000FF;
+}
+
+.discrete::before {
+  content: '';
+  display: inline-block;
+  height: 1em;
+  width: 4px;
+  background: #119e8f;
+  vertical-align: text-bottom;
+  margin-bottom: 3px;
+  margin-right: 4px;
+}*/

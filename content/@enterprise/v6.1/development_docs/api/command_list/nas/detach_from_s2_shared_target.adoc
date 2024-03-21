@@ -1,0 +1,71 @@
+---
+title: "DetachFromS2SharedTarget"
+description: 
+draft: false
+---
+从共享存储目标卸载硬盘。
+
+此操作完成后需要调用 link:../update_s2_servers/[UpdateS2Servers] 以应用到共享存储服务器上。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| shared_target
+| String
+| 共享存储目标 ID
+| Yes
+
+| volumes.n
+| String
+| 硬盘 ID
+| Yes
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=DetachFromS2SharedTarget
+&shared_target=s2st-eawpunuj
+&volumes.1=vol-02x95cwp
+&zone=jn1a
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"DetachFromS2SharedTargetResponse",
+  "shared_targets":[
+    "s2st-eawpunuj"
+  ],
+  "ret_code":0
+}
+----

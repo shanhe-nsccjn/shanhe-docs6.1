@@ -1,0 +1,24 @@
+---
+title: "山河云官方镜像站"
+linkTitle: "镜像"
+weight: 1
+description: 提供极速稳定的系统镜像服务
+
+study_section:
+
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: 用户指南
+        children:
+          - title: 系统镜像源使用帮助
+            url: os/centos/centos
+          - title: 容器镜像源使用帮助
+            url: container/docker
+          - title: 工具镜像源使用帮助
+            url: tool/anaconda
+          - title: 语言镜像源使用帮助
+            url: language/pypi/
+          - title: 其他镜像源使用帮助
+            url: other/
+---

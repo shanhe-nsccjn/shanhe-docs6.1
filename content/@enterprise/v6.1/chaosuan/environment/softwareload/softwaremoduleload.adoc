@@ -1,0 +1,38 @@
+---
+title: "软件环境加载"
+---
+
+== 软件环境加载
+
+'''''
+
+=== 软件不能直接使用，需要将软件的可执行文件路径等添加到对应的环境变量后才能使用。
+
+=== **module**是一款环境变量管理工具，通过module实现软件环境变量的管理，快速加载和切换软件环境。
+
+[source,bash]
+----
+# module 常用命令
+module avail      # 列出所有软件环境
+module list       # 列出所有已加载的软件环境
+module load       # 加载软件环境
+module unload     # 删除相应的软件环境
+----
+
+'''''
+
+=== （1）module avail 列出所有软件环境，可缩写为 module av
+
+image:/images/cloud_service/chaosuan/environment/module-av.png[/images/cloud_service/chaosuan/environment/module-av]
+
+=== （2）module load 加载软件环境,命令后跟要加载的软件，以加载 gcc/11.2.0 为例
+
+image:/images/cloud_service/chaosuan/environment/module-load.png[/images/cloud_service/chaosuan/environment/module-load]
+
+=== （3）module list 列出所有已加载的软件环境
+
+image:/images/cloud_service/chaosuan/environment/module-list.png[/images/cloud_service/chaosuan/environment/module-list]
+
+=== （4）module unload 删除相应的软件环境，命令后跟要取消加载的软件，还是以 gcc/11.2.0 为例
+
+image:/images/cloud_service/chaosuan/environment/module-unload.png[/images/cloud_service/chaosuan/environment/module-unload]

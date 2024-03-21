@@ -1,0 +1,314 @@
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      variables:
+        ENV_PATH: "staging"
+    - if: $CI_COMMIT_BRANCH == "dev"
+      variables:
+        ENV_PATH: "dev"
+
+cache:
+  paths:
+    - node_modules
+
+stages:
+  - preparation
+  - build
+
+install_node_modules:
+  stage: preparation
+  tags:
+    - shell
+  rules:
+    - changes:
+        - package.json
+  script:
+    - cnpm install
+
+update_boss_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@boss/**/*
+        - config/@boss/**/*
+  script:
+    - npm run update boss
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_boss_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@boss/**/*
+        - config/@boss/**/*
+  script:
+    - npm run pdf boss
+    - rsync -aur pdf/files/@boss/ /mnt/gitlab-runner/dist/$ENV_PATH/boss/
+
+update_enterprise_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@enterprise/**/*
+        - config/@enterprise/**/*
+  script:
+    - npm run update enterprise
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_enterprise_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@enterprise/**/*
+        - config/@enterprise/**/*
+  script:
+    - npm run pdf enterprise
+    - rsync -aur pdf/files/@enterprise/ /mnt/gitlab-runner/dist/$ENV_PATH/enterprise/
+
+update_ep_offline_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@ep_offline/**/*
+        - config/@ep_offline/**/*
+  script:
+    - npm run update ep_offline
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_ep_offline_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@ep_offline/**/*
+        - config/@ep_offline/**/*
+  script:
+    - npm run pdf ep_offline
+    - rsync -aur pdf/files/@ep_offline/ /mnt/gitlab-runner/dist/$ENV_PATH/ep_offline/
+
+update_express_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@express/**/*
+        - config/@express/**/*
+  script:
+    - npm run update express
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_express_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@express/**/*
+        - config/@express/**/*
+  script:
+    - npm run pdf express
+    - rsync -aur pdf/files/@express/ /mnt/gitlab-runner/dist/$ENV_PATH/express/
+
+update_ks-qkcp_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@ks-qkcp/**/*
+        - config/@ks-qkcp/**/*
+  script:
+    - npm run update ks-qkcp
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_ks-qkcp_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@ks-qkcp/**/*
+        - config/@ks-qkcp/**/*
+  script:
+    - npm run pdf ks-qkcp
+    - rsync -aur pdf/files/@ks-qkcp/ /mnt/gitlab-runner/dist/$ENV_PATH/ks-qkcp/
+
+update_ksv_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@ksv/**/*
+        - config/@ksv/**/*
+  script:
+    - npm run update ksv
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generates_ksv_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@ksv/**/*
+        - config/@ksv/**/*
+  script:
+    - npm run pdf ksv
+    - rsync -aur pdf/files/@ksv/ /mnt/gitlab-runner/dist/$ENV_PATH/ksv/
+
+update_neonsan_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@neonsan/**/*
+        - config/@neonsan/**/*
+  script:
+    - npm run update neonsan
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_neonsan_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@neonsan/**/*
+        - config/@neonsan/**/*
+  script:
+    - npm run pdf neonsan
+    - rsync -aur pdf/files/@neonsan/ /mnt/gitlab-runner/dist/$ENV_PATH/neonsan/
+
+update_pubCloud_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@pubCloud/**/*
+        - config/@pubCloud/**/*
+  script:
+    - npm run update pubCloud
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_pubCloud_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@pubCloud/**/*
+        - config/@pubCloud/**/*
+  script:
+    - npm run pdf pubCloud
+    - rsync -aur pdf/files/@pubCloud/ /mnt/gitlab-runner/dist/$ENV_PATH/pubCloud/
+
+update_u10000_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@u10000/**/*
+        - config/@u10000/**/*
+  script:
+    - npm run update u10000
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_u10000_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@u10000/**/*
+        - config/@u10000/**/*
+  script:
+    - npm run pdf u10000
+    - rsync -aur pdf/files/@u10000/ /mnt/gitlab-runner/dist/$ENV_PATH/u10000/
+
+update_vdi_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@vdi/**/*
+        - config/@vdi/**/*
+  script:
+    - npm run update vdi
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+
+generate_vdi_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@vdi/**/*
+        - config/@vdi/**/*
+  script:
+    - npm run pdf vdi
+    - rsync -aur pdf/files/@vdi/ /mnt/gitlab-runner/dist/$ENV_PATH/vdi/
+
+update_xcloud_doc:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - changes:
+        - content/@xcloud/**/*
+        - config/@xcloud/**/*
+  script:
+    - npm run update xcloud
+    - npm run pdf xcloud
+    - rsync -aur public/ /mnt/gitlab-runner/dist/$ENV_PATH/
+    - rsync -aur pdf/files/@xcloud/ /mnt/gitlab-runner/dist/$ENV_PATH/xcloud/
+
+generate_xcloud_pdf:
+  stage: build
+  tags:
+    - shell
+  rules:
+    - when: manual
+      allow_failure: true
+      changes:
+        - content/@xcloud/**/*
+        - config/@xcloud/**/*
+  script:
+    - npm run pdf xcloud
+    - rsync -aur pdf/files/@xcloud/ /mnt/gitlab-runner/dist/$ENV_PATH/xcloud/

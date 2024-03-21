@@ -1,0 +1,110 @@
+---
+title: "DescribeIAMApiActions"
+draft: false
+weight: 20
+---
+== 接口描述
+
+查询 IAM API 信息。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型 | 是否必选 | 描述 
+
+| service_name
+| String
+| 是
+| 服务名称。
+
+| action_groups
+| List
+| 是
+| action 类型。
+
+| action_name
+| String
+| 否
+| action 名称。
+
+|===
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码。
+
+| actions
+| Dict
+| API 详情。
+
+|===
+
+== 响应示例
+
+[source,json]
+----
+{
+  "action":"DescribeIAMApiActionsResponse",
+  "actions":{
+    "elb":{
+      "StartLoadBalancers":{
+        "service_name":"elb",
+        "description":"",
+        "type":"action",
+        "id":"StartLoadBalancers",
+        "attributes":{
+          "actionGroups":[
+            "Sensitive"
+          ],
+          "requiredResources":[],
+          "optionalResources":[]
+        }
+      }
+    },
+    "ecm":{
+      "ModifyInstanceGroupAttributes":{
+        "service_name":"ecm",
+        "description":"",
+        "type":"action",
+        "id":"ModifyInstanceGroupAttributes",
+        "attributes":{
+          "actionGroups":[
+            "Maintain"
+          ],
+          "requiredResources":[
+            "instance_group"
+          ],
+          "optionalResources":[]
+        }
+      }
+    },
+    "vpc":{
+      "DescribeRouters":{
+        "service_name":"vpc",
+        "description":"",
+        "type":"action",
+        "id":"DescribeRouters",
+        "attributes":{
+          "actionGroups":[
+            "ReadOnly"
+          ],
+          "requiredResources":[],
+          "optionalResources":[]
+        }
+      }
+    }
+  },
+  "ret_code":0
+}
+----

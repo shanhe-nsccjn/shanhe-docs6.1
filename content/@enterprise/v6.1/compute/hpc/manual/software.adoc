@@ -1,0 +1,8 @@
+---
+title: "软件中心"
+weight: 50
+linkkey: compute_hpc_software
+---
+
+
+include::../../../../../_cloud_service/ehpc/software.adoc[]

@@ -1,0 +1,19 @@
+---
+title: "SDK 文档简介"
+draft: false
+enableToc: false
+keywords: SDK 文档, ShanHe, 山河云, SDK, 云计算
+---
+山河云为开发者提供软件开发包 SDK (Software Development Kit)， 可以利用它对山河云的资源进行查看、创建和操作，借此开发出更富创造力的产品。
+
+include::../../../../../_components/note.adoc[]
+SDK 的使用受 API 访问配额的限制，具体请查看link:../../../api/overview/[概述]中的 **API 请求配额限制**
+
+include::../../../../../_components/table_footer.adoc[]
+
+* link:../../python/[Python]
+ ** link:../../python/install/install/[安装]
+ ** link:../../python/manual/manual_guide/[操作指南]
+* link:https://github.com/yunify/shanhe-sdk-java[Java]
+* link:https://github.com/yunify/shanhe-sdk-go[Golang]
+* link:https://github.com/yunify/shanhe-sdk-ruby[Ruby]

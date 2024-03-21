@@ -1,0 +1,7 @@
+---
+title: "CopySecurityGroupIPSets"
+description: 
+draft: false
+---
+
+include::../../../../../../_cloud_service/sg/api_list/copy_security_group_ipsets.adoc[]

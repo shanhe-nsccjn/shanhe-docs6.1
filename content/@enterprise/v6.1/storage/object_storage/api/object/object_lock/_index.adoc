@@ -1,0 +1,119 @@
+---
+title: "对象版本锁"
+description: 本小节主要介绍对象版本锁相关接口。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, WORM, Bucket
+weight: 4
+---
+
+== 概述
+
+对象版本锁是基于对象元数据实现的 WORM，针对对象的每个版本，系统都会维护一份对象版本锁信息。对象版本锁信息包括如下内容：
+
+
+[source,http]
+----
+{
+  mode: i8,
+  time: u32,
+  hold: bool,
+}
+
+----
+
+我们将这些信息分为两个部分：保留信息（Retention）与合法持有信息（Legal-Hold）。详细说明如下：
+
+[cols='1,1,3a']
+|===
+| 字段 | 类型 | 说明 
+
+| mode | String | 保留信息（Retention）。用以说明对象版本锁的模式，分为以下两种：
+
+* `GOVERNANCE`：治理模式，在这个模式下，保护期内只有 Bucket 的所有者可以删除受保护的对象和缩短对象受保护的时间。
+
+* `COMPLIANCE`：合规模式，在这个模式下，保护期内任何人都不可以删除受保护的对象，只能延长对象受保护的时间。
+
+| time | String | 保留信息（Retention），对象保留截止时间对应的时间戳，在这个时间之前，对象受到保护。
+| hold | Bool | 合法持有信息，表明是否持有该对象。
+
+* 取值为 `true` 或 `false`，分别表示持有与未持有。
+* 在持有状态下，任何用户都不能删除该对象。
+|===
+
+
+
+== 删除对象
+
+保留信息 Retention 和合法持有信息 Legal-Hold 均对对象的保护有影响，当删除对象时，需要同时考虑这两部分信息。
+
+* 示例一：当 `mode` 为 `GOVERNANCE`，`time` 为 `2023-05-01T00:00:00Z`，`hold` 为 `true` 时。
++
+假设1：现在的时间为 `2023-04-27T00:00:00Z`，则对象受 `GOVERNANCE` 模式的保护，不能被删除；同时 `hold` 为 `true`，也要求对象不能被删除。因此，该情形下，对象不能被删除。
++
+假设2：现在的时间为 `2023-05-27T00:00:00Z`，则对象不受 `GOVERNANCE` 模式的保护，但同时，因为 `hold` 为 `true`，要求对象不能被删除。因此，在该情形下，对象不能被删除。
+
+* 示例二：当 `mode` 为 `GOVERNANCE`，`time` 为 `2023-05-01T00:00:00Z`，`hold` 为 `false` 时。
++
+假设1：现在的时间为 `2023-04-27T00:00:00Z`，则对象受 `GOVERNANCE` 模式的保护，不能被删除；同时 `hold` 为 `false`，对象可以删除。因为没共同满足删除条件，因此，对象仍然不能被删除。
++
+假设2：现在的时间为 `2023-05-27T00:00:00Z`，则对象不受 `GOVERNANCE` 模式的保护，能被删除；同时 `hold` 为 `false`，对象可以被删除。同时满足两个删除条件，因此，对象能被删除。
+
+include::../../../../../../../_components/note.adoc[]
+通过上面的示例，我们知道，当保留信息 Retention 和合法持有信息 Legal-Hold 均允许对象被删除时，对象才能被删除。
+
+include::../../../../../../../_components/table_footer.adoc[]
+
+
+
+== 修改对象版本锁
+
+include::../../../../../../../_components/note.adoc[]
+如需修改已存在的对象的对象版本锁信息，需要使用 S3 的接口来实现。具体可参考 link:../../../s3/compatible_apis/#_object_api[S3 兼容接口]相关内容。
+
+include::../../../../../../../_components/table_footer.adoc[]
+
+
+
+针对一个具体的对象，其对象版本锁信息中的 `hold` 字段，可以随时修改为 `true` 或 `false`。但是 Retention 信息不能随意修改，如需修改，需满足如下条件。
+
+* 当 `mode` 为 `GOVERNANCE` 时。
+
+.. 当前时间 \<= `time` 时，默认只能延长保留时间 `time`。若需修改 `mode` 或者延长保留时间 `time`，则可使用 S3 的 bypass 相关请求头实现。
+
+.. 当前时间 > `time` 时，`mode` 与 `time` 均可以随意修改。
+
+* 当 `mode` 为 `COMPLIANCE` 时。
+
+.. 当前时间 \<= `time` 时，`mode` 不可以修改，且保留时间 `time` 只能延长。
+.. 当前时间 > `time` 时，`mode` 与 `time` 均可以随意修改。
+
+* `mode` 与 `time` 需同时设置，不能仅设置其一。
+
+
+
+// == 新增请求头
+
+// 对象版本锁除link:../../../common_header/#_请求头字段_request_header[公共请求头]以外，还包含以下请求头字段。
+
+// [cols='2,1,4a']
+// |===
+// | 头字段 | 类型 | 说明 
+
+// | x-qs-bypass-governance-retention | Bool | `bypass` 参数。
+// | x-qs-object-lock-retain-until-date | Date | 用于指定对象版本锁保护截止时间。 
+// | x-qs-object-lock-mode | String | 用于指定对象版本锁的模式。
+// | x-qs-object-lock-legal-hold | Bool | 用于指定对象版本锁是否持有。
+
+// |===
+
+// == Bypass 参数
+
+// 我们称请求头 `x-qs-bypass-governance-retention` 为 Bypass 参数。当我们需要针对一个具体的对象，修改其保护策略时，可使用该请求头。
+
+// 该请求头生效的条件如下：
+
+// . 需要修改或删除保留策略的对象，目前仍然处于保留策略的保护期内。
+// . 且保留模式为 `GOVERNANCE` 模式。
+// . 且修改或删除保留策略的请求是 Bucket 所有者发出。
+
+// 当满足以上条件时，该请求头生效，且只有 `x-qs-bypass-governance-retention` 设置为 `true` 时，则相应的 API 请求才会被执行。
+

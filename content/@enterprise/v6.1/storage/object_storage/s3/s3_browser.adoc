@@ -1,0 +1,162 @@
+---
+title: "安装 S3 Browser"
+description: 本小节主要介绍安装 S3 Browser 相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor
+draft: false
+weight: 39
+---
+
+
+== 下载 S3 Browser 客户端
+
+用户可从链接：https://s3browser.com/ 下载 S3 Browser 客户端。该客户端当前支持的操作系统有：
+
+* Windows XP/Vista/7/8/8.1/10
+* Windows Server 2003/2008/2012/2016/2019
+
+== 获取山河云的 API 秘钥
+
+操作步骤可参考 link:../../api/signature/#_获取-access-key[获取 Access Key]。
+
+== 安装 S3 Browser
+
+. 右键 S3 Browser-9-5-5.exe，点击**打开**：
++
+image::/images/cloud_service/storage/object_storage/s3-browser-12.png[s3-browser-12]
+
+
+. 在弹出的对话框内点击**接受协议 > 下一步 > 下一步 > 下一步 > 完成**：
++
+image::/images/cloud_service/storage/object_storage/s3-browser-13.png[s3-browser-13]
++
+image::/images/cloud_service/storage/object_storage/s3-browser-14.png[s3-browser-14]
++
+image::/images/cloud_service/storage/object_storage/s3-browser-15.png[s3-browser-15]
++
+image::/images/cloud_service/storage/object_storage/s3-browser-16.png[s3-browser-16]
+
+== 配置 S3 Browser
+
+. 创建账号。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-6.png[s3-browser-6]
+
+. 在弹出的对话框内填写参数。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-71.png[s3-browser-71]
++
+**页面各字段说明：**
+
+* **Account Name**：任意
+* **Account Type**：选择 S3 compatible Storage。
+* **Rest Endpoint**：填写 s3.<Zone_id>.is.shanhe.com，其中 Zone_id 可参考 山河云对象存储的区域，目前包括：jn1,jn2。
+* **Access Key ID**: 填写前文获取的 API 秘钥的 `qy_acccess_key_id` 的值。
+* **Secret Access Key**: 填写前文获取的 API 秘钥的 `qy_secret_access_key` 的值。
+* **Use Secure transfer（SSl/TLS）**: 勾选该选项。
+
+. 对话框左下角点击advanced settings，进入高级配置选项，选择Path style。
++
+image::/images/cloud_service/storage/object_storage/WechatIMG558.png[s3-browser]
+
+. 配置完成后，可以查询配置 Endpoint 的对象存储。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-8.png[s3-browser-8]
+
+. 可以根据 file/size/type/last modified 进行排序，点击排序列标题即可
++
+image::/images/cloud_service/storage/object_storage/s3-browser-9.png[s3-browser-9]
+
+. 通过 S3 Browser 上传文件。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-10.png[s3-browser-10]
+
+. 查看成功上传的文件。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-11.png[s3-browser-11]
+
+== 配置 S3 Browser 加密
+
+S3 Browser 可设置手动加密，也可设置自动加密。两种加密方式的区别，分别说明如下。
+
+=== 手动加密
+
+S3 Browser 手动加密，是指针对已存储于 Bucket 中的文件进行加密，是一次性的操作。
+
+. link:#_配置_s3_browser[配置 S3 Browser]。
+
+. 配置完成后，可分别针对部分文件设置加密和针对整个 Bucket 设置加密。
+
+** 针对部分文件设置加密
++
+选择 Bucket，再选中待加密的文件后，点击 **Files** > **Server Side Encryption** > **Encrypt**。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-20.png[s3-browser-20]
++
+
+include::../../../../../_components/note.adoc[]
+
+如需解密，可点击 **Decrypt**。
+
+include::../../../../../_components/table_footer.adoc[]
+
+** 针对整个 Bucket 设置加密
++
+点击 **Buckets** > **Server Side Encryption** > **Encrypt**，可对 Bucket 内所有文件进行加密。若 Bucket 内文件较多，加密时间会比较长。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-22.png[s3-browser-22]
++
+
+include::../../../../../_components/note.adoc[]
+
+如需解密，可点击 **Decrypt**。
+
+include::../../../../../_components/table_footer.adoc[]
+
+
+. 弹出** Choose Server Side Encryption **对话框，选择加密类型后，点击** Apply **。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-21.png[s3-browser-21]
+
+=== 自动加密
+
+用户可通过添加加密规则的方式，给 Bucket 设置自动加密，当上传文件满足加密规则时，则进行自动加密。
+
+. link:#_配置_s3_browser[配置 S3 Browser]。
+
+. 配置完成后，点击 **Tools** > **Server-Side Encryption**。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-23.png[s3-browser-23]
+
+. 弹出 **Server-Side Encryption Rules** 对话框，点击 **Add**。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-24.png[s3-browser-24]
+
+. 弹出 **Add New Server-Side Encryption Rule** 对话框，用户根据页面提示信息填写相关参数后，点击 **Add**。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-25.png[s3-browser-25]
++
+
+include::../../../../../_components/note.adoc[]
+
+* `Bucket name` 和 `File name` 是可选项，如果不填，S3 Browser 会将该条加密规则，适用于所有 Bucket 的所有文件。
+
+include::../../../../../_components/table_footer.adoc[]
+
+. 对于已添加的加密规则，S3 Browser 支持 `修改` 与 `删除` 操作。
+
+** 修改
+
+.. 选择待修改的加密规则，点击 **Edit**。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-26.png[s3-browser-26]
+
+.. 弹出 **Edit Server-Side Encryption Rule** 对话框，根据页面提示信息，修改相关参数后，点击 **Save changes**。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-27.png[s3-browser-27]
+
+** 删除
++
+选择待删除的加密规则，点击 **Delete** 即可。
++
+image::/images/cloud_service/storage/object_storage/s3-browser-28.png[s3-browser-28]
+

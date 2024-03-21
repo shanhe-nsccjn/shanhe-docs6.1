@@ -1,0 +1,207 @@
+---
+title: "获取挂载点详细信息"
+weight: 4
+---
+
+根据给定的挂载点 ID，获取挂载点的详细信息。
+
+
+== Action
+
+/file-systems/{file-system-id}/{export-id}
+
+== 请求方式
+
+GET
+
+== 请求参数
+
+[options="header",cols="1,1,1,3"]
+|===
+| 参数 | 类型 | 是否必选 | 描述
+|timestamp	
+|date-time	
+|true	
+|API 操作时间戳
+
+|zone	
+|string	
+|true	
+|API 所操作的环境
+
+|file-system-id	
+|string	
+|true	
+|挂载点所属的文件系统 ID，通过查询文件系统接口获取，如 qfs-xxxxx
+
+|export-id	
+|string	
+|true	
+|挂载点 ID
+|===
+
+== 响应消息
+
+[options="header",cols="1,1,2,2"]
+|===
+| 参数 | 类型 | 取值样例| 描述 
+
+| action
+| string
+| EpfsFileSystemsGetExportDetailResponse
+| 响应动作
+
+|access_group_id	
+|string	
+|cdok05ism	
+|挂载点权限组 ID
+
+|bill_id	
+|string	
+|QUEZTDWLQJVE	
+|挂载点订单 ID
+
+|created	
+|date-time	
+|2021-12-27T02:06:55
+|挂载点创建时间
+
+|description	
+|string	
+|”“	
+|挂载点描述信息
+
+|export_id	
+|string	
+|exp-xxxxxx	
+|挂载点 ID
+
+|export_path	
+|string	
+|10.0.0.7@o2ib:/lustrefs/testepfs/test001	
+|挂载点在存储中真实路径
+
+|fs_path	
+|string	
+|/test001	
+|挂载点路径
+
+|gid	
+|integer	
+|44731	
+|用户 gid
+
+|id	
+|string	
+|exp-xxxxxx	
+|id，与挂载点 ID 一致
+
+|uid	
+|integer	
+|44731	
+|用户 uid
+
+|name	
+|string	
+|test001	
+|挂载点名称
+
+|order_id	
+|string	
+|ord_n6XEyMMjvwV3	
+|挂载点账单 ID
+
+|proto_type	
+|string	
+|HPC	
+|挂载点类型
+
+|quota	
+|integer	
+|214748364800	
+|挂载点大小
+
+|ret_code	
+|integer	
+|0	
+|执行是否成功，成功为 0，其它值为错误代码
+
+|shared_path	
+|string	
+|test001
+|共享目录名
+
+|status	
+|string	
+|Active	
+|挂载点状态
+
+|used	
+|integer	
+|9177329664	
+|挂载点容量使用情况
+
+|mount_point	
+|array	
+|{total:100,left:100}	
+a|用户挂载点配额使用情况，默认 2 个挂载点额度
+
+* total：用户创建挂载点个数
+* left：用户剩余挂载点个数
+
+|mount_total_size	
+|array	
+|{total:107374182400,left:85899345920}
+a|用户挂载点容量使用情况，默认 100GB
+
+* total：用户可创建挂载点总容量
+* left：用户剩余可创建挂载点容量
+|===
+
+== 示例
+
+=== 请求示例
+
+[,url]
+----
+http://epfs-api.qingclou.com/file-systems/qfs-2r6hk5w8/epfs-boi3j2hv
+&export_id=epfs-boi3j2hv
+&file_systems_id=qfs-2r6hk5w8
+&COMMON_PARAMS
+----
+
+=== 响应示例
+
+[,json]
+----
+{
+access_group_id: "6b09qhbn"
+action: "EpfsFileSystemsGetExportDetailResponse"
+bill_id: "epfs-boi3j2hv.#@nscca"
+created: "2023-05-24T15:09:14"
+description: "计费测试：产品中心\n创建、扩容成功，计费已保存epfs-boi3j2hv.#@nscca，恢复未测试"
+export_id: "epfs-boi3j2hv"
+export_path: "10.0.0.7@o2ib:/lustrefs/testepfs/test_ob"
+fs_path: "/test_ob"
+gid: 41522
+id: "epfs-boi3j2hv"
+is_bill_notify: 0
+is_overdraft: 0
+is_root: "NO"
+is_start_export: 0
+mod: 0
+mount_point: {total: 100, left: 100}
+mount_total_size: {total: 1073741824000, left: 1073741824000}
+name: "测试_产品中心"
+order_id: ""
+proto_type: "HPC"
+quota: 23622320128
+quota_enable: 0
+ret_code: 0
+shared_path: "test_ob"
+status: "Active"
+uid: 41522
+used: 9177329664
+}
+----
+

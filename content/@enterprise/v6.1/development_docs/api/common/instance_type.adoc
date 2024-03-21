@@ -1,0 +1,7 @@
+---
+title: "Instance Types"
+description: test
+draft: false
+keywords: Instance, ShanHe, 山河云, API, 云服务器类型
+---
+详情请参考link:../../../../compute/vm/intro/instance/[云服务器类型]。

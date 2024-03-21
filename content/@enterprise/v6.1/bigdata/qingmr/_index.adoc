@@ -1,0 +1,58 @@
+---
+title: 大数据引擎 QingMR
+weight: 10
+description: QingMR 是新一代云端大数据服务，能够提供计算、存储、分析、查询一站式全方位的大数据服务。
+bannerImage: /images/pic-banner.png
+study_section:
+  - title: 了解
+    icon: icon-note_tree_duotone
+    children:
+      - title: 产品简介
+        children:
+          - title: 什么是 QingMR
+            url: intro/introduction/
+          - title: 功能特性
+            url: intro/function/
+      - title: 计费指南
+        children:
+          - title: 计费说明
+            url: billing/price/
+          - title: 费用变更
+            url: billing/change_price/
+  - title: 上手
+    icon: icon-gamepad_2_duotone
+    children:
+      - title: 快速入门
+        children:
+          - title: 创建 QingMR 集群
+            url: quickstart/create_cluster/
+          - title: 登录 Client
+            url: quickstart/login_client/
+          - title: 提交 Spark job
+            url: quickstart/access_spark/
+          - title: 提交 Flink job
+            url: quickstart/access_flink/
+  - title: 使用
+    icon: icon-apps_2_duotone
+    children:
+      - title: 操作指南
+        children:
+          - title: 集群管理
+            url: manual/cluster_lifecycle/cluster_info/
+          - title: 节点管理
+            url: manual/mgt_node/add_node/
+  - title: 开发
+    icon: icon-code_box_duotone
+    children:
+      - title: 开发指南
+        children:
+          - title: Spark 使用
+            url: developer_manual/spark/
+          - title: Flink 使用
+            url: developer_manual/flink/
+          - title: Hadoop 使用
+            url: developer_manual/hadoop/
+          - title: Hive 使用
+            url: developer_manual/hive/
+linkkey: bigdata_qingmr_guide
+---

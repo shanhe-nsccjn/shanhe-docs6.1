@@ -1,0 +1,116 @@
+---
+title: "使用 slurm"
+weight: 3
+---
+
+. 创建 EHPC 集群，参考link:../../../quick-start/create_ehpc[前文内容]。
+. 使用 link:../../../manual/cluster/node/ssh[WebSSH 登录方式]，登录至集群的登录节点上。
++
+image::/images/cloud_service/compute/hpc/use_slurm_1.png[,50%]
+
+. 在打开的 WebSSH 页面，输入以下命令，查看当前集群内可用的队列和节点。
++
+[,shell]
+----
+[admin@login1 ~]$ sinfo  -a 
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+normal*      up   infinite      2   idle node[001-002]
+----
++
+*主要参数说明*:
++
+* partition： 当前可用队列的名称。
+* state：同一队列中 nodelist 所列节点的当前状态（Idle、alloc、mix、down 等）。
+* nodes：nodelist 中包含的节点数。
+* nodelist：同一队列中处于相同状态的节点列表。
+
+. 参考如下命令及内容，编写脚本文件。
++
+[,shell]
+----
+[admin@login1 ~]$ vim myscript
+// 内容如下：
+#!/bin/sh
+#SBATCH -p normal
+srun sleep 300
+----
++
+
+include::../../../../../../_components/note.adoc[]
+* `#SBATCH -p normal`：指明脚本默认执行的队列名： 如果 sbatch 命令提交时，没有额外指定 -p 参数，那么默认使用脚本中的 normal 队列 。
+* `srun  sleep 300`：作业执行的命令行，由 srun 命令发起。`srun cmd_line` 中 cmd_line 是一个 Job， 这个  Job 会提交到 slurm 中的 node 上执行。作为演示，我们用 sleep 300 命令来模拟一个长耗时 Job。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+. 执行如下命令，向 slurm 提交 2 个任务数（Tasks）的作业。若作业提交成功，会返回相应的作业号，如下所示。
++
+[,shell]
+----
+[admin@login1 ~]$ sbatch -n2  myscript 
+Submitted batch job 6
+----
+. 执行如下命令，查看作业运行情况。返回结果中任务被分配到了 node001, 其 STATE 为 `alloc` 被分配状态，而 node002 目前 STATE 为 `idle` 空闲状态。
++
+[,shell]
+----
+[admin@login1 ~]$ sinfo -a
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+normal*      up   infinite      1  alloc node001
+normal*      up   infinite      1   idle node002
+----
+
+
+. 重新提交作业，并查看作业运行状态。返回结果中，两个计算节点均为 `alloc` 被分配状态。
++
+[,shell]
+----
+// 提交作业
+[admin@login1 ~]$ sbatch -n2  myscript 
+Submitted batch job 7
+
+// 查看作业状态
+[admin@login1 ~]$ sinfo -a
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+normal*      up   infinite      2  alloc node[001-002]
+----
+
+. 再重新提交作业，并查看作业运行状态。``squeue -l`` 命令的返回结果中，新提交的 job 8 为 ``PENDING`` 等待状态。
++
+[,shell]
+----
+// 提交作业
+[admin@login1 ~]$ sbatch -n2  myscript 
+Submitted batch job 8
+
+// 查看 normal 队列中 job 的详细运行情况
+[admin@login1 ~]$ squeue -l
+Wed Nov 30 17:05:15 2022
+             JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
+                 8    normal myscript    admin  PENDING       0:00 UNLIMITED      1 (Resources)
+                 6    normal myscript    admin  RUNNING       0:47 UNLIMITED      1 node001
+                 7    normal myscript    admin  RUNNING       0:37 UNLIMITED      1 node002
+----
+
+. 执行如下命令，释放 job 6 所占用的资源。
++
+[,shell]
+----
+[admin@login1 ~]$ scancel 6
+----
+
+. 查看队列中 job 的详细运行情况，返回结果中 job 6 被取消，job 8 由原来的 `PENDING` 等待状态转变为 `RUNNING` 运行状态，即 job 8 被调度成功。
++
+[,shell]
+----
+[admin@login1 ~]$ squeue -l
+Wed Nov 30 17:06:45 2022
+             JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
+                 7    normal myscript    admin  RUNNING       2:07 UNLIMITED      1 node002
+                 8    normal myscript    admin  RUNNING       0:06 UNLIMITED      1 node001
+----
+
+
+
+
+
+

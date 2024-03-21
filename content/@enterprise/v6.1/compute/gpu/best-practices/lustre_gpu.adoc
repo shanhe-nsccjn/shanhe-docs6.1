@@ -1,0 +1,107 @@
+---
+title: "GPU 云服务器挂载文件存储"
+draft: false
+weight: 1
+---
+
+== 应用场景
+
+使用 GPU 云服务器进行深度学习等需要高速的数据传输能力的作业时，需要将集群的文件存储与 GPU 云服务之间建立 IB 网络，可参考如下步骤进行。
+
+== 操作步骤
+
+. 登录 {console_name}，点击**产品与服务** > *计算* > *云服务器*。
+. 在云服务器列表页面，点击**+创建**，弹出的**购买云服务器**的页面中。
+. 在**基础配置**页面，选择 **GPU 加速型 g2na100_ib** 类型的云服务器，标准镜像选择 CentOS 且 **支持 lustre 客户端**或**支持 IB 网络**，系统盘和数据盘根据实际需要设置大小即可。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_1.png[]
+
+. 点击**下一步：网络配置**，选择 **VPC 网络**，如无可用的 VPC 网络，点击**创建新 VPC 网络**进行创建即可。
++
+
+include::../../../../../_components/note.adoc[]
+弹性公网 IP 和安全组均无需绑定。
+
+include::../../../../../_components/table_footer.adoc[]
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_9.png[]
+
+. 点击**下一步：系统配置**，用户可根据实际情况自定义云服务器名称，**登录方式**选择**密码**登录，设置密码后，点击**创建主机**即可。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_10.png[]
+
+. GPU 云服务器创建完成后，在云服务器管理列表内查看该云服务器的内网 IP 地址并记录。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_6.png[]
+
+. 点击顶部导航栏**产品与服务** > **存储服务** > *文件存储 EPFS*。
+
+. 在文件存储 EPFS 的**概览**页面，**快速创建**窗口中，点击**去创建**。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_2.png[]
+
+. 在弹出的**创建挂载点**的窗口中，配置各项参数，点击**确定**即可。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_3.png[,70%]
++
+*参数说明*
++
+[options="header",cols="1,3"]
+|===
+|参数|说明
+|存储配额
+|文件存储的容量
+
+|共享目录
+|共享目录名称，用户自定义，须全局唯一
+
+|名称
+|文件存储的名称，用户自定义
+
+|描述
+|选填项，用户根据实际需要对当前创建的文件存储进行描述说明
+|===
+
+. 创建完成的挂载点，显示在文件存储 EPFS 的管理界面。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_4.png[]
+
+. 点击已创建完成的挂载点的``名称/ID``，进入其详情页面。
+
+. 在文件存储详情页面中，选择**权限组**页签，并点击**添加规则**。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_5.png[]
+
+. 在弹出的**添加规则**的窗口中，填入步骤 6 记录的 GPU 云服务器的内网 IP 地址，点击**确定**即可。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_7.png[,60%]
+
+. 返回云服务器管理页面，点击云服务器名称下的远程登录图标image:/images/cloud_service/compute/gpu/remote_local.png[,50%]。
+
+. 在弹出的**远程连接**窗口中，选择 **webSSH 远程连接**，输入创建云服务器设置的用户名密码，点击**确定**即可。
++
+image::/images/cloud_service/compute/gpu/lustre_gpu_8.png[,70%]
+
+. 在弹出的终端页面，执行如下命令，将文件存储系统挂载至相应的挂载点上。
++
+[,shell]
+----
+// 创建挂载点
+$ mkdir /mnt/data_lustre
+
+// 执行挂载命令
+$  mount -t  lustre 10.103.100.93@o2ib:10.103.100.94@o2ib:/es01  /mnt/data_lustre
+----
++
+
+include::../../../../../_components/note.adoc[]
+/mnt/data_lustre 为挂载点名称，可根据实际情况进行修改。
+
+include::../../../../../_components/table_footer.adoc[]
+
+
+
+
+
+
+

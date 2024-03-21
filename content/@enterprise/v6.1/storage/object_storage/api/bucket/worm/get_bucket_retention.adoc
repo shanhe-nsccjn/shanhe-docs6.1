@@ -1,0 +1,229 @@
+---
+title: "Get Bucket Retention"
+description: 本小节主要介绍 Bucket Retention 接口相关操作。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor, Bucket, WORM
+collapsible: false
+draft: false
+weight: 3
+---
+
+该接口用于获取 Bucket 的 WORM 策略。可以返回桶级别锁和对象版本锁的信息。仅支持 Bucket 所有者使用该 API。
+
+== 请求语法
+
+[source,http]
+----
+GET /?retention HTTP/1.1
+Host: <bucket-name>.jn1.is.shanhe.com
+Date: <date>
+Authorization: <authorization-string>
+
+----
+
+== 请求参数
+
+无。
+
+== 请求头
+
+此接口仅包含公共请求头。关于公共请求头的更多信息，请参见link:../../../common_header/#_请求头字段_request_header[公共请求头]。
+
+== 请求消息体
+
+无。
+
+== 响应头
+
+除link:../../../common_header/#_响应头字段_response_header[公共响应头]外，山河云对象存储服务端还会返回如下消息头。
+
+[cols='1,1,3']
+|===
+| 名称 | 类型 | 说明 
+
+| x-qs-worm-id | String |  当桶级别锁的 retention_policy 未被锁定时，会返回此头，用于标识当前 retention_policy。
+
+|===
+
+== 响应体
+
+
+成功调用该 API 后，会返回一个 Json 格式的 Response Body。该消息体各字段说明如下。
+
+[cols='1,1,3a,1']
+|===
+| 名称 | 类型 | 说明 | 是否必须
+
+| worm_level | String | 锁的级别，取值为：
+
+* `ObjectVersionLock` 对象版本锁。
+* `BucketRetention` 桶级别锁。
+* `Unprotected` 没有开启 WORM 功能。
+| 是
+
+| status | String | * 对象版本锁的状态，取值为 `Enabled`。
+
+* 当 `worm_level` 为 `ObjectVersionLock` 时，返回该参数。| 否
+
+| is_locked | Bool | * 桶级别锁的状态。取值为 `true` 时，表示锁定；取值为 `false` 时，表示未锁定。
+
+* 当 `worm_level` 为 `BucketRetention` 时，返回该参数。 | 否
+
+
+
+| mode | String | * 对象版本锁的模式。取值为 `GOVERNANCE` 时，表示合规模式；取值为 `COMPLIANCE` 时，表示治理模式。 
+
+* 当 `worm_level` 为 `ObjectVersionLock` 时，返回该参数。| 否
+
+| days | Integer | 保留时间，以 `天` 为单位。 | 否
+| years | Integer | 保留时间，以 `年` 为单位。 | 否
+| effective_time | String | * 桶级别锁生效时间。
+
+* 当 `worm_level` 为 `BucketRetention` 时，返回该参数。
+* 桶级别锁的设置时间与生效时间，会有一定的误差，通常为 30 秒。 | 否
+
+|===
+
+== 错误码
+
+可参考link:../../../error_code/#_错误码列表[错误码列表]。
+
+== 示例
+
+=== 示例一
+
+Bucket 没有设置 WORM 策略。
+
+* 请求示例
++
+[source,http]
+----
+
+GET /?retention HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: <authorization-string>
+
+----
+
+* 响应示例
++
+[source,http]
+----
+HTTP/1.1 200 OK
+Server: QingStor
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Content-Length: 809
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+
+{
+  "worm_level": "Unprotected"
+}
+
+----
+
+=== 示例二
+
+Bucket 已设置桶级别锁。
+
+* 请求示例
++
+[source,http]
+----
+GET /?retention HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: <authorization-string>
+
+----
+
+* 响应示例
++
+[source,http]
+----
+HTTP/1.1 200 OK
+Server: QingStor
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Content-Length: 809
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+
+{
+  "worm_level": "BucketRetention",
+  "is_locked": true,
+  "days": 1,
+  "effective_time": "2023-05-04 12:00:30",
+}
+
+
+----
+
+
+
+=== 示例三
+
+Bucket 已设置对象版本锁。
+
+* 请求示例
++
+[source,http]
+----
+GET /?retention HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: <authorization-string>
+
+----
+
+* 响应示例
++
+[source,http]
+----
+HTTP/1.1 200 OK
+Server: QingStor
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Content-Length: 809
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+
+{
+  "worm_level": "ObjectVersionLock",
+  "status": "Enabled",
+  "mode": "GOVERNANCE",
+  "days": 1,
+}
+----
+
+
+
+=== 示例四
+
+Bucket 已设置对象版本锁，但未配置过默认规则。
+
+* 请求示例
++
+[source,http]
+----
+GET /?retention HTTP/1.1
+Host: mybucket.jn1.is.shanhe.com
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Authorization: <authorization-string>
+
+----
+
+* 响应示例
++
+[source,http]
+----
+HTTP/1.1 200 OK
+Server: QingStor
+Date: Sun, 16 Aug 2015 09:05:00 GMT
+Content-Length: 809
+Connection: close
+x-qs-request-id: aa08cf7a43f611e5886952542e6ce14b
+
+{
+  "worm_level": "ObjectVersionLock",
+  "status": "Enabled",
+}
+----

@@ -1,0 +1,68 @@
+---
+title: "CreateInstanceGroups"
+description: 
+draft: false
+weight: 15
+---
+创建云服务器组。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| relation
+| String
+| 云服务器组关系
+| Yes
+
+| zone
+| String
+| 区域 ID，注意要小写
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Response Elements*
+
+[option="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| instance_groups
+| Array
+| 新创建的云服务器组列表
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=CreateInstanceGroups
+&relation=repel
+&zone=gd2
+&COMMON_PARAMS
+----
+
+Example Response:
+
+----
+{
+  "action":"CreateInstanceGroupsResponse",
+  "instance_groups":[
+    "ig-c7v8lro1"
+  ],
+  "ret_code":0
+}
+----

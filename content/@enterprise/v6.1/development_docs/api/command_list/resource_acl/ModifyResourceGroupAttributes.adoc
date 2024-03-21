@@ -1,0 +1,51 @@
+---
+title: "ModifyResourceGroupAttributes"
+description: 
+draft: false
+---
+修改资源组属性。
+
+*Request Parameters*
+
+|===
+| Parameter name | Type | Description | Required
+
+| resource_group
+| String
+| 资源组 ID
+| Yes
+
+| resource_group_name
+| String
+| 资源组名称
+| No
+
+| description
+| String
+| 资源组描述
+| No
+|===
+
+link:../../../parameters/[公共参数]
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=ModifyResourceGroupAttributes
+&resource_group=rg-5ukijwcx
+&resource_group_name=TTTT
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"ModifyResourceGroupAttributesResponse",
+  "resource_group_id":"rg-5ukijwcx",
+  "ret_code":0,
+  "resource_group_name":"TTTT"
+}
+----

@@ -1,0 +1,98 @@
+---
+title: "CreateIAMPolicy"
+draft: false
+weight: 1
+---
+
+== 接口描述
+
+创建策略。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型  |是否必选 |描述 
+
+| policy_name
+| String
+| 是
+| 策略名称。
+
+| description
+| String
+| 否
+| 策略描述。
+
+| controller
+| -
+| 否
+a| 策略类型。
+
+取值如下：
+
+* pitrix：系统预置
+* self：用户创建
+* application：应用创建
+
+include::../../../../../../_components/note_in_table.adoc[]
+当 *controller* 为 `pitrix` 或者 `application` 时，请求发起者（sender） 为 global admin。
+
+include::../../../../../../_components/footer_in_table.adoc[]
+
+| effect
+| String
+| 是（当不提供 *statement* 时）
+a| 策略行为。
+
+取值：
+
+* allow：允许
+* deny：拒绝
+
+| operations
+| List
+| 是（当不提供 *statement* 时）
+| 策略操作。
+
+| resources
+| String
+| 是（当不提供 *statement* 时）
+| 策略资源。
+
+| conditions
+| List_Dict
+| 否
+| 策略生效条件。
+
+| statement
+| List_Dict
+| 否
+| 策略声明，为 *operations*，*resources* 和 *effect* 的集合。
+
+| owner
+| String
+| 否
+| 策略 owner。
+|===
+
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 返回码。判定执行是否成功，0 表示成功，其他值则为错误代码。
+
+| policy_id
+| String
+| 策略 ID。
+|===
+

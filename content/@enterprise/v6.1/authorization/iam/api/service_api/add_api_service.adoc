@@ -1,0 +1,75 @@
+---
+title: "AddIAMApiService"
+draft: false
+weight: 2
+---
+
+== 接口描述
+
+添加 IAM 服务纳管。
+
+== 请求参数
+
+[cols="1,1,1,3"]
+|===
+| 参数 | 参数类型  |是否必选 |描述 
+
+| service_name
+| String
+| 是
+| 纳管服务英文标识。
+
+| translated_name
+| String
+| 否
+| 纳管服务中文名称。
+
+| description
+| String
+| 否
+| 服务描述。
+
+| permission
+| String
+| 否
+| 默认权限（allow 或 deny）。
+
+| visible
+| String
+| 否
+| 用户可见性（visible 或 invisible）。
+
+|===
+
+
+== 响应参数
+
+[cols="1,1,3"]
+|===
+| 参数 | 参数类型 | 描述
+
+| action
+| String
+| 响应动作。
+
+| ret_code
+| Integer
+| 返回码。判定执行是否成功，0 表示成功，其他值则为错误代码。
+
+| service_name
+| String
+| 服务名称。
+
+| description
+| String
+| 描述。
+
+| permission
+| String
+| 默认权限（allow 或 deny）。
+
+| visible
+| String
+| 用户可见性（visible 或 invisible）。
+|===
+

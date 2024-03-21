@@ -1,0 +1,11 @@
+---
+title: "Service API"
+description: 本小节主要介绍 Service API 相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor
+draft: false
+weight: 7
+collapsible: true
+---
+
+- link:get/[GET Service]
+- link:location/[List Locations]

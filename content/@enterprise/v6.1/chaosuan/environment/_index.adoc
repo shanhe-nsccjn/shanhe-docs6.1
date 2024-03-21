@@ -1,0 +1,21 @@
+---
+title: "软件环境"
+linkTitle: "软件环境"
+weight: 4
+
+study_section:
+
+  - title: 软件环境
+    icon: icon-apps_2_duotone
+    children:
+      - title: 用户指南
+        children:
+          - title: 软件加载
+            url: softwareload/softwaremoduleload/
+          - title: 软件编译
+            url: softwaremake/softwarecompile/
+          - title: 软件使用
+            url: softwareuse/biology/blast/
+          - title: 环境使用
+            url: envinmentuse/conda-use/
+---

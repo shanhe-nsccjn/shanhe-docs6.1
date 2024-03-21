@@ -1,0 +1,54 @@
+---
+title: "步骤二：创建 Topic"
+description: 通过 RocketMQ 控制台创建 Topic。
+keywords: 云计算,大数据,消息队列,中间件,RocketMQ,创建topic,快速入门
+weight: 20
+draft: false
+---
+本小节主要介绍如何通过 RocketMQ 控制台创建 Topic。
+
+您也可以通过客户端命令行创建 Topic，具体操作请参见 link:../../manual/rocketmq_client/mgt_topic[RocketMQ 客户端命令行方式创建 Topic]。
+
+== 前提条件
+
+* 已创建 RocketMQ 集群。
+* 若通过本地浏览器访问 RocketMQ 控制台，则需要配置 link:../../../../network/vpc/manual/vpn/vpn_intro[VPN]，确保本地可以访问集群网络。
+
+== 访问 RocketMQ 控制台
+
+. 在本地浏览器中输入 `+http://网页控制台节点IP:端口+`，进入 RocketMQ 控制台登录页面。
++
+
+include::../../../../../_components/note.adoc[]
+
+**端口**默认为 `8080`。例如：网页控制台节点的 IP 地址为 `192.168.0.63`，则在浏览器输入 `+http://192.168.0.63:8080/+`。
+
+include::../../../../../_components/table_footer.adoc[]
++
+image::/images/cloud_service/middware/rocketmq/rocketmq_console_login.png[RocketMQ Console]
+
+. 输入 RocketMQ 控制台用户名和密码。
++
+
+include::../../../../../_components/note.adoc[]
+
+用户名密码可在link:../../manual/config_para/modify_para[配置参数]页面进行设置。默认用户名/密码为 `admin/password`。
+
+include::../../../../../_components/table_footer.adoc[]
+
+. 点击 LOGIN，默认进入 Dashboard 页面。
++
+image::/images/cloud_service/middware/rocketmq/rocketmq_console_dashboard.png[RocketMQ Console Dashboard]
+
+== 创建 Topic
+
+. 选择 *Topic*，进入 Topic 页面。
+. 点击 *ADD/UPDATE*，进入 Topic Change 页面。
++
+指定 Topic 所在的集群、broker、Topic 名称。
++
+image::/images/cloud_service/middware/rocketmq/add_topic.png[create topic]
+
+. 点击 COMMIT，开始创建 Topic。创建完成后，即可在 Topic 页面查看该 Topic。
++
+image::/images/cloud_service/middware/rocketmq/rocketmq_console_topiclist.png[create topic]

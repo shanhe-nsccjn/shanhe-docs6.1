@@ -1,0 +1,9 @@
+---
+title: "用户与权限组"
+weight: 30
+---
+
+:pub:
+
+include::../../../../../../_cloud_service/ehpc/user/user_authority.adoc[]
+

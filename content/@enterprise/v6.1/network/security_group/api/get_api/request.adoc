@@ -1,0 +1,10 @@
+---
+title: "构造请求"
+description: 本小节主要介绍如何构造 API 请求。 
+keywords: 云计算, NAT 网关, 请求, api 请求, 构造请求
+draft: false
+weight: 5
+collapsible: false
+---
+
+include::../../../../../../_cloud_service/api_common/request.adoc[]

@@ -1,0 +1,77 @@
+---
+title: 创建 API 密钥（CreateAccessKey）
+weight: 2
+---
+
+== 基本信息
+
+=== Path
+/iaas
+
+=== Method
+GET
+
+== 请求参数
+[cols="1,1,1,2", options="header"]
+|===
+| 参数名 | 类型 | 是否必须 | 描述
+
+| access_key_name
+| String
+| false
+| API 密钥名称
+
+| description
+| String
+| false
+| API 密钥的描述
+
+| ip_white_list
+| String
+| false
+| IP 白名单，限制使用 API 密钥的源 IP
+
+| owner
+| String
+| false
+| API 密钥的所有者
+|===
+
+== 返回数据
+此接口除以下返回参数外，还包含公共响应头。关于公共响应头的更多信息，请参见link:../../../parameters[前文内容]。
+[cols="1,1,1,2", options="header"]
+|===
+| 参数名 | 类型 | 是否必须 | 描述
+
+| access_key_id
+| String
+| false
+| API 密钥 ID
+
+| secret_access_key
+| String
+| false
+| 秘密访问密钥
+|===
+
+== 请求示例
+[,javascript]
+----
+{
+  "access_key_name": "ci",
+  "action": "CreateAccessKey",
+  "description": "access key for ci",
+  "ip_white_list": "192.168.10.13"
+}
+----
+
+== 返回示例
+[,javascript]
+----
+{
+  "access_key_id": "JZOHGWGENRXLKPMEMZYR",
+  "action": "CreateAccessKeyResponse",
+  "ret_code": 0,
+  "secret_access_key": "7jU85RMTIWLwhsMwHjrhBfxRlEgr9GIYQhhrYRz5"
+}
+----

@@ -1,0 +1,20 @@
+---
+title: "SDK"
+description: 本小节主要介绍 SDK 快速指南相关内容。
+keywords: 云计算, 山河云, ShanHe, 对象存储, QingStor
+draft: false
+collapsible: true
+weight: 10
+---
+
+山河云对象存储提供了覆盖主流编程语言的 SDK，开发者可以利用它们来快速便捷地接入 山河云对象存储服务。
+
+在使用以下 SDK 之前，用户需创建并修改相应的配置文件，以便能正确的使用相应的 SDK。详细步骤可参考 [配置文件说明](/storage/object-storage/manual/tool/qsctl/#修改配置)。
+
+- link:go/[Go SDK]
+- link:python/[Python SDK]
+- link:ruby/[Ruby SDK]
+- link:cpp/[C/C++ SDK]
+- link:java/[Java SDK]
+- link:javascript/[JavaScript SDK]
+- link:php/[PHP SDK]

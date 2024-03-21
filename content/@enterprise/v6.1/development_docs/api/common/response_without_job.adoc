@@ -1,0 +1,19 @@
+---
+title: "Response without Jobd"
+description: test
+draft: false
+keywords: API, ShanHe, 山河云, 云计算
+---
+
+[options="header",cols="1,1,2"]
+|===
+| Name | Type | Description
+
+| action
+| String
+| 响应动作
+
+| ret_code
+| Integer
+| 执行成功与否，0 表示成功，其他值则为错误代码
+|===

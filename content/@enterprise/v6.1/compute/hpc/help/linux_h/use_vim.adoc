@@ -1,0 +1,42 @@
+---
+title: "使用 vim 编辑器"
+weight: 4
+---
+
+. 启用 vim 编辑器。参考 link:../../../manual/cluster/node/ssh[WebSSH] 相关内容，登录至集群的登录节点上。执行如下命令进入 vim 编辑环境。
++
+[,shell]
+----
+$ vim lammps-slurm
+----
++
+
+include::../../../../../../_components/note.adoc[]
+lammps-slurm 为自定义文件名称，用户可根据实际情况自行修改。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+. 在 vim 编辑界面，按下 `i` 键，进入编辑模式。成功进入编辑模式后，vim 界面左下方会显示 `--INSERT--` 字样。
+ 
+. 根据实际需要输入相应的脚本内容。
++
+image::/images/cloud_service/compute/hpc/linux_h_1.png[]
+
+. 内容输入完成后，按下 `ESC` 键，退出 vim 编辑模式。当退出编辑模式后，vim 左下方的 `--INSERT--` 字样会消失，此模式下仅支持用户预览内容或输入相关命令。
+
+. 输入英文标点符号 `:`，进入底线命令模式。
+
+. 输入 `wq` 回车, 保存文件并退出。
++
+`wq` 命令的意思是保存(w)退出(q)，
++
+image::/images/cloud_service/compute/hpc/linux_h_2.png[]
+
+. 执行如下命令查看上述步骤编辑的脚本。
++
+[,shell] 
+----
+cat lammps-slurm
+----
++
+image::/images/cloud_service/compute/hpc/linux_h_3.png[]

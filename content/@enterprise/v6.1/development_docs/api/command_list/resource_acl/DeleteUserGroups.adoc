@@ -1,0 +1,42 @@
+---
+title: "DeleteUserGroups"
+description: 
+draft: false
+---
+删除用户组。
+
+*Request Parameters*
+
+[option="header",cols="1,1,2,1"]
+|===
+| Parameter name | Type | Description | Required
+
+| user_groups.n
+| String
+| 要删除的用户组 ID。
+| Yes
+|===
+
+link:../../../parameters/[公共参数]
+
+*Example*
+
+Example Request
+
+----
+https://api.shanhe.com/iaas/?action=DeletUserGroups
+&user_groups.1=ug-c7f9gmc6
+&COMMON_PARAMS
+----
+
+Example Response
+
+----
+{
+  "action":"DeleteUserGroupsResponse",
+  "user_group_ids":[
+    "ug-c7f9gmc6"
+  ],
+  "ret_code":0
+}
+----

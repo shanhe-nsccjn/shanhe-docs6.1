@@ -1,0 +1,65 @@
+---
+title: "GPU 加速型 g2na100"
+weight: 1
+draft: false
+---
+
+GPU 加速型 g2na100 类型的云服务器采用 Intel Ice Lake 处理器，同时搭载 Nvidia Ampere 架构的 NVIDIA A100 GPU 卡，可针对 AI、数据分析和 高性能计算 HPC 应用场景，在不同规模下实现出色的加速，有效助力更高性能的弹性数据中心。用户可以根据需要自由选择不同卡数以及 CPU 资源的规格，进而灵活适应不同的 AI、数据分析和 HPC 场景下的业务需求。
+
+include::../../../../../../_components/note.adoc[]
+该类型 GPU 云服务器仅支持在济南1区，齐鲁工大区进行创建。
+
+include::../../../../../../_components/table_footer.adoc[]
+
+GPU 加速型 g2na100 云服务器特点：
+
+* 计算： 
+** 采用 NVIDIA A100 GPU 卡，具备创新的 Nvidia Ampere 架构。
+** 处理器采用 2.6 GHz 主频的 Intel Xeon 可扩展处理器（Ice Lake），全核睿频 3.4 GHz。
+** CPU 核数：支持选择 16、32、64、120、124 核。
+** 内存：随 CPU 核数的不同，支持 48 G ~ 432 G。
+** 支持选配 1 个，2 个，4 个，6 个或 8 个 GPU 显卡数。 
+* 存储：支持使用通用型 SSD 云盘和容量型云盘，详细内容可参考link:../../../../../storage/disk/intro/introduction/#_硬盘类型[硬盘介绍]相关内容。
+* 网络：内网带宽支持 2 Gbps ~ 20 Gbps，各实例的网络性能与实际规格对应，规格越高网络性能越好。
+* 适用场景：配备高性能的 CPU、内存、GPU，可应用于 AI、深度学习训练、深度学习推理、数据分析以及高性能计算 HPC 等业务场景。
+
+GPU 加速型 g2na100 类型云服务器实例规格列表如下：
+
+[options="header",cols="2,1,1,3,2,2"]
+|===
+|实例规格 |vCPUs|内存|CPU|内网带宽|GPU
+|g2na100.4large.g1  
+|16 核 
+|48G 
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz 
+|2 Gbps 
+|1 * NVIDIA A100
+
+|g2na100.8large.g2  
+|32 核 
+|96G 
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz 
+|4 Gbps 
+|2 * NVIDIA A100
+
+|g2na100.16large.g4 
+|64 核 
+|192G 
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz 
+|8 Gbps 
+|4 * NVIDIA A100
+
+|g2na100.31large.g6  
+|120 核 
+|288G 
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz 
+|20 Gbps 
+|6 * NVIDIA A100
+
+|g2na100.31large.g8 
+|124 核 
+|432G 
+|Intel Xeon(Ice Lake) Platinum 8358 主频 2.6GHz\|睿频 3.4GHz 
+|20 Gbps 
+|8 * NVIDIA A100
+|===
