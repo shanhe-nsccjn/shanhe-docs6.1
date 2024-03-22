@@ -1,6 +1,6 @@
-# QingCloud Docs Center
+# ShanHe Docs Center
 
-本项目为文档中心文档项目的框架，使用 Adoc 工具编写文档，使用 Hugo 框架作为文档中心主框架。
+本项目为山河云文档中心，基于青云文档项目进行定制化修改，使用 Adoc 工具编写文档，使用 Hugo 框架作为文档中心主框架。
 
 ## 准备工作
 
