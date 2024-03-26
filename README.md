@@ -3,7 +3,7 @@
 本项目为山河云文档中心，基于青云文档项目进行定制化修改，使用 Adoc 工具编写文档，使用 Hugo 框架作为文档中心主框架。
 
 ## 准备工作
-
+环境搭建：
 用户如需在本地正常运行该文档框架，需依次安装如下工具：
 
 1. 用户本地下载安装 [asciidoctor](https://docs.asciidoctor.org/asciidoctor/latest/install/)
